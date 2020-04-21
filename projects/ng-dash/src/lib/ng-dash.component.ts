@@ -4,7 +4,7 @@ import { DashboardData } from './dashboard/dashboard-data';
 import { NgDashResolver } from "./ng-dash-resolver";
 
 @Component({
-  selector: 'ngdash-ng-dash',
+  selector: 'ngdash',
   template: `
     <ng-template #layout></ng-template>
   `,
