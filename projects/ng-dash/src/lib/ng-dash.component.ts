@@ -6,7 +6,7 @@ import { NgDashResolver } from "./ng-dash-resolver";
 @Component({
   selector: 'ngdash-ng-dash',
   template: `
-    <div #layout></div>
+    <ng-template #layout></ng-template>
   `,
   styles: [
   ]
@@ -24,11 +24,13 @@ export class NgDashComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dashboard = this.dashboardFactory.createDashboard(this.data);
-    this.dashboard.widgets.forEach(widget => {
-      const factory = this.componentFactoryResolver.resolveComponentFactory(widget.componentType);
-      const component = this.layoutContainerRef.createComponent(factory);
-      component.instance.widget = widget;
-      component.changeDetectorRef.detectChanges();
-    });
+    this.renderLayout();
+  }
+
+  renderLayout(){
+    const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(this.dashboard.layout);
+    const layoutComponent = this.layoutContainerRef.createComponent(layoutFactory);
+    layoutComponent.instance.dashboard = this.dashboard;
+    layoutComponent.changeDetectorRef.detectChanges();
   }
 }

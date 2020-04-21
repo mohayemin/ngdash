@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WidgetComponent } from '../../lib/widget/widget.component';
+import { WidgetComponent } from '../../widget/widget.component';
 
 @Component({
   selector: 'ngdash-text-widget',

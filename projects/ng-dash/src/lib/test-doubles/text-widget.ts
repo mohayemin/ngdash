@@ -1,6 +1,6 @@
-import { Widget } from '../lib/widget/widget';
+import { Widget } from '../widget/widget';
 import { Type } from '@angular/core';
-import { WidgetComponent } from '../lib/widget/widget.component';
+import { WidgetComponent } from '../widget/widget.component';
 import { TextWidgetComponent } from './text-widget/text-widget.component';
 
 export class TextWidget extends Widget {

@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgDashComponent } from './ng-dash.component';
-import { TextWidget } from '../test-doubles/text-widget';
+import { TextWidget } from './test-doubles/text-widget';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgDashResolver } from './ng-dash-resolver';
+import { FourColumnLayoutComponent } from './test-doubles/four-column-layout/four-column-layout.component';
+import { WidgetContainerDirective } from './layout/widget-container.directive';
 
 describe('NgDashComponent', () => {
   let component: NgDashComponent;
@@ -11,23 +13,28 @@ describe('NgDashComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NgDashComponent],
+      declarations: [
+        WidgetContainerDirective,
+        FourColumnLayoutComponent,
+        NgDashComponent
+      ],
       imports: [BrowserModule]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgDashComponent);
-    let resolver = TestBed.inject(NgDashResolver);
-    resolver.bindWidget("text", TextWidget);
+    TestBed.inject(NgDashResolver)
+      .bindWidget("text", TextWidget)
+      .bindLayout("four-column", FourColumnLayoutComponent);
     component = fixture.componentInstance;
 
     component.data = {
       config: {},
+      layoutType: "four-column",
       widgets: [
-        { type: "text", containerId: "", order: 1, config: { text: "first one" } }
-        , { type: "text", containerId: "", order: 1, config: { text: "the second" } }
+        { type: "text", containerId: "1", order: 1, config: { text: "first one" } }
+        , { type: "text", containerId: "2", order: 1, config: { text: "the second" } }
       ]
     }
 
