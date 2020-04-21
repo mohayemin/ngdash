@@ -7,9 +7,4 @@ export class TextWidget extends Widget {
   get componentType(): Type<WidgetComponent> {
     return TextWidgetComponent;
   }
-
-  loadData(): import("rxjs").Observable<any> {
-    throw new Error("Method not implemented.");
-  }
-
 }

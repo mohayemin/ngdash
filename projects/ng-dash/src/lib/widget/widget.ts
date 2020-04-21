@@ -10,18 +10,6 @@ export abstract class Widget {
   ){
   }
 
-  load() {
-    this.loadData()
-      .subscribe(data => this.onLoad.next(data));
-  }
-
   abstract get componentType(): Type<WidgetComponent>;
-
-  protected abstract loadData(): Observable<any>;
-
-  private onLoad = new Subject<any>();
-  on = {
-    load: this.onLoad.asObservable()
-  };
 }
 
