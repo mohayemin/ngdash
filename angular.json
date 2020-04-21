@@ -5,6 +5,12 @@
   "projects": {
     "ng-dash": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineStyle": true,
+          "inlineTemplate": true
+        }
+      },
       "root": "projects/ng-dash",
       "sourceRoot": "projects/ng-dash/src",
       "prefix": "ngdash",
