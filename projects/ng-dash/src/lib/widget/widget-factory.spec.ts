@@ -4,10 +4,10 @@ import { Widget } from './widget';
 import { TextWidget } from '../../test-doubles/text-widget';
 
 describe('WidgetFactory', () => {
-  it('should be able to resolve a registered widget', ()=>{
+  it('should be able to resolve a registered widget', () => {
     let factory = new WidgetFactory();
     factory.bind("text", TextWidget);
-    expect(factory.create("text")).toBeInstanceOf(TextWidget);
+    expect(factory.createModel({ type: "text", containerId: "", order: 1, config: {} })).toBeInstanceOf(TextWidget);
   });
 });
 

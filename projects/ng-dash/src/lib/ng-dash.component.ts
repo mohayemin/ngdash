@@ -1,21 +1,35 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
+import { DashboardData } from './dashboard/dashboard-data';
+import { DashboardFactory } from './dashboard/dashboard-factory';
+import { WidgetFactory } from './widget/widget-factory';
 
 @Component({
   selector: 'ngdash-ng-dash',
   template: `
-    <p *ngFor="let widget of dashboard.widgets">
-      {{widget.config.text}}
-    </p>
+    <div #layout></div>
   `,
   styles: [
   ]
 })
-export class NgDashComponent implements OnInit {
-  @Input() dashboard: Dashboard;
-  constructor() { }
+export class NgDashComponent implements AfterViewInit {
+  @Input("data") data: DashboardData;
+  dashboard: Dashboard;
 
-  ngOnInit(): void {
+  @ViewChild("layout", { read: ViewContainerRef }) layoutContainerRef: ViewContainerRef;
+
+  constructor(
+    private dashboardFactory: DashboardFactory,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) { }
+
+  ngAfterViewInit(): void {
+    this.dashboard = this.dashboardFactory.createFromData(this.data);
+    this.dashboard.widgets.forEach(widget => {
+      const factory = this.componentFactoryResolver.resolveComponentFactory(widget.componentType);
+      const component = this.layoutContainerRef.createComponent(factory);
+      component.instance.widget = widget;
+      component.changeDetectorRef.detectChanges();
+    });
   }
-
 }

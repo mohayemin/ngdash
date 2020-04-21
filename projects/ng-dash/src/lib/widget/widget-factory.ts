@@ -1,20 +1,24 @@
 import { Widget } from './widget';
+import { Injectable, Type } from '@angular/core';
+import { WidgetData } from './widget-data';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class WidgetFactory {
-	private bindings: { [key: string]: WidgetType} = {};
+	private bindings: { [key: string]: Type<Widget>} = {};
 
-	bind(typeId: string, typeClass: WidgetType): WidgetFactory{
-		this.bindings[typeId] = typeClass;
+  constructor() {
+  }
+
+	bind(typeId: string, binding: Type<Widget>): WidgetFactory{
+		this.bindings[typeId] = binding;
 		return this;
 	}
 
-	create(typeId: string): Widget {
-		let widgetType = this.bindings[typeId];
-		let widget = new widgetType();
-		return widget;
-	}
+	createModel(widgetData: WidgetData): Widget {
+    let modelType = this.bindings[widgetData.type];
+		return new modelType(widgetData.containerId, widgetData.order, widgetData.config);
+  }
 }
 
-interface WidgetType {
-  new (...args: any[]) : Widget
-}
