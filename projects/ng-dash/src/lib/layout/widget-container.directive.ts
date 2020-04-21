@@ -17,7 +17,9 @@ export class WidgetContainerDirective implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let widgets = this.ngDash.dashboard.widgets.filter(w => w.containerId == this.id);
+    let widgets = this.ngDash.dashboard.widgets
+      .filter(w => w.containerId == this.id);
+    widgets.sort((w1, w2) => w1.order - w2.order);
     widgets.forEach(widget => this.renderWidget(widget));
   }
 
