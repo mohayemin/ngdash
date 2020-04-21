@@ -1,9 +1,8 @@
-import { Layout } from './layout';
-import { Widget } from './widget/widget';
+import { Widget } from '../widget/widget';
 
 export class Dashboard {
 	id: string;
   name: string;
-  layout: Layout;
+  layoutId: string;
   widgets: Widget[];
 }

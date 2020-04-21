@@ -7,7 +7,6 @@ export abstract class Widget {
   order: number;
   config: any;
 
-
   load() {
     this.loadData()
       .subscribe(data => this.onLoad.next(data));
