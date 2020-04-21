@@ -2,9 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgDashComponent } from './ng-dash.component';
 import { TextWidget } from '../test-doubles/text-widget';
-import { Dashboard } from './dashboard/dashboard';
 import { BrowserModule } from '@angular/platform-browser';
-import { WidgetFactory } from './widget/widget-factory';
+import { NgDashResolver } from './ng-dash-resolver';
 
 describe('NgDashComponent', () => {
   let component: NgDashComponent;
@@ -20,8 +19,8 @@ describe('NgDashComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgDashComponent);
-    let widgetFactory = TestBed.inject(WidgetFactory);
-    widgetFactory.bind("text", TextWidget);
+    let resolver = TestBed.inject(NgDashResolver);
+    resolver.bindWidget("text", TextWidget);
     component = fixture.componentInstance;
 
     component.data = {
