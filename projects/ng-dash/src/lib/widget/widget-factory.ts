@@ -1,5 +1,4 @@
 import { Widget } from './widget';
-import { Type } from '@angular/core';
 
 export class WidgetFactory {
 	private bindings: { [key: string]: WidgetType} = {};

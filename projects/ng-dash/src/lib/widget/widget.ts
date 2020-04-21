@@ -1,18 +1,20 @@
 import { Observable, Subject } from 'rxjs';
 
 export abstract class Widget {
-  id: string;
-  name: string;
-  containerId: string;
-  order: number;
-  config: any;
+  constructor(
+    public readonly id: string,
+    public readonly containerId: string,
+    public readonly order: number,
+    public readonly config: any,
+  ){
+  }
 
   load() {
     this.loadData()
       .subscribe(data => this.onLoad.next(data));
   }
 
-  abstract loadData(): Observable<any>;
+  protected abstract loadData(): Observable<any>;
 
   private onLoad = new Subject<any>();
   on = {

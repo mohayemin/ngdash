@@ -1,21 +1,13 @@
 import { WidgetFactory } from './widget-factory';
 import { of, Observable } from 'rxjs';
 import { Widget } from './widget';
+import { TextWidget } from '../../test-doubles/text-widget';
 
 describe('WidgetFactory', () => {
-  it('should create an instance', () => {
-    expect(new WidgetFactory()).toBeTruthy();
-  });
-
   it('should be able to resolve a registered widget', ()=>{
     let factory = new WidgetFactory();
-    factory.bind("dummy", DummyWidget);
-    expect(factory.create("dummy")).toBeInstanceOf(DummyWidget);
+    factory.bind("text", TextWidget);
+    expect(factory.create("text")).toBeInstanceOf(TextWidget);
   });
 });
 
-class DummyWidget extends Widget {
-  loadData(): Observable<any> {
-    return of(1);
-  }
-}
