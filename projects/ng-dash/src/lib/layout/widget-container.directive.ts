@@ -8,16 +8,16 @@ import { Widget } from '../widget/widget';
 })
 export class WidgetContainerDirective implements AfterViewInit {
   @Input('widgetContainer') id: string;
-  @Input() dashboard: Dashboard;
 
   constructor(
+    private ngDash: NgDashComponent,
     private componentFactoryResolver: ComponentFactoryResolver,
     public viewContainerRef: ViewContainerRef
   ) {
   }
 
   ngAfterViewInit() {
-    let widgets = this.dashboard.widgets.filter(w => w.containerId == this.id);
+    let widgets = this.ngDash.dashboard.widgets.filter(w => w.containerId == this.id);
     widgets.forEach(widget => this.renderWidget(widget));
   }
 

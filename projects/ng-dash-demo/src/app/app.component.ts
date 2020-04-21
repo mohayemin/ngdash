@@ -16,7 +16,8 @@ export class AppComponent {
       config: {},
       layoutType: "single",
       widgets: [
-        {type: "html", order:0, config: {html: "First one"}, containerId: "0"}
+        {type: "html", order:0, config: {html: "First one"}, containerId: "0"},
+        {type: "html", order:0, config: {html: "Second one"}, containerId: "0"}
       ]
     }
   }
