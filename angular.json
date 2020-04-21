@@ -84,6 +84,12 @@
       "sourceRoot": "projects/ng-dash-demo/src",
       "prefix": "ng-dash-demo",
       "architect": {
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "ng-dash"
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
