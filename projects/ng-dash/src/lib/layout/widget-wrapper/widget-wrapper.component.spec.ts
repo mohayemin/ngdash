@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WidgetWrapperComponent } from './widget-wrapper.component';
 import { Widget } from '../../widget/widget';
-import { TextWidget } from '../../test-doubles/text-widget';
+import { TextWidgetComponent } from '../../test-doubles/text-widget/text-widget.component';
 
 describe('WidgetWrapperComponent', () => {
   let component: WidgetWrapperComponent;
@@ -18,7 +18,7 @@ describe('WidgetWrapperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WidgetWrapperComponent);
     component = fixture.componentInstance;
-    component.widget = new TextWidget("", 0, { text: "here I am" });
+    component.widget = new Widget("", 0, { text: "here I am" }, TextWidgetComponent);
     fixture.detectChanges();
   });
 

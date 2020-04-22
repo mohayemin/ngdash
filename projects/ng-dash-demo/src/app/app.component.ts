@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardData } from 'projects/ng-dash/src/lib/dashboard/dashboard-data';
 import { NgDashResolver } from 'projects/ng-dash/src/lib/ng-dash-resolver';
-import { DemoWidget } from './demo-widget';
+import { DemoWidgetComponent } from './demo-widget.component';
 
 @Component({
   selector: 'ng-dash-demo-root',
@@ -14,7 +14,7 @@ import { DemoWidget } from './demo-widget';
 export class AppComponent {
   dashboardData: DashboardData;
   constructor(ngdashResolver: NgDashResolver) {
-    ngdashResolver.bindWidget("demo", DemoWidget)
+    ngdashResolver.bindWidget("demo", DemoWidgetComponent)
 
     this.dashboardData = {
       config: {},

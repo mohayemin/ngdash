@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgDashComponent } from './ng-dash.component';
-import { TextWidget } from './test-doubles/text-widget';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgDashResolver } from './ng-dash-resolver';
 import { FourColumnLayoutComponent } from './test-doubles/four-column-layout/four-column-layout.component';
 import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.component';
 import { WidgetContainerComponent } from './layout/widget-container/widget-container.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TextWidgetComponent } from './test-doubles/text-widget/text-widget.component';
 
 describe('NgDashComponent', () => {
   it('should create', () => {
@@ -47,7 +47,7 @@ describe('NgDashComponent', () => {
 
     let fixture = TestBed.createComponent(NgDashComponent);
     TestBed.inject(NgDashResolver)
-      .bindWidget("text", TextWidget)
+      .bindWidget("text", TextWidgetComponent)
       .bindLayout("four-column", FourColumnLayoutComponent);
     let component = fixture.componentInstance;
 
