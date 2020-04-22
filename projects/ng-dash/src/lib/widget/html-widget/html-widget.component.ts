@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { WidgetComponent } from '../widget.component';
+import { WidgetBodyComponent } from '../widget-body.component';
 
 @Component({
   selector: 'ngdash-html-widget',
@@ -10,6 +10,6 @@ import { WidgetComponent } from '../widget.component';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HtmlWidgetComponent extends WidgetComponent {
+export class HtmlWidgetComponent extends WidgetBodyComponent {
 
 }

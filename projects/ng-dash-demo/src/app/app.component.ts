@@ -16,6 +16,7 @@ import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/dashboard/widget-move-
       </div>
       <ngdash [dashboard]="dashboard"
         (moveWidget)="widgetMoved($event)"
+        (removeWidget)="widgetRemoved($event)"
         [enableDragDrop]="enableDragDrop"></ngdash>
 
       <div class="alert alert-info mt-3">
@@ -53,5 +54,10 @@ export class AppComponent {
     } else {
       this.messages.unshift(`${num}: Widget moved between containers`);
     }
+  }
+
+  widgetRemoved(widget: Widget){
+    const num = this.messages.length + 1;
+    this.messages.unshift(`${num}: Widget removed`);
   }
 }

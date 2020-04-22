@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
 import { WidgetMoveEvent } from './dashboard/widget-move-event';
+import { Widget } from './widget/widget';
 
 @Component({
   selector: 'ngdash',
@@ -30,6 +31,7 @@ export class NgDashComponent implements AfterViewInit {
   @Input() enableDragDrop: boolean;
 
   @Output("moveWidget") widgetMoveEmitter = new EventEmitter<WidgetMoveEvent>();
+  @Output("removeWidget") widgetRemoveEmitter = new EventEmitter<Widget>()
 
   @ViewChild("layout", { read: ViewContainerRef })
   layoutContainerRef: ViewContainerRef;

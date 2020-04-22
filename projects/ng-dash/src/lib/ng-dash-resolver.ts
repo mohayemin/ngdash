@@ -4,12 +4,12 @@ import { Dashboard } from './dashboard/dashboard';
 import { Widget } from './widget/widget';
 import { WidgetData } from './widget/widget-data';
 import { LayoutComponent } from './layout/layout.component';
-import { WidgetComponent } from './widget/widget.component';
+import { WidgetBodyComponent } from './widget/widget-body.component';
 @Injectable({
   providedIn: "root"
 })
 export class NgDashResolver {
-  private widgetBindings: { [key: string]: Type<WidgetComponent> } = {};
+  private widgetBindings: { [key: string]: Type<WidgetBodyComponent> } = {};
   private layoutBindings: { [key: string]: Type<LayoutComponent> } = {};
   constructor() {
   }
@@ -25,7 +25,7 @@ export class NgDashResolver {
     return new Widget({containerId: widgetData.containerId, index: widgetData.order}, widgetData.config, componentCtor);
   }
 
-  bindWidget(typeId: string, binding: Type<WidgetComponent>): NgDashResolver {
+  bindWidget(typeId: string, binding: Type<WidgetBodyComponent>): NgDashResolver {
     this.widgetBindings[typeId] = binding;
     return this;
   }

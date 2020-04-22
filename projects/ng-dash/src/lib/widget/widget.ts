@@ -1,6 +1,8 @@
 import { Observable, Subject } from 'rxjs';
 import { Type } from '@angular/core';
-import { WidgetComponent } from './widget.component';
+import { WidgetBodyComponent } from './widget-body.component';
+import { WidgetHeaderComponent } from './widget-header.component';
+import { DefaultWidgetHeaderComponent } from '../layout/default-widget-header/default-widget-header.component';
 
 export class Widget {
   readonly initialPosition: WidgetPosition;
@@ -8,7 +10,8 @@ export class Widget {
   constructor(
     public position: WidgetPosition,
     public config: any,
-    public componentType: Type<WidgetComponent>
+    public bodyComponent: Type<WidgetBodyComponent>,
+    public headerComponent: Type<WidgetHeaderComponent> = DefaultWidgetHeaderComponent
   ) {
     this.initialPosition = {
       containerId: position.containerId,

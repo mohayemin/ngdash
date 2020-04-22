@@ -8,6 +8,7 @@ import { WidgetContainerComponent } from './layout/widget-container/widget-conta
 import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BootstrapR1C2LayoutComponent } from './layout/layouts/bootstrap-r1-c2-layout.component';
+import { DefaultWidgetHeaderComponent } from './layout/default-widget-header/default-widget-header.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { BootstrapR1C2LayoutComponent } from './layout/layouts/bootstrap-r1-c2-l
     WidgetContainerComponent,
     WidgetWrapperComponent,
     BootstrapR1C2LayoutComponent,
+    DefaultWidgetHeaderComponent,
   ],
   imports: [
     BrowserModule,

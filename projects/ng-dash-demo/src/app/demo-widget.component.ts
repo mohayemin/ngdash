@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { WidgetComponent } from 'projects/ng-dash/src/lib/widget/widget.component';
+import { WidgetBodyComponent } from 'projects/ng-dash/src/lib/widget/widget-body.component';
 
 @Component({
   selector: 'ng-dash-demo-widget',
@@ -16,7 +16,7 @@ import { WidgetComponent } from 'projects/ng-dash/src/lib/widget/widget.componen
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoWidgetComponent extends WidgetComponent {
+export class DemoWidgetComponent extends WidgetBodyComponent {
 
   ngOnInit() {
   }
