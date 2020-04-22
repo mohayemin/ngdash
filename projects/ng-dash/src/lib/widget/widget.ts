@@ -4,9 +4,9 @@ import { WidgetComponent } from './widget.component';
 
 export abstract class Widget {
   constructor(
-    public readonly containerId: string,
-    public readonly order: number,
-    public readonly config: any,
+    public containerId: string,
+    public order: number,
+    public config: any,
   ){
   }
 

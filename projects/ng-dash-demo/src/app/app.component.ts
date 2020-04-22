@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardData } from 'projects/ng-dash/src/lib/dashboard/dashboard-data';
+import { NgDashResolver } from 'projects/ng-dash/src/lib/ng-dash-resolver';
+import { DemoWidget } from './demo-widget';
 
 @Component({
   selector: 'ng-dash-demo-root',
@@ -11,14 +13,16 @@ import { DashboardData } from 'projects/ng-dash/src/lib/dashboard/dashboard-data
 })
 export class AppComponent {
   dashboardData: DashboardData;
-  constructor() {
+  constructor(ngdashResolver: NgDashResolver) {
+    ngdashResolver.bindWidget("demo", DemoWidget)
+
     this.dashboardData = {
       config: {},
       layoutType: "single",
       widgets: [
-        { type: "html", order: 1, config: { html: "First one" }, containerId: "0" },
-        { type: "html", order: 3, config: { html: "Second one, but ordered in 3" }, containerId: "0" },
-        { type: "html", order: 2, config: { html: "Third one, but ordered in 2" }, containerId: "0" },
+        { type: "demo", order: 1, config: { html: "First one" }, containerId: "0" },
+        { type: "demo", order: 3, config: { html: "Second one, but ordered in 3" }, containerId: "0" },
+        { type: "demo", order: 2, config: { html: "Third one, but ordered in 2" }, containerId: "0" },
       ]
     }
   }

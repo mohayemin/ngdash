@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NgDashModule } from 'projects/ng-dash/src/public-api';
+import { DemoWidgetComponent } from './demo-widget.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DemoWidgetComponent
   ],
   imports: [
     BrowserModule,
