@@ -6,8 +6,10 @@ import { DemoWidgetComponent } from './demo-widget.component';
 @Component({
   selector: 'ng-dash-demo-root',
   template: `
-    <h1>ng-dash Demo</h1>
-    <ngdash [data]="dashboardData"></ngdash>
+    <div class="container">
+      <h1>ng-dash Demo</h1>
+      <ngdash [data]="dashboardData"></ngdash>
+    </div>
   `,
   styles: []
 })

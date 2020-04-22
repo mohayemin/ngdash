@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { NgDashComponent } from '../../ng-dash.component';
 import { Widget } from '../../widget/widget';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 const selector = 'ngdash-widget-container';
 @Component({
@@ -9,6 +9,7 @@ const selector = 'ngdash-widget-container';
   template: `
     <div class="${selector}"
         cdkDropList
+        [cdkDropListData]="widgets"
         (cdkDropListDropped)="drop($event)">
       <div cdkDrag
         *ngFor="let widget of widgets">
@@ -36,8 +37,22 @@ export class WidgetContainerComponent {
     this.widgets = widgets;
   }
 
-  drop(event: CdkDragDrop<Widget[]>){
+  drop(event: CdkDragDrop<Widget[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
     moveItemInArray(this.widgets, event.previousIndex, event.currentIndex);
-    this.widgets.forEach((widget, index)=> widget.order = index);
+    this.widgets.forEach((widget, index) => widget.order = index);
   }
 }

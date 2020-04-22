@@ -6,7 +6,9 @@ import { NgDashResolver } from "./ng-dash-resolver";
 @Component({
   selector: 'ngdash',
   template: `
-    <ng-template #layout></ng-template>
+    <div cdkDropListGroup class="ngdash">
+      <ng-template #layout></ng-template>
+    </div>
   `,
   styles: [
   ]
