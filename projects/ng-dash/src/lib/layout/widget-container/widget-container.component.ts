@@ -7,11 +7,11 @@ const selector = 'ngdash-widget-container';
   selector: selector,
   template: `
     <div class="${selector}" >
-      <ngdash-widget-wrapper
-        *ngFor="let widget of widgets"
-        [widget]="widget"
-        cdkDrag>
-      </ngdash-widget-wrapper>
+      <div cdkDrag
+        *ngFor="let widget of widgets">
+          <ngdash-widget-wrapper [widget]="widget">
+          </ngdash-widget-wrapper>
+      </div>
     </div>
   `,
   styles: [

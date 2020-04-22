@@ -7,6 +7,7 @@ import { HtmlWidgetComponent } from './widget/html-widget/html-widget.component'
 import { HtmlWidget } from './widget/html-widget/html-widget';
 import { WidgetContainerComponent } from './layout/widget-container/widget-container.component';
 import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.c
     WidgetWrapperComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DragDropModule
   ],
   exports: [NgDashComponent]
 })
