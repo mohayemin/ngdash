@@ -10,12 +10,19 @@ import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/la
   template: `
     <div class="container">
       <h1>ng-dash Demo</h1>
-      <ngdash [dashboard]="dashboard"></ngdash>
+      <div>
+        <label>
+          <input type="checkbox" [(ngModel)]="enableDragDrop"/> Enable Drag Drop
+        </label>
+      </div>
+      <ngdash [dashboard]="dashboard"
+        [enableDragDrop]="enableDragDrop"></ngdash>
     </div>
   `,
   styles: []
 })
 export class AppComponent {
+  enableDragDrop: boolean;
   dashboard: Dashboard;
   constructor() {
     this.dashboard = new Dashboard(

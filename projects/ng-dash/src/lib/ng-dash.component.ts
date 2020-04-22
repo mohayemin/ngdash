@@ -4,7 +4,10 @@ import { Dashboard } from './dashboard/dashboard';
 @Component({
   selector: 'ngdash',
   template: `
-    <div cdkDropListGroup class="ngdash">
+    <div class="ngdash"
+      [class.dragdrop-enabled]="enableDragDrop"
+      cdkDropListGroup
+      [cdkDropListGroupDisabled]="!enableDragDrop">
       <ng-template #layout></ng-template>
     </div>
   `,
@@ -15,8 +18,12 @@ export class NgDashComponent implements AfterViewInit {
   @Input()
   dashboard: Dashboard;
 
+  @Input() enableDragDrop: boolean;
+
   @ViewChild("layout", { read: ViewContainerRef })
   layoutContainerRef: ViewContainerRef;
+
+
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver
