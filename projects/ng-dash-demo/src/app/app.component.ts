@@ -2,30 +2,30 @@ import { Component } from '@angular/core';
 import { DashboardData } from 'projects/ng-dash/src/lib/dashboard/dashboard-data';
 import { NgDashResolver } from 'projects/ng-dash/src/lib/ng-dash-resolver';
 import { DemoWidgetComponent } from './demo-widget.component';
+import { Dashboard, Widget } from 'projects/ng-dash/src/public-api';
+import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/layouts/bootstrap-r1-c2-layout.component';
 
 @Component({
   selector: 'ng-dash-demo-root',
   template: `
     <div class="container">
       <h1>ng-dash Demo</h1>
-      <ngdash [data]="dashboardData"></ngdash>
+      <ngdash [dashboard]="dashboard"></ngdash>
     </div>
   `,
   styles: []
 })
 export class AppComponent {
-  dashboardData: DashboardData;
-  constructor(ngdashResolver: NgDashResolver) {
-    ngdashResolver.bindWidget("demo", DemoWidgetComponent)
-
-    this.dashboardData = {
-      config: {},
-      layoutType: "bs-r1-c2",
-      widgets: [
-        { type: "demo", order: 0, config: { html: "Started at 0-0" }, containerId: 0 },
-        { type: "demo", order: 1, config: { html: "Started at 0-1" }, containerId: 0 },
-        { type: "demo", order: 0, config: { html: "Started at 1-0" }, containerId: 1 },
-      ]
-    }
+  dashboard: Dashboard;
+  constructor() {
+    this.dashboard = new Dashboard(
+      [
+        new Widget(0, 0, {}, DemoWidgetComponent),
+        new Widget(0, 1, {}, DemoWidgetComponent),
+        new Widget(1, 0, {}, DemoWidgetComponent)
+      ],
+      BootstrapR1C2LayoutComponent,
+      {}
+    )
   }
 }

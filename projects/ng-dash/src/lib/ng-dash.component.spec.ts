@@ -8,6 +8,8 @@ import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.c
 import { WidgetContainerComponent } from './layout/widget-container/widget-container.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TextWidgetComponent } from './test-doubles/text-widget/text-widget.component';
+import { Dashboard } from './dashboard/dashboard';
+import { Widget } from './widget/widget';
 
 describe('NgDashComponent', () => {
   it('should create', () => {
@@ -51,14 +53,14 @@ describe('NgDashComponent', () => {
       .bindLayout("four-column", FourColumnLayoutComponent);
     let component = fixture.componentInstance;
 
-    component.data = {
-      config: {},
-      layoutType: "four-column",
-      widgets: [
-        { type: "text", containerId: 0, order: 1, config: { text: "first one" } }
-        , { type: "text", containerId: 1, order: 1, config: { text: "the second" } }
-      ]
-    }
+    component.dashboard = new Dashboard(
+      [
+        new Widget(0, 0, { text: "first one" }, TextWidgetComponent)
+        , new Widget(0, 0, { text: "the second" }, TextWidgetComponent)
+      ],
+      FourColumnLayoutComponent,
+      {}
+    )
 
     return fixture;
   }

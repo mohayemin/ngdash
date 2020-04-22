@@ -1,7 +1,5 @@
 import { Component, AfterViewInit, Input, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
-import { DashboardData } from './dashboard/dashboard-data';
-import { NgDashResolver } from "./ng-dash-resolver";
 
 @Component({
   selector: 'ngdash',
@@ -14,18 +12,17 @@ import { NgDashResolver } from "./ng-dash-resolver";
   ]
 })
 export class NgDashComponent implements AfterViewInit {
-  @Input("data") data: DashboardData;
+  @Input()
   dashboard: Dashboard;
 
-  @ViewChild("layout", { read: ViewContainerRef }) layoutContainerRef: ViewContainerRef;
+  @ViewChild("layout", { read: ViewContainerRef })
+  layoutContainerRef: ViewContainerRef;
 
   constructor(
-    private dashboardFactory: NgDashResolver,
     private componentFactoryResolver: ComponentFactoryResolver
   ) { }
 
   ngAfterViewInit(): void {
-    this.dashboard = this.dashboardFactory.createDashboard(this.data);
     this.renderLayout();
   }
 
