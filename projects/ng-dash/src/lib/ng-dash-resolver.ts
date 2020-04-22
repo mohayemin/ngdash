@@ -22,7 +22,7 @@ export class NgDashResolver {
 
   createWidget(widgetData: WidgetData): Widget {
     let componentCtor = this.widgetBindings[widgetData.type];
-    return new Widget(widgetData.containerId, widgetData.order, widgetData.config, componentCtor);
+    return new Widget({containerId: widgetData.containerId, index: widgetData.order}, widgetData.config, componentCtor);
   }
 
   bindWidget(typeId: string, binding: Type<WidgetComponent>): NgDashResolver {

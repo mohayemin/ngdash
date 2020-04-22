@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { DashboardData } from 'projects/ng-dash/src/lib/dashboard/dashboard-data';
-import { NgDashResolver } from 'projects/ng-dash/src/lib/ng-dash-resolver';
 import { DemoWidgetComponent } from './demo-widget.component';
 import { Dashboard, Widget } from 'projects/ng-dash/src/public-api';
 import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/layouts/bootstrap-r1-c2-layout.component';
@@ -27,9 +25,9 @@ export class AppComponent {
   constructor() {
     this.dashboard = new Dashboard(
       [
-        new Widget(0, 0, {}, DemoWidgetComponent),
-        new Widget(0, 1, {}, DemoWidgetComponent),
-        new Widget(1, 0, {}, DemoWidgetComponent)
+        new Widget({containerId: 0, index: 0}, {}, DemoWidgetComponent),
+        new Widget({containerId: 0, index: 1}, {}, DemoWidgetComponent),
+        new Widget({containerId: 1, index: 0}, {}, DemoWidgetComponent)
       ],
       BootstrapR1C2LayoutComponent,
       {}

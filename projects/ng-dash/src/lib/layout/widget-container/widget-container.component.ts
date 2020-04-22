@@ -38,9 +38,9 @@ export class WidgetContainerComponent {
 
   setupWidgets() {
     let widgets = this.ngDash.dashboard.widgets
-      .filter(w => w.containerId === this.cid);
-    widgets.sort((w1, w2) => w1.order - w2.order);
-    widgets.forEach((w, i) => w.order = i);
+      .filter(w => w.position.containerId === this.cid);
+    widgets.sort((w1, w2) => w1.position.index - w2.position.index);
+    widgets.forEach((w, i) => w.position.index = i);
     this.widgets = widgets;
   }
 
@@ -49,8 +49,8 @@ export class WidgetContainerComponent {
     const newContainer = event.container.data;
     const widget = event.item.data as Widget;
 
-    widget.order = event.currentIndex - 0.1;
-    widget.containerId = newContainer.cid;
+    widget.position.index = event.currentIndex - 0.1;
+    widget.position.containerId = newContainer.cid;
     oldContainer.setupWidgets();
     if (newContainer !== oldContainer) {
       newContainer.setupWidgets();
