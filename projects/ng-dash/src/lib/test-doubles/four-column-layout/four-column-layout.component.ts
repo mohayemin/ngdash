@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { LayoutComponent } from '../../layout/layout.component';
 
 @Component({
@@ -9,7 +12,8 @@ import { LayoutComponent } from '../../layout/layout.component';
     <ngdash-widget-container [cid]="1" class="c1"></ngdash-widget-container>
     <ngdash-widget-container [cid]="2" class="c2"></ngdash-widget-container>
     <ngdash-widget-container [cid]="3" class="c3"></ngdash-widget-container>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FourColumnLayoutComponent extends LayoutComponent {
 

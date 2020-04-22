@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LayoutComponent } from '../layout.component';
 
 @Component({
@@ -7,8 +7,8 @@ import { LayoutComponent } from '../layout.component';
     <ngdash-widget-container [cid]="0">
     </ngdash-widget-container>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SingleColumnLayoutComponent extends LayoutComponent {
 

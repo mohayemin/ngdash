@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DemoWidgetComponent } from './demo-widget.component';
 import { Dashboard, Widget } from 'projects/ng-dash/src/public-api';
 import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/layouts/bootstrap-r1-c2-layout.component';
@@ -17,7 +17,8 @@ import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/la
         [enableDragDrop]="enableDragDrop"></ngdash>
     </div>
   `,
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   enableDragDrop: boolean;

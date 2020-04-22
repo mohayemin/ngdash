@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { WidgetComponent } from '../widget.component';
 
 @Component({
@@ -7,8 +7,8 @@ import { WidgetComponent } from '../widget.component';
     <div [innerHtml]="widget.config.html">
     </div>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HtmlWidgetComponent extends WidgetComponent {
 

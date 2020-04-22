@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, AfterViewInit, ComponentFactoryResolver } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ViewContainerRef,
+  AfterViewInit,
+  ComponentFactoryResolver,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Widget } from '../../widget/widget';
 
 @Component({
@@ -8,8 +16,8 @@ import { Widget } from '../../widget/widget';
       <ng-template #widget></ng-template>
     </div>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WidgetWrapperComponent implements AfterViewInit {
   @Input() widget: Widget;

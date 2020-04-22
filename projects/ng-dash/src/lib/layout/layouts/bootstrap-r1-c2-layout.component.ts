@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LayoutComponent } from '../layout.component';
 
 @Component({
@@ -13,8 +13,8 @@ import { LayoutComponent } from '../layout.component';
       </div>
     </div>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BootstrapR1C2LayoutComponent extends LayoutComponent {
 }

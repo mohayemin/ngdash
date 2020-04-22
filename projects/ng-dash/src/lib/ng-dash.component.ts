@@ -1,4 +1,12 @@
-import { Component, AfterViewInit, Input, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  Input,
+  ViewChild,
+  ComponentFactoryResolver,
+  ViewContainerRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
 
 @Component({
@@ -11,8 +19,8 @@ import { Dashboard } from './dashboard/dashboard';
       <ng-template #layout></ng-template>
     </div>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgDashComponent implements AfterViewInit {
   @Input()
@@ -33,7 +41,7 @@ export class NgDashComponent implements AfterViewInit {
     this.renderLayout();
   }
 
-  renderLayout(){
+  renderLayout() {
     const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(this.dashboard.layout);
     const layoutComponent = this.layoutContainerRef.createComponent(layoutFactory);
     layoutComponent.changeDetectorRef.detectChanges();

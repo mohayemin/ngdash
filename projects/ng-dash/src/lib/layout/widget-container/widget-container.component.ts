@@ -20,8 +20,8 @@ const selector = 'ngdash-widget-container';
       </div>
     </div>
   `,
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WidgetContainerComponent {
   @Input() cid: number;
