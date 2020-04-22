@@ -4,9 +4,8 @@ import { LayoutComponent } from '../layout.component';
 @Component({
   selector: 'ngdash-single-column-layout',
   template: `
-    <ng-template
-      [widgetContainer]="'0'">
-    </ng-template>
+    <ngdash-widget-container containerId="0">
+    </ngdash-widget-container>
   `,
   styles: [
   ]

@@ -5,10 +5,10 @@ import { LayoutComponent } from '../../layout/layout.component';
   selector: 'ngdash-four-column-layout',
   template: `
     <div>Four Columns</div>
-    <div [widgetContainer]="'1'" class="c1"></div>
-    <div [widgetContainer]="'2'" class="c2"></div>
-    <div [widgetContainer]="'3'" class="c3"></div>
-    <div [widgetContainer]="'4'" class="c4"></div>
+    <ngdash-widget-container containerId="0" class="c4"></ngdash-widget-container>
+    <ngdash-widget-container containerId="1" class="c1"></ngdash-widget-container>
+    <ngdash-widget-container containerId="2" class="c2"></ngdash-widget-container>
+    <ngdash-widget-container containerId="3" class="c3"></ngdash-widget-container>
   `
 })
 export class FourColumnLayoutComponent extends LayoutComponent {

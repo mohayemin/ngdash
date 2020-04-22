@@ -5,7 +5,9 @@ import { TextWidget } from './test-doubles/text-widget';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgDashResolver } from './ng-dash-resolver';
 import { FourColumnLayoutComponent } from './test-doubles/four-column-layout/four-column-layout.component';
-import { WidgetContainerDirective } from './layout/widget-container.directive';
+import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.component';
+import { WidgetContainerComponent } from './layout/widget-container/widget-container.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 describe('NgDashComponent', () => {
   it('should create', () => {
@@ -13,7 +15,7 @@ describe('NgDashComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should create the layout element', ()=>{
+  it('should create the layout element', () => {
     let fixture = createComponentFixture();
     fixture.detectChanges();
     let dashboardElement = fixture.nativeElement as HTMLElement;
@@ -21,7 +23,7 @@ describe('NgDashComponent', () => {
     expect(layoutElement).toBeDefined();
   });
 
-  it('should create 2 widgets', ()=>{
+  it('should create 2 widgets', () => {
     let fixture = createComponentFixture();
     fixture.detectChanges();
     let dashboardElement = fixture.nativeElement as HTMLElement;
@@ -32,11 +34,15 @@ describe('NgDashComponent', () => {
   function createComponentFixture() {
     TestBed.configureTestingModule({
       declarations: [
-        WidgetContainerDirective,
+        NgDashComponent,
+        WidgetWrapperComponent,
+        WidgetContainerComponent,
         FourColumnLayoutComponent,
-        NgDashComponent
       ],
-      imports: [BrowserModule]
+      imports: [
+        BrowserModule,
+        DragDropModule
+      ]
     });
 
     let fixture = TestBed.createComponent(NgDashComponent);
