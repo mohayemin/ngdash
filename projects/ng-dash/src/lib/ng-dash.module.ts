@@ -7,7 +7,7 @@ import { HtmlWidgetComponent } from './widget/html-widget/html-widget.component'
 import { WidgetContainerComponent } from './layout/widget-container/widget-container.component';
 import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BootstrapR1C2Component } from './layouts/bootstrap-r1-c2.component';
+import { BootstrapR1C2LayoutComponent } from './layout/layouts/bootstrap-r1-c2-layout.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { BootstrapR1C2Component } from './layouts/bootstrap-r1-c2.component';
     HtmlWidgetComponent,
     WidgetContainerComponent,
     WidgetWrapperComponent,
+    BootstrapR1C2LayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +28,7 @@ export class NgDashModule {
   constructor(resolver: NgDashResolver) {
     resolver
       .bindLayout("1", SingleColumnLayoutComponent)
+      .bindLayout("bs-r1-c2", BootstrapR1C2LayoutComponent)
       .bindWidget("html", HtmlWidgetComponent);
   }
 }
