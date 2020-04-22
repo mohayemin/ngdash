@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { WidgetComponent } from 'projects/ng-dash/src/lib/widget/widget.component';
 
 @Component({
-  selector: 'ng-dash-demo-demo-widget',
+  selector: 'ng-dash-demo-widget',
   template: `
-    <div>
-      Initial: container {{initialContainerId}}, order {{initialOrder}}
-    </div>
-    <div>
-      Current: container {{widget.containerId}}, order {{widget.order}}
+    <div [attr.initcontainer]="initialContainerId">
+      <div>Initial: container {{initialContainerId}}, order {{initialOrder}}</div>
+      <div>Current: container {{widget.containerId}}, order {{widget.order}}</div>
     </div>
   `,
   styles: [
