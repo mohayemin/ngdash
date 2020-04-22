@@ -18,7 +18,7 @@ describe('WidgetWrapperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WidgetWrapperComponent);
     component = fixture.componentInstance;
-    component.widget = new Widget("", 0, { text: "here I am" }, TextWidgetComponent);
+    component.widget = new Widget(0, 0, { text: "here I am" }, TextWidgetComponent);
     fixture.detectChanges();
   });
 

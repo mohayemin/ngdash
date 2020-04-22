@@ -55,8 +55,8 @@ describe('NgDashComponent', () => {
       config: {},
       layoutType: "four-column",
       widgets: [
-        { type: "text", containerId: "1", order: 1, config: { text: "first one" } }
-        , { type: "text", containerId: "2", order: 1, config: { text: "the second" } }
+        { type: "text", containerId: 0, order: 1, config: { text: "first one" } }
+        , { type: "text", containerId: 1, order: 1, config: { text: "the second" } }
       ]
     }
 

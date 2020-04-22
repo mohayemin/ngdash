@@ -21,7 +21,7 @@ const selector = 'ngdash-widget-container';
   ]
 })
 export class WidgetContainerComponent {
-  @Input() containerId: string;
+  @Input() cid: number;
   widgets: Widget[];
 
   constructor(
@@ -31,7 +31,7 @@ export class WidgetContainerComponent {
 
   ngOnInit() {
     let widgets = this.ngDash.dashboard.widgets
-      .filter(w => w.containerId === this.containerId);
+      .filter(w => w.containerId === this.cid);
     widgets.sort((w1, w2) => w1.order - w2.order);
     this.widgets = widgets;
   }

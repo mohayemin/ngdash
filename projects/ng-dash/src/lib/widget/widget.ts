@@ -4,7 +4,7 @@ import { WidgetComponent } from './widget.component';
 
 export class Widget {
   constructor(
-    public containerId: string,
+    public containerId: number,
     public order: number,
     public config: any,
     public componentType: Type<WidgetComponent>

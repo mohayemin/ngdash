@@ -18,11 +18,11 @@ export class AppComponent {
 
     this.dashboardData = {
       config: {},
-      layoutType: "single",
+      layoutType: "1",
       widgets: [
-        { type: "demo", order: 1, config: { html: "First one" }, containerId: "0" },
-        { type: "demo", order: 3, config: { html: "Second one, but ordered in 3" }, containerId: "0" },
-        { type: "demo", order: 2, config: { html: "Third one, but ordered in 2" }, containerId: "0" },
+        { type: "demo", order: 1, config: { html: "First one" }, containerId: 0 },
+        { type: "demo", order: 3, config: { html: "Second one, but ordered in 3" }, containerId: 0 },
+        { type: "demo", order: 2, config: { html: "Third one, but ordered in 2" }, containerId: 0 },
       ]
     }
   }
