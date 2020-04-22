@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NgDashComponent } from '../../ng-dash.component';
-import { Widget } from '../../widget/widget';
+import { Widget, WidgetPosition } from '../../widget/widget';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 const selector = 'ngdash-widget-container';
@@ -45,19 +45,27 @@ export class WidgetContainerComponent {
   }
 
   private moveWidget(widget: Widget, newIndex: number) {
-    let oldIndex = widget.position.index;
-    if (oldIndex === newIndex)
-      return;
+    const previousPosition = widget.position;
 
-    widget.position.index = newIndex - 0.1;
+    widget.position = {
+      containerId: this.cid,
+      index: newIndex - 0.1
+    };
+
     this.setupWidgets();
+    this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
   }
 
   private transferWidget(widget: Widget, toIndex: number, sourceContainer: WidgetContainerComponent) {
-    widget.position.containerId = this.cid;
-    widget.position.index = toIndex - 0.1;
+    const previousPosition = widget.position;
+    widget.position = {
+      containerId: this.cid,
+      index: toIndex - 0.1
+    };
+
     this.setupWidgets();
     sourceContainer.setupWidgets();
+    this.ngDash.widgetMoveEmitter.emit({widget: widget, previousPosition});
   }
 
   drop(event: CdkDragDrop<WidgetContainerComponent>) {

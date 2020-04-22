@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DemoWidgetComponent } from './demo-widget.component';
 import { Dashboard, Widget } from 'projects/ng-dash/src/public-api';
 import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/layouts/bootstrap-r1-c2-layout.component';
+import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/dashboard/widget-move-event';
 
 @Component({
   selector: 'ng-dash-demo-root',
@@ -14,7 +15,15 @@ import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/la
         </label>
       </div>
       <ngdash [dashboard]="dashboard"
+        (moveWidget)="widgetMoved($event)"
         [enableDragDrop]="enableDragDrop"></ngdash>
+
+      <div class="alert alert-info mt-3">
+        <h4>Interactions</h4>
+        <ul>
+          <li *ngFor="let message of messages">{{message}}</li>
+        </ul>
+      </div>
     </div>
   `,
   styles: [],
@@ -23,15 +32,26 @@ import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/la
 export class AppComponent {
   enableDragDrop: boolean;
   dashboard: Dashboard;
+
+  messages: string[] = [];
   constructor() {
     this.dashboard = new Dashboard(
       [
-        new Widget({containerId: 0, index: 0}, {}, DemoWidgetComponent),
-        new Widget({containerId: 0, index: 1}, {}, DemoWidgetComponent),
-        new Widget({containerId: 1, index: 0}, {}, DemoWidgetComponent)
+        new Widget({ containerId: 0, index: 0 }, {}, DemoWidgetComponent),
+        new Widget({ containerId: 0, index: 1 }, {}, DemoWidgetComponent),
+        new Widget({ containerId: 1, index: 0 }, {}, DemoWidgetComponent)
       ],
       BootstrapR1C2LayoutComponent,
       {}
     )
+  }
+
+  widgetMoved(event: WidgetMoveEvent) {
+    const num = this.messages.length + 1;
+    if (event.widget.position.containerId === event.previousPosition.containerId) {
+      this.messages.unshift(`${num}: Widget moved within same container`);
+    } else {
+      this.messages.unshift(`${num}: Widget moved between containers`);
+    }
   }
 }

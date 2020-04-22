@@ -5,9 +5,12 @@ import {
   ViewChild,
   ComponentFactoryResolver,
   ViewContainerRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { Dashboard } from './dashboard/dashboard';
+import { WidgetMoveEvent } from './dashboard/widget-move-event';
 
 @Component({
   selector: 'ngdash',
@@ -23,15 +26,13 @@ import { Dashboard } from './dashboard/dashboard';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgDashComponent implements AfterViewInit {
-  @Input()
-  dashboard: Dashboard;
-
+  @Input() dashboard: Dashboard;
   @Input() enableDragDrop: boolean;
+
+  @Output("moveWidget") widgetMoveEmitter = new EventEmitter<WidgetMoveEvent>();
 
   @ViewChild("layout", { read: ViewContainerRef })
   layoutContainerRef: ViewContainerRef;
-
-
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver

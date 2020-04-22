@@ -17,7 +17,7 @@ export class Widget {
   }
 }
 
-interface WidgetPosition {
+export interface WidgetPosition {
   containerId: number;
   index: number;
 }
