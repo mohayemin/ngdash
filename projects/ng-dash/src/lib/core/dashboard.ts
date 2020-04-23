@@ -1,5 +1,5 @@
 import { Widget } from './widget';
-import { NgDashLayout as NgDashLayout } from './layout.decorator';
+import { NgDashLayout as NgDashLayout } from './registry/ng-dash-layout.decorator';
 
 export class Dashboard {
 	constructor(
@@ -10,6 +10,6 @@ export class Dashboard {
 	}
 
 	get layoutComponent() {
-		return NgDashLayout.resolveLayout(this.layoutId);
+		return NgDashLayout.resolve(this.layoutId);
 	}
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { WidgetHeaderComponent } from './widget-header.component';
+import { Component } from '@angular/core';
+import { NgDashWidgetHeader } from './registry/ng-dash-widget-header.decorator';
 
 @Component({
 	selector: 'ngdash-default-widget-header',
@@ -15,5 +15,8 @@ import { WidgetHeaderComponent } from './widget-header.component';
 		`.btn-group { margin-left: auto; }`
 	]
 })
-export class DefaultWidgetHeaderComponent extends WidgetHeaderComponent {
+@NgDashWidgetHeader('default')
+export class DefaultWidgetHeaderComponent {
+	removeWidget(){
+	}
 }

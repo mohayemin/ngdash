@@ -24,8 +24,8 @@ describe('NgDashComponent', () => {
 		component = fixture.componentInstance;
 		component.dashboard = new Dashboard(
 			[
-				new Widget({ containerId: 0, index: 1 }, { text: "first one" }, TextWidgetComponent)
-				, new Widget({ containerId: 0, index: 1 }, { text: "the second" }, TextWidgetComponent)
+				new Widget({ containerId: 0, index: 1 }, { text: "first one" }, 'ngdash-text-widget')
+				, new Widget({ containerId: 0, index: 1 }, { text: "the second" }, 'ngdash-text-widget')
 			],
 			FourColumnLayoutComponent.lid,
 			{}

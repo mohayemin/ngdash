@@ -9,8 +9,6 @@ import {
 	Type
 } from '@angular/core';
 import { Widget } from './widget';
-import { WidgetBodyComponent } from './widget-body.component';
-import { WidgetHeaderComponent } from './widget-header.component';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',
@@ -46,7 +44,7 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	}
 
 	private renderComponent(
-		compType: Type<WidgetBodyComponent | WidgetHeaderComponent>,
+		compType: Type<any>,
 		vcr: ViewContainerRef) {
 
 		const factory = this.componentFactoryResolver.resolveComponentFactory(compType);

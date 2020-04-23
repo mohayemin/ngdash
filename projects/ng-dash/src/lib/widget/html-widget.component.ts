@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { WidgetBodyComponent } from '../core/widget-body.component';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Widget } from '../core/widget';
 
 @Component({
 	selector: 'ngdash-html-widget',
@@ -10,6 +10,6 @@ import { WidgetBodyComponent } from '../core/widget-body.component';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HtmlWidgetComponent extends WidgetBodyComponent {
-
+export class HtmlWidgetComponent {
+	@Input() widget: Widget;
 }

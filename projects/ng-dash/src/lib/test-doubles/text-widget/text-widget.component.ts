@@ -1,8 +1,10 @@
 import {
 	Component,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	Input
 } from '@angular/core';
-import { WidgetBodyComponent } from '../../core/widget-body.component';
+import { Widget } from '../../core/widget';
+import { NgDashWidgetBody } from '../../core/registry/ng-dash-widget-body.decorator';
 
 @Component({
 	selector: 'ngdash-text-widget',
@@ -12,6 +14,7 @@ import { WidgetBodyComponent } from '../../core/widget-body.component';
 	styleUrls: [],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextWidgetComponent extends WidgetBodyComponent {
-
+@NgDashWidgetBody('ngdash-text-widget')
+export class TextWidgetComponent {
+	@Input() widget: Widget;
 }
