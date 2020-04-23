@@ -1,13 +1,13 @@
 import { Input } from '@angular/core';
 import { Widget } from './widget';
-import { WidgetContainerComponent } from '../layout/widget-container/widget-container.component';
+import { Dashboard } from '../dashboard/dashboard';
 
 export abstract class WidgetHeaderComponent {
   @Input() widget: Widget;
+  @Input() dashboard: Dashboard;
 
-  constructor(private widgetContainer: WidgetContainerComponent){}
+  constructor(){}
 
   removeWidget() {
-    this.widgetContainer.removeWidget(this.widget);
   }
 }
