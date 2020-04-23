@@ -3,22 +3,20 @@ import { NgDashComponent } from '../../ng-dash.component';
 import { Widget } from '../../widget/widget';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
-const selector = 'ngdash-widget-container';
 @Component({
-	selector: selector,
+	selector: 'ngdash-widget-container',
 	template: `
-  <div class="${selector}"
-  [attr.cid]="cid"
-  cdkDropList
-  [cdkDropListData]="this"
-  (cdkDropListDropped)="drop($event)">
-  <div cdkDrag
-  [cdkDragData]="widget"
-  *ngFor="let widget of widgets">
-  <ngdash-widget-wrapper [widget]="widget">
-  </ngdash-widget-wrapper>
-  </div>
-  </div>
+  		<div class="ngdash-widget-container"
+  			[attr.cid]="cid"
+  			cdkDropList
+  			[cdkDropListData]="this"
+  			(cdkDropListDropped)="drop($event)">
+  				<div cdkDrag
+  					[cdkDragData]="widget"
+  					*ngFor="let widget of widgets">
+  						<ngdash-widget-wrapper [widget]="widget"></ngdash-widget-wrapper>
+  				</div>
+  		</div>
   `,
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush
