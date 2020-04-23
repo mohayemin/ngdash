@@ -1,4 +1,4 @@
-import { WidgetData } from '../widget/widget-data';
+import { WidgetData } from './widget-data';
 
 export interface DashboardData {
 	widgets: WidgetData[];

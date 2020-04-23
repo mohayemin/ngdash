@@ -1,4 +1,4 @@
-import { Widget, WidgetPosition } from '../widget/widget';
+import { Widget, WidgetPosition } from './widget';
 
 export interface WidgetMoveEvent {
 	widget: Widget,

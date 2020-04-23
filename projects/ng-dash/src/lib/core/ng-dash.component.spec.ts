@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgDashComponent } from './ng-dash.component';
-import { FourColumnLayoutComponent } from './test-doubles/four-column-layout/four-column-layout.component';
-import { TextWidgetComponent } from './test-doubles/text-widget/text-widget.component';
-import { Dashboard } from './dashboard/dashboard';
-import { Widget } from './widget/widget';
+import { FourColumnLayoutComponent } from '../test-doubles/four-column-layout/four-column-layout.component';
+import { TextWidgetComponent } from '../test-doubles/text-widget/text-widget.component';
+import { Dashboard } from './dashboard';
+import { Widget } from './widget';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 describe('NgDashComponent', () => {

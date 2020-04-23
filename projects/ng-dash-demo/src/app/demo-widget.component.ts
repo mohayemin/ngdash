@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { WidgetBodyComponent } from 'projects/ng-dash/src/lib/widget/widget-body.component';
+import { WidgetBodyComponent } from 'projects/ng-dash/src/lib/core/widget-body.component';
 
 @Component({
 	selector: 'ng-dash-demo-widget',

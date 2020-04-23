@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { NgDashComponent } from './ng-dash.component';
+import { NgDashComponent } from './core/ng-dash.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { SingleColumnLayoutComponent } from './layout/single-column-layout/single-column-layout.component';
+import { SingleColumnLayoutComponent } from './layouts/single-column-layout.component';
 import { NgDashResolver } from './ng-dash-resolver';
-import { HtmlWidgetComponent } from './widget/html-widget/html-widget.component';
-import { WidgetContainerComponent } from './layout/widget-container/widget-container.component';
-import { WidgetWrapperComponent } from './layout/widget-wrapper/widget-wrapper.component';
+import { HtmlWidgetComponent } from './widget/html-widget.component';
+import { WidgetContainerComponent } from './core/widget-container.component';
+import { WidgetWrapperComponent } from './core/widget-wrapper.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BootstrapR1C2LayoutComponent } from './layout/layouts/bootstrap-r1-c2-layout.component';
-import { DefaultWidgetHeaderComponent } from './layout/default-widget-header/default-widget-header.component';
+import { BootstrapR1C2LayoutComponent } from './layouts/bootstrap-r1-c2-layout.component';
+import { DefaultWidgetHeaderComponent } from './core/default-widget-header.component';
 
 @NgModule({
 	declarations: [
@@ -24,7 +24,9 @@ import { DefaultWidgetHeaderComponent } from './layout/default-widget-header/def
 		BrowserModule,
 		DragDropModule
 	],
-	exports: [NgDashComponent]
+	exports: [
+		NgDashComponent
+	]
 })
 export class NgDashModule {
 	constructor(resolver: NgDashResolver) {

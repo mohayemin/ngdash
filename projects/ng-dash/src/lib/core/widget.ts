@@ -1,8 +1,7 @@
-import { Observable, Subject } from 'rxjs';
 import { Type } from '@angular/core';
 import { WidgetBodyComponent } from './widget-body.component';
+import { DefaultWidgetHeaderComponent } from './default-widget-header.component';
 import { WidgetHeaderComponent } from './widget-header.component';
-import { DefaultWidgetHeaderComponent } from '../layout/default-widget-header/default-widget-header.component';
 
 export class Widget {
 	readonly initialPosition: WidgetPosition;

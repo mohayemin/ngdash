@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WidgetHeaderComponent } from '../../widget/widget-header.component';
+import { WidgetHeaderComponent } from './widget-header.component';
 
 @Component({
 	selector: 'ngdash-default-widget-header',

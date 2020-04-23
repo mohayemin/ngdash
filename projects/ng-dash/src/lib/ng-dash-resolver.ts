@@ -1,9 +1,9 @@
 import { Injectable, Type } from '@angular/core';
-import { DashboardData } from './dashboard/dashboard-data';
-import { Dashboard } from './dashboard/dashboard';
-import { Widget } from './widget/widget';
-import { WidgetData } from './widget/widget-data';
-import { WidgetBodyComponent } from './widget/widget-body.component';
+import { DashboardData } from './core/dashboard-data';
+import { Dashboard } from './core/dashboard';
+import { Widget } from './core/widget';
+import { WidgetData } from './core/widget-data';
+import { WidgetBodyComponent } from './core/widget-body.component';
 @Injectable({
 	providedIn: "root"
 })

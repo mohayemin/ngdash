@@ -2,7 +2,7 @@ import {
 	Component,
 	ChangeDetectionStrategy
 } from '@angular/core';
-import { WidgetBodyComponent } from '../../widget/widget-body.component';
+import { WidgetBodyComponent } from '../../core/widget-body.component';
 
 @Component({
 	selector: 'ngdash-text-widget',

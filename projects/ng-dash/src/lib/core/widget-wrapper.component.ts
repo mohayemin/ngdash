@@ -8,9 +8,9 @@ import {
 	ChangeDetectionStrategy,
 	Type
 } from '@angular/core';
-import { Widget } from '../../widget/widget';
-import { WidgetBodyComponent } from '../../widget/widget-body.component';
-import { WidgetHeaderComponent } from '../../widget/widget-header.component';
+import { Widget } from './widget';
+import { WidgetBodyComponent } from './widget-body.component';
+import { WidgetHeaderComponent } from './widget-header.component';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',

@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DemoWidgetComponent } from './demo-widget.component';
 import { Dashboard, Widget } from 'projects/ng-dash/src/public-api';
-import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/layouts/bootstrap-r1-c2-layout.component';
-import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/dashboard/widget-move-event';
+import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layouts/bootstrap-r1-c2-layout.component';
+import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/core/widget-move-event';
 
 @Component({
 	selector: 'ng-dash-demo-root',

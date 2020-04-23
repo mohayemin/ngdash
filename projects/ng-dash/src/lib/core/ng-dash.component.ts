@@ -9,9 +9,9 @@ import {
 	Output,
 	EventEmitter
 } from '@angular/core';
-import { Dashboard } from './dashboard/dashboard';
-import { WidgetMoveEvent } from './dashboard/widget-move-event';
-import { Widget } from './widget/widget';
+import { Dashboard } from './dashboard';
+import { WidgetMoveEvent } from './widget-move-event';
+import { Widget } from './widget';
 
 @Component({
 	selector: 'ngdash',

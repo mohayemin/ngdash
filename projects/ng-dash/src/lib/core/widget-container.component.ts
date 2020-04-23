@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { NgDashComponent } from '../../ng-dash.component';
-import { Widget } from '../../widget/widget';
+import { NgDashComponent } from './ng-dash.component';
+import { Widget } from './widget';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
