@@ -7,16 +7,16 @@ import { NgDashModule } from 'projects/ng-dash/src/public-api';
 import { DemoWidgetComponent } from './demo-widget.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DemoWidgetComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    NgDashModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		DemoWidgetComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		NgDashModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

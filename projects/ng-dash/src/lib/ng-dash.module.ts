@@ -11,26 +11,24 @@ import { BootstrapR1C2LayoutComponent } from './layout/layouts/bootstrap-r1-c2-l
 import { DefaultWidgetHeaderComponent } from './layout/default-widget-header/default-widget-header.component';
 
 @NgModule({
-  declarations: [
-    NgDashComponent,
-    SingleColumnLayoutComponent,
-    HtmlWidgetComponent,
-    WidgetContainerComponent,
-    WidgetWrapperComponent,
-    BootstrapR1C2LayoutComponent,
-    DefaultWidgetHeaderComponent,
-  ],
-  imports: [
-    BrowserModule,
-    DragDropModule
-  ],
-  exports: [NgDashComponent]
+	declarations: [
+		NgDashComponent,
+		SingleColumnLayoutComponent,
+		HtmlWidgetComponent,
+		WidgetContainerComponent,
+		WidgetWrapperComponent,
+		BootstrapR1C2LayoutComponent,
+		DefaultWidgetHeaderComponent,
+	],
+	imports: [
+		BrowserModule,
+		DragDropModule
+	],
+	exports: [NgDashComponent]
 })
 export class NgDashModule {
-  constructor(resolver: NgDashResolver) {
-    resolver
-      .bindLayout("1", SingleColumnLayoutComponent)
-      .bindLayout("bs-r1-c2", BootstrapR1C2LayoutComponent)
-      .bindWidget("html", HtmlWidgetComponent);
-  }
+	constructor(resolver: NgDashResolver) {
+		resolver
+			.bindWidget("html", HtmlWidgetComponent);
+	}
 }

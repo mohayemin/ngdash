@@ -6,7 +6,7 @@ export abstract class WidgetHeaderComponent {
   @Input() widget: Widget;
   @Input() dashboard: Dashboard;
 
-  constructor(){}
+  constructor() { }
 
   removeWidget() {
   }

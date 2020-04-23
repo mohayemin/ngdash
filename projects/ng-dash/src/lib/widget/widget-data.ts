@@ -1,6 +1,6 @@
 export interface WidgetData {
-  type: string;
-  containerId: number;
-  order: number;
-  config: any;
+	type: string;
+	containerId: number;
+	order: number;
+	config: any;
 }

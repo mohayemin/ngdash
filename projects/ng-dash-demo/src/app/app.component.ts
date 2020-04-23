@@ -5,8 +5,8 @@ import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layout/la
 import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/dashboard/widget-move-event';
 
 @Component({
-  selector: 'ng-dash-demo-root',
-  template: `
+	selector: 'ng-dash-demo-root',
+	template: `
     <div class="container">
       <h1>ng-dash Demo</h1>
       <div>
@@ -27,37 +27,37 @@ import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/dashboard/widget-move-
       </div>
     </div>
   `,
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	styles: [],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  enableDragDrop: boolean;
-  dashboard: Dashboard;
+	enableDragDrop: boolean;
+	dashboard: Dashboard;
 
-  messages: string[] = [];
-  constructor() {
-    this.dashboard = new Dashboard(
-      [
-        new Widget({ containerId: 0, index: 0 }, {}, DemoWidgetComponent),
-        new Widget({ containerId: 0, index: 1 }, {}, DemoWidgetComponent),
-        new Widget({ containerId: 1, index: 0 }, {}, DemoWidgetComponent)
-      ],
-      BootstrapR1C2LayoutComponent.lid,
-      {}
-    )
-  }
+	messages: string[] = [];
+	constructor() {
+		this.dashboard = new Dashboard(
+			[
+				new Widget({ containerId: 0, index: 0 }, {}, DemoWidgetComponent),
+				new Widget({ containerId: 0, index: 1 }, {}, DemoWidgetComponent),
+				new Widget({ containerId: 1, index: 0 }, {}, DemoWidgetComponent)
+			],
+			BootstrapR1C2LayoutComponent.lid,
+			{}
+		)
+	}
 
-  widgetMoved(event: WidgetMoveEvent) {
-    const num = this.messages.length + 1;
-    if (event.widget.position.containerId === event.previousPosition.containerId) {
-      this.messages.unshift(`${num}: Widget moved within same container`);
-    } else {
-      this.messages.unshift(`${num}: Widget moved between containers`);
-    }
-  }
+	widgetMoved(event: WidgetMoveEvent) {
+		const num = this.messages.length + 1;
+		if (event.widget.position.containerId === event.previousPosition.containerId) {
+			this.messages.unshift(`${num}: Widget moved within same container`);
+		} else {
+			this.messages.unshift(`${num}: Widget moved between containers`);
+		}
+	}
 
-  widgetRemoved(widget: Widget) {
-    const num = this.messages.length + 1;
-    this.messages.unshift(`${num}: Widget removed`);
-  }
+	widgetRemoved(widget: Widget) {
+		const num = this.messages.length + 1;
+		this.messages.unshift(`${num}: Widget removed`);
+	}
 }

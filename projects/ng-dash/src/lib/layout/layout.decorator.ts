@@ -7,14 +7,14 @@ const registeredLayouts: { [id: string]: Type<any> } = {}
  * @param id a unique ID to identify the layout
  */
 export function NgDashLayout(id: string) {
-  return function (target: Type<any>) {
-    if (registeredLayouts[id])
-      console.warn('multiple layouts with same ID is created. Discurding previous layouts');
+	return function (target: Type<any>) {
+		if (registeredLayouts[id])
+			console.warn('multiple layouts with same ID is created. Discurding previous layouts');
 
-    registeredLayouts[id] = target;
-  }
+		registeredLayouts[id] = target;
+	}
 }
 
-NgDashLayout.resolveLayout = function(id: string){
-  return registeredLayouts[id];
+NgDashLayout.resolveLayout = function (id: string) {
+	return registeredLayouts[id];
 };

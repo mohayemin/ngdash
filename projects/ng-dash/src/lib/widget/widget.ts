@@ -5,22 +5,22 @@ import { WidgetHeaderComponent } from './widget-header.component';
 import { DefaultWidgetHeaderComponent } from '../layout/default-widget-header/default-widget-header.component';
 
 export class Widget {
-  readonly initialPosition: WidgetPosition;
+	readonly initialPosition: WidgetPosition;
 
-  constructor(
-    public position: WidgetPosition,
-    public config: any,
-    public bodyComponent: Type<WidgetBodyComponent>,
-    public headerComponent: Type<WidgetHeaderComponent> = DefaultWidgetHeaderComponent
-  ) {
-    this.initialPosition = {
-      containerId: position.containerId,
-      index: position.index
-    };
-  }
+	constructor(
+		public position: WidgetPosition,
+		public config: any,
+		public bodyComponent: Type<WidgetBodyComponent>,
+		public headerComponent: Type<WidgetHeaderComponent> = DefaultWidgetHeaderComponent
+	) {
+		this.initialPosition = {
+			containerId: position.containerId,
+			index: position.index
+		};
+	}
 }
 
 export interface WidgetPosition {
-  containerId: number;
-  index: number;
+	containerId: number;
+	index: number;
 }

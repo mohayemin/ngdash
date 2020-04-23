@@ -2,15 +2,15 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgDashLayout } from '../layout.decorator';
 
 @Component({
-  selector: 'ngdash-single-column-layout',
-  template: `
+	selector: 'ngdash-single-column-layout',
+	template: `
     <ngdash-widget-container [cid]="0">
     </ngdash-widget-container>
   `,
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	styles: [],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
-//@NgDashLayout("ngdash-bootstrap-r1-c2-layout")
-export class SingleColumnLayoutComponent  {
+@NgDashLayout("ngdash-bootstrap-r1-c2-layout")
+export class SingleColumnLayoutComponent {
 
 }
