@@ -2,7 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { LayoutComponent } from '../../layout/layout.component';
+import { NgDashLayout } from '../../layout/layout.decorator';
 
 @Component({
   selector: 'ngdash-four-column-layout',
@@ -15,6 +15,7 @@ import { LayoutComponent } from '../../layout/layout.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FourColumnLayoutComponent extends LayoutComponent {
-
+@NgDashLayout(FourColumnLayoutComponent.lid)
+export class FourColumnLayoutComponent {
+  public static lid = "ngdash-four-column-layout";
 }

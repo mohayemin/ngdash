@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { LayoutComponent } from '../layout.component';
+import { NgDashLayout } from '../layout.decorator';
 
 @Component({
   selector: 'ngdash-single-column-layout',
@@ -10,6 +10,7 @@ import { LayoutComponent } from '../layout.component';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SingleColumnLayoutComponent extends LayoutComponent {
+//@NgDashLayout("ngdash-bootstrap-r1-c2-layout")
+export class SingleColumnLayoutComponent  {
 
 }

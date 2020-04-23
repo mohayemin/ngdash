@@ -1,12 +1,15 @@
 import { Widget } from '../widget/widget';
-import { LayoutComponent } from '../layout/layout.component';
-import { Type } from '@angular/core';
+import { NgDashLayout as NgDashLayout } from '../layout/layout.decorator';
 
 export class Dashboard {
   constructor(
     public widgets: Widget[],
-    public layout: Type<LayoutComponent>,
+    public layoutId: string,
     public config: any
   ) {
+  }
+
+  get layoutComponent() {
+    return NgDashLayout.resolveLayout(this.layoutId);
   }
 }

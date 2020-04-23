@@ -42,7 +42,7 @@ export class AppComponent {
         new Widget({ containerId: 0, index: 1 }, {}, DemoWidgetComponent),
         new Widget({ containerId: 1, index: 0 }, {}, DemoWidgetComponent)
       ],
-      BootstrapR1C2LayoutComponent,
+      BootstrapR1C2LayoutComponent.lid,
       {}
     )
   }
@@ -56,7 +56,7 @@ export class AppComponent {
     }
   }
 
-  widgetRemoved(widget: Widget){
+  widgetRemoved(widget: Widget) {
     const num = this.messages.length + 1;
     this.messages.unshift(`${num}: Widget removed`);
   }

@@ -45,7 +45,7 @@ export class NgDashComponent implements AfterViewInit {
   }
 
   renderLayout() {
-    const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(this.dashboard.layout);
+    const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(this.dashboard.layoutComponent);
     const layoutComponent = this.layoutContainerRef.createComponent(layoutFactory);
     layoutComponent.changeDetectorRef.detectChanges();
   }

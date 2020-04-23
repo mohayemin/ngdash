@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing'
 import { WidgetWrapperComponent } from './widget-wrapper.component';
 import { Widget } from '../../widget/widget';
 import { TextWidgetComponent } from '../../test-doubles/text-widget/text-widget.component';
-import { ComponentFactoryResolver } from '@angular/core';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { WidgetContainerComponent } from '../widget-container/widget-container.component';
 

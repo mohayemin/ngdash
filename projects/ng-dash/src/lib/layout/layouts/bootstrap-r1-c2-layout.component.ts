@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { LayoutComponent } from '../layout.component';
+import { NgDashLayout } from '../layout.decorator';
 
 @Component({
   selector: 'ngdash-bootstrap-r1-c2-layout',
@@ -16,5 +16,7 @@ import { LayoutComponent } from '../layout.component';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BootstrapR1C2LayoutComponent extends LayoutComponent {
+//@NgDashLayout(BootstrapR1C2LayoutComponent.lid)
+export class BootstrapR1C2LayoutComponent {
+  static lid = "ngdash-bootstrap-r1-c2-layout";
 }
