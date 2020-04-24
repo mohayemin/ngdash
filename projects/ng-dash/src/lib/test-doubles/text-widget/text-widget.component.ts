@@ -4,7 +4,7 @@ import {
 	Input
 } from '@angular/core';
 import { Widget } from '../../core/widget';
-import { NgDashWidgetBody } from '../../core/registry/ng-dash-widget-body.decorator';
+import { NgDashWidgetBody } from '../../core/registry/widget-body.decorator';
 
 @Component({
 	selector: 'ngdash-text-widget',

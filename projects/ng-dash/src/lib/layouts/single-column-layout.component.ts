@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgDashLayout } from '../core/registry/ng-dash-layout.decorator';
+import { NgDashLayout } from '../core/registry/layout.decorator';
 
 @Component({
 	selector: 'ngdash-single-column-layout',

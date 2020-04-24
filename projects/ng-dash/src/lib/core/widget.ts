@@ -1,5 +1,5 @@
-import { NgDashWidgetHeader } from './registry/ng-dash-widget-header.decorator';
-import { NgDashWidgetBody } from './registry/ng-dash-widget-body.decorator';
+import { NgDashWidgetHeader } from './registry/widget-header.decorator';
+import { NgDashWidgetBody } from './registry/widget-body.decorator';
 
 export class Widget {
 	readonly initialPosition: WidgetPosition;

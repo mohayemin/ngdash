@@ -1,5 +1,5 @@
 import { Widget } from './widget';
-import { NgDashLayout as NgDashLayout } from './registry/ng-dash-layout.decorator';
+import { NgDashLayout as NgDashLayout } from './registry/layout.decorator';
 
 export class Dashboard {
 	constructor(

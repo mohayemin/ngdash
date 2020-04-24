@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgDashWidgetHeader } from './registry/ng-dash-widget-header.decorator';
+import { NgDashWidgetHeader } from './registry/widget-header.decorator';
 
 @Component({
 	selector: 'ngdash-default-widget-header',
