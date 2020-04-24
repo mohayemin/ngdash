@@ -1,20 +1,19 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { NgDashComponent } from './ng-dash.component';
+import { CdkDragDrop, CdkDragSortEvent } from '@angular/cdk/drag-drop';
+import { WidgetContainer } from '../widget-container';
 import { Widget } from '../widget';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Dashboard } from '../dashboard';
 
 @Component({
 	selector: 'ngdash-widget-container',
 	template: `
   		<div class="ngdash-widget-container"
-  			[attr.cid]="cid"
+  			[attr.cid]="container.id"
   			cdkDropList
-  			[cdkDropListData]="this"
-  			(cdkDropListDropped)="drop($event)">
+  			[cdkDropListData]="container"
+  			(cdkDropListSorted)="sort($event)">
   				<div cdkDrag
   					[cdkDragData]="widget"
-  					*ngFor="let widget of widgets">
+  					*ngFor="let widget of container.widgets">
   						<ngdash-widget-wrapper [widget]="widget"></ngdash-widget-wrapper>
   				</div>
   		</div>
@@ -23,61 +22,9 @@ import { Dashboard } from '../dashboard';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WidgetContainerComponent {
-	@Input() cid: number;
-	private dashboard: Dashboard;
-	widgets: Widget[];
+	@Input() container: WidgetContainer;
 
-	constructor(ngDash: NgDashComponent) {
-		this.dashboard = ngDash.dashboard;
-	}
-
-	ngOnInit() {
-		this.setupWidgets();
-	}
-
-	private setupWidgets() {
-		let widgets = this.dashboard.widgets
-			.filter(w => w.position.containerId === this.cid);
-		widgets.sort((w1, w2) => w1.position.index - w2.position.index);
-		widgets.forEach((w, i) => w.position.index = i);
-		this.widgets = widgets;
-	}
-
-	private moveWidget(widget: Widget, newIndex: number) {
-		const previousPosition = widget.position;
-
-		widget.position = {
-			containerId: this.cid,
-			index: newIndex - 0.1
-		};
-
-		this.setupWidgets();
-		//this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
-	}
-
-	removeWidget(widget: Widget) {
-		this.dashboard.widgets.splice(widget.position.index, 1);
-		this.setupWidgets();
-		//this.ngDash.widgetRemoveEmitter.emit(widget);
-	}
-
-	private transferWidget(widget: Widget, toIndex: number, sourceContainer: WidgetContainerComponent) {
-		const previousPosition = widget.position;
-		widget.position = {
-			containerId: this.cid,
-			index: toIndex - 0.1
-		};
-
-		this.setupWidgets();
-		sourceContainer.setupWidgets();
-		//this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
-	}
-
-	drop(event: CdkDragDrop<WidgetContainerComponent>) {
-		if (this === event.previousContainer.data) {
-			this.moveWidget(event.item.data, event.currentIndex);
-		} else {
-			this.transferWidget(event.item.data, event.currentIndex, event.previousContainer.data);
-		}
+	sort(event: CdkDragSortEvent<WidgetContainer, Widget>) {
+		this.container.moveWidget(event.item.data, event.currentIndex);
 	}
 }

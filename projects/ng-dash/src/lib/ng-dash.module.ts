@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgDashComponent } from './core/ui/ng-dash.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { SingleColumnLayoutComponent } from './layout/single-column-layout.component';
 import { HtmlWidgetComponent } from './widget/html-widget.component';
 import { WidgetContainerComponent } from './core/ui/widget-container.component';
 import { WidgetWrapperComponent } from './core/ui/widget-wrapper.component';
@@ -14,7 +13,6 @@ import { BootstrapR1C2LayoutComponent } from './layout/bootstrap-r1-c2-layout.co
 @NgModule({
 	declarations: [
 		NgDashComponent,
-		SingleColumnLayoutComponent,
 		HtmlWidgetComponent,
 		WidgetContainerComponent,
 		WidgetWrapperComponent,

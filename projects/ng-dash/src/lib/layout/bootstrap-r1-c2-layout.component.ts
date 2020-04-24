@@ -1,16 +1,17 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { NgDashLayout } from '../core/registry/layout.decorator';
 import { Dashboard } from '../core/dashboard';
+import { WidgetContainer } from '../core/widget-container';
 
 @Component({
 	selector: 'ngdash-bootstrap-r1-c2-layout',
 	template: `
     <div class="row">
       <div class="col-sm">
-        <ngdash-widget-container [cid]="0"></ngdash-widget-container>
+        <ngdash-widget-container [container]="containers[0]"></ngdash-widget-container>
       </div>
       <div class="col-sm">
-        <ngdash-widget-container [cid]="1"></ngdash-widget-container>
+        <ngdash-widget-container [container]="containers[1]"></ngdash-widget-container>
       </div>
     </div>
   `,
@@ -18,6 +19,11 @@ import { Dashboard } from '../core/dashboard';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 @NgDashLayout('ngdash-bootstrap-r1-c2-layout')
+@NgDashLayout('default')
 export class BootstrapR1C2LayoutComponent {
 	@Input() dashboard: Dashboard;
+	containers: WidgetContainer[]
+	ngOnInit() {
+		this.containers = [0, 1].map(id => this.dashboard.getContainer(id));
+	}
 }

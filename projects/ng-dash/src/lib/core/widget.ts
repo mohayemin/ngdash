@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs';
+
 export class Widget {
 	readonly initialPosition: WidgetPosition;
 
@@ -11,6 +13,8 @@ export class Widget {
 			index: position.index
 		};
 	}
+
+	changePositionRequest = new Subject<WidgetPosition>();
 }
 
 export interface WidgetPosition {

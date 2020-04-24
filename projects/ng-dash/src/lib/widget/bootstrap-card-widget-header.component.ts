@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Widget } from '../core/widget';
 import { Dashboard } from '../core/dashboard';
-import { NgDashWidgetHeader } from '../core/registry/widget-header.decorator';
 
 @Component({
 	selector: 'ngdash-bootstrap-card-widget-header',
@@ -20,8 +19,6 @@ import { NgDashWidgetHeader } from '../core/registry/widget-header.decorator';
 		`.title { flex-grow : 1; }`,
 	]
 })
-@NgDashWidgetHeader('default')
-@NgDashWidgetHeader('ngdash-bootstrap-card-widget-header')
 export class BootstrapCardWidgetHeaderComponent {
 	@Input() widget: Widget;
 	@Input() dashboard: Dashboard;
