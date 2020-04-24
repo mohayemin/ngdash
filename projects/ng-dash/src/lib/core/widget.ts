@@ -1,8 +1,3 @@
-import { NgDashWidgetHeader } from './registry/widget-header.decorator';
-import { NgDashWidgetBody } from './registry/widget-body.decorator';
-import { Type } from '@angular/core';
-import { NgDashWidget } from './registry/widget.decorator';
-
 export class Widget {
 	readonly initialPosition: WidgetPosition;
 
@@ -28,6 +23,4 @@ export interface WidgetPosition {
  */
 export interface WidgetUi {
 	widgetId?: string;
-	headerId?: string;
-	bodyId?: string;
 }

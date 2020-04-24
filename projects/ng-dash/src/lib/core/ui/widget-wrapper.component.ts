@@ -25,8 +25,6 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	@Input() widget: Widget;
 
 	@ViewChild("widget", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
-	@ViewChild("header", { read: ViewContainerRef }) headerVCR: ViewContainerRef;
-	@ViewChild("body", { read: ViewContainerRef }) bodyVCR: ViewContainerRef;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver
