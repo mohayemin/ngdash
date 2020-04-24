@@ -31,7 +31,7 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	) { }
 
 	ngAfterViewInit() {
-		const widgetComponent = NgDashWidget.resolve(this.widget.ui.widgetId);
+		const widgetComponent = NgDashWidget.resolve(this.widget.widgetId);
 		this.renderComponent(widgetComponent, this.widgetVCR);
 	}
 

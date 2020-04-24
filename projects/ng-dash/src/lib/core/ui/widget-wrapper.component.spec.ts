@@ -25,7 +25,7 @@ describe('WidgetWrapperComponent', () => {
 
 		fixture = TestBed.createComponent(WidgetWrapperComponent);
 		component = fixture.componentInstance;
-		component.widget = new Widget({ containerId: 0, index: 0 }, { text: "here I am" }, {widgetId: 'ngdash-text-widget'});
+		component.widget = new Widget({ containerId: 0, index: 0 }, { text: "here I am" }, 'ngdash-text-widget');
 		fixture.detectChanges();
 	});
 
