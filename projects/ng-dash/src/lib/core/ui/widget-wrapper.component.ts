@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { Widget } from '../widget';
 import { NgDashWidget } from '../registry/widget.decorator';
+import { WidgetContainer } from '../widget-container';
+import { Dashboard } from '../dashboard';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',
@@ -22,7 +24,9 @@ import { NgDashWidget } from '../registry/widget.decorator';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WidgetWrapperComponent implements AfterViewInit {
-	@Input() widget: Widget;
+	@Input() widget!: Widget;
+	@Input() container?: WidgetContainer;
+	@Input() dashboard?: Dashboard;
 
 	@ViewChild("widget", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
 
@@ -40,8 +44,12 @@ export class WidgetWrapperComponent implements AfterViewInit {
 		vcr: ViewContainerRef) {
 
 		const factory = this.componentFactoryResolver.resolveComponentFactory(compType);
-		const component = vcr.createComponent(factory);
-		component.instance.widget = this.widget;
-		component.changeDetectorRef.detectChanges();
+		const widgetCompRef = vcr.createComponent(factory);
+		const widgetComp = widgetCompRef.instance;
+		widgetComp.widget = this.widget;
+		widgetComp.container = this.container;
+		widgetComp.dashboard = this.dashboard;
+		
+		widgetCompRef.changeDetectorRef.detectChanges();
 	}
 }

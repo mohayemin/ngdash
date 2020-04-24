@@ -8,10 +8,16 @@ import { WidgetContainer } from '../core/widget-container';
 	template: `
     <div class="row">
       <div class="col-sm">
-        <ngdash-widget-container [container]="containers[0]"></ngdash-widget-container>
+		<ngdash-widget-container 
+			[container]="containers[0]" 
+			[dashboard]="dashboard">
+		</ngdash-widget-container>
       </div>
       <div class="col-sm">
-        <ngdash-widget-container [container]="containers[1]"></ngdash-widget-container>
+		<ngdash-widget-container 
+			[container]="containers[1]" 
+			[dashboard]="dashboard">
+		</ngdash-widget-container>
       </div>
     </div>
   `,

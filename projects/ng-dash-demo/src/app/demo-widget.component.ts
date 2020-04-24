@@ -5,10 +5,10 @@ import { Widget, Dashboard } from 'projects/ng-dash/src/public-api';
 @Component({
 	selector: 'ng-dash-demo-widget',
 	template: `
-    <div [attr.initcontainer]="widget.initialPosition.containerId">
+    <div [attr.initcontainer]="widget.initialState.containerId">
 		<h5>{{widget.config.title}}</h5>
-      	<div>Initial: {{widget.initialPosition | json}}</div>
-      	<div>Current: {{widget.position | json}}</div>
+      	<div>Initial: {{widget.initialState | json}}</div>
+      	<div>Current: {{widget.state | json}}</div>
     </div>
   `,
 	styles: [

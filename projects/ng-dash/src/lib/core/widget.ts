@@ -1,23 +1,25 @@
 import { Subject } from 'rxjs';
 
 export class Widget {
-	readonly initialPosition: WidgetPosition;
+	readonly initialState: WidgetState;
 
 	constructor(
-		public position: WidgetPosition,
+		public state: WidgetState,
 		public config: any,
 		public widgetId: string = 'default',
 	) {
-		this.initialPosition = {
-			containerId: position.containerId,
-			index: position.index
+		this.initialState = {
+			containerId: state.containerId,
+			index: state.index,
+			isDeleted: state.isDeleted
 		};
 	}
 
-	changePositionRequest = new Subject<WidgetPosition>();
+	removeRequest = new Subject<void>();
 }
 
-export interface WidgetPosition {
+export interface WidgetState {
 	containerId: number;
 	index: number;
+	isDeleted?: boolean;
 }

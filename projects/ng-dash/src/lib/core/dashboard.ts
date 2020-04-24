@@ -1,4 +1,4 @@
-import { Widget, WidgetPosition } from './widget';
+import { Widget, WidgetState } from './widget';
 import { NgDashLayout as NgDashLayout } from './registry/layout.decorator';
 import { WidgetContainer } from './widget-container';
 
@@ -15,7 +15,7 @@ export class Dashboard {
 	public getContainer(id: number): WidgetContainer {
 		let container = this.containers[id];
 		if(!container){
-			const containerWidgets = this.widgets.filter(w => w.position.containerId === id);
+			const containerWidgets = this.widgets.filter(w => w.state.containerId === id);
 			container = new WidgetContainer(id, containerWidgets);
 			this.containers[id] = container;
 		}
