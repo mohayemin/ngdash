@@ -17,9 +17,9 @@ import { Widget } from '../widget';
 	selector: 'ngdash',
 	template: `
     <div class="ngdash"
-      [class.dragdrop-enabled]="enableDragDrop"
-      cdkDropListGroup
-      [cdkDropListGroupDisabled]="!enableDragDrop">
+      	[class.dragdrop-enabled]="enableDragDrop"
+      	cdkDropListGroup
+      	[cdkDropListGroupDisabled]="!enableDragDrop">
       <ng-template #layout></ng-template>
     </div>
   `,

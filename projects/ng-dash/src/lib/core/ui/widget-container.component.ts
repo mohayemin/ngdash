@@ -1,7 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { CdkDragDrop, CdkDragSortEvent } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { WidgetContainer } from '../widget-container';
-import { Widget } from '../widget';
 
 @Component({
 	selector: 'ngdash-widget-container',
@@ -10,7 +9,7 @@ import { Widget } from '../widget';
   			[attr.cid]="container.id"
   			cdkDropList
   			[cdkDropListData]="container"
-  			(cdkDropListSorted)="sort($event)">
+			(cdkDropListDropped)="dropped($event)">
   				<div cdkDrag
   					[cdkDragData]="widget"
   					*ngFor="let widget of container.widgets">
@@ -24,7 +23,10 @@ import { Widget } from '../widget';
 export class WidgetContainerComponent {
 	@Input() container: WidgetContainer;
 
-	sort(event: CdkDragSortEvent<WidgetContainer, Widget>) {
-		this.container.moveWidget(event.item.data, event.currentIndex);
+	dropped(event: CdkDragDrop<WidgetContainer, WidgetContainer>) {
+		if (event.previousContainer === event.container)
+			this.container.moveWidget(event.item.data, event.currentIndex);
+		else
+			this.container.acquireWidget(event.item.data, event.currentIndex, event.previousContainer.data);
 	}
 }

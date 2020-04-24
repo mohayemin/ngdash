@@ -1,5 +1,5 @@
 import { Widget } from './widget';
-import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 export class WidgetContainer {
 	constructor(
@@ -13,6 +13,13 @@ export class WidgetContainer {
 	public moveWidget(widget: Widget, newIndex: number): void {
 		moveItemInArray(this.widgets, widget.position.index, newIndex);
 		this.resetIndex();
+	}
+
+	public acquireWidget(widget: Widget, targetIndex: number, source: WidgetContainer) {
+		transferArrayItem(source.widgets, this.widgets, widget.position.index, targetIndex);
+		widget.position.containerId = source.id;
+		this.resetIndex();
+		source.resetIndex();
 	}
 
 	private resetIndex() {
