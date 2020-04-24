@@ -10,11 +10,26 @@ import { WidgetContainer } from '../core/widget-container';
 			<div class="title" 
 				[innerHtml]="widget.config.title">
 			</div>
-			<div class="btn-group btn-group-sm">
-				<button type="button" 
+			<div class="btn-group-sm">
+				<button type="button"
+					[hidden]="widget.state['isCollapsed']"
+					title="Collapse widget" 
+					class="btn btn-light"
+					(click)="widget.state['isCollapsed']=true">
+					<i class="fas fa-minus"></i>
+				</button>
+				<button type="button"
+					[hidden]="!widget.state['isCollapsed']"
+					title="Expand widget"
+					class="btn btn-light"
+					(click)="widget.state['isCollapsed']=false">
+					<i class="fas fa-plus"></i>
+				</button>
+				<button type="button"
+					title="Remove widget"
 					class="btn btn-light"
 					(click)="remove()">
-					<i class="fa fa-trash"></i>
+					<i class="far fa-trash-alt"></i>
 				</button>
 			</div>
 		</div>

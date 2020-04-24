@@ -8,18 +8,14 @@ export class Widget {
 		public config: any,
 		public widgetId: string = 'default',
 	) {
-		this.initialState = {
-			containerId: state.containerId,
-			index: state.index,
-			isDeleted: state.isDeleted
-		};
+		this.initialState = Object.assign({}, this.state);
 	}
 
 	removeRequest = new Subject<void>();
 }
 
-export interface WidgetState {
+export type WidgetState = {
 	containerId: number;
 	index: number;
 	isDeleted?: boolean;
-}
+};

@@ -14,6 +14,7 @@ import { WidgetContainer } from '../core/widget-container';
 				[dashboard]="dashboard">
 			</ngdash-bootstrap-card-widget-header>
 			<ngdash-bootstrap-card-widget-body
+				[hidden]="widget.state['isCollapsed']"
 				[widget]="widget"
 				[container]="container" 
 				[dashboard]="dashboard">
