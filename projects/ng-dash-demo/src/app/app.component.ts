@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { DemoWidgetComponent } from './demo-widget.component';
 import { Dashboard, Widget } from 'projects/ng-dash/src/public-api';
-import { BootstrapR1C2LayoutComponent } from 'projects/ng-dash/src/lib/layouts/bootstrap-r1-c2-layout.component';
 import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/core/widget-move-event';
 
 @Component({
@@ -38,11 +36,11 @@ export class AppComponent {
 	constructor() {
 		this.dashboard = new Dashboard(
 			[
-				new Widget({ containerId: 0, index: 0 }, {}, DemoWidgetComponent),
-				new Widget({ containerId: 0, index: 1 }, {}, DemoWidgetComponent),
-				new Widget({ containerId: 1, index: 0 }, {}, DemoWidgetComponent)
+				new Widget({ containerId: 0, index: 0 }, { title: 'using default widget' }, { widgetId: 'default' }),
+				new Widget({ containerId: 0, index: 1 }, { title: 'using custom widget' }, { widgetId: 'demo' }),
+				new Widget({ containerId: 1, index: 0 }, { title: 'using custom header and body', content: 'content' }, { widgetId: 'default' })
 			],
-			BootstrapR1C2LayoutComponent.lid,
+			'ngdash-bootstrap-r1-c2-layout',
 			{}
 		)
 	}

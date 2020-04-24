@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgDashComponent } from './ng-dash.component';
-import { FourColumnLayoutComponent } from '../test-doubles/four-column-layout/four-column-layout.component';
-import { TextWidgetComponent } from '../test-doubles/text-widget/text-widget.component';
-import { Dashboard } from './dashboard';
-import { Widget } from './widget';
+import { FourColumnLayoutComponent } from '../../test-doubles/four-column-layout/four-column-layout.component';
+import { TextWidgetComponent } from '../../test-doubles/text-widget/text-widget.component';
+import { Dashboard } from '../dashboard';
+import { Widget } from '../widget';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 describe('NgDashComponent', () => {
@@ -24,8 +24,8 @@ describe('NgDashComponent', () => {
 		component = fixture.componentInstance;
 		component.dashboard = new Dashboard(
 			[
-				new Widget({ containerId: 0, index: 1 }, { text: "first one" }, 'ngdash-text-widget')
-				, new Widget({ containerId: 0, index: 1 }, { text: "the second" }, 'ngdash-text-widget')
+				new Widget({ containerId: 0, index: 1 }, { text: "first one" }, { widgetId: 'ngdash-text-widget' })
+				, new Widget({ containerId: 0, index: 1 }, { text: "the second" }, { widgetId: 'ngdash-text-widget' })
 			],
 			FourColumnLayoutComponent.lid,
 			{}

@@ -7,11 +7,11 @@ import {
 	ViewContainerRef,
 	ChangeDetectionStrategy,
 	Output,
-	EventEmitter
+	EventEmitter,
 } from '@angular/core';
-import { Dashboard } from './dashboard';
-import { WidgetMoveEvent } from './widget-move-event';
-import { Widget } from './widget';
+import { Dashboard } from '../dashboard';
+import { WidgetMoveEvent } from '../widget-move-event';
+import { Widget } from '../widget';
 
 @Component({
 	selector: 'ngdash',
@@ -46,7 +46,8 @@ export class NgDashComponent implements AfterViewInit {
 
 	renderLayout() {
 		const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(this.dashboard.layoutComponent);
-		const layoutComponent = this.layoutContainerRef.createComponent(layoutFactory);
-		layoutComponent.changeDetectorRef.detectChanges();
+		const layoutRef = this.layoutContainerRef.createComponent(layoutFactory);
+		layoutRef.instance['dashboard'] = this.dashboard;
+		layoutRef.changeDetectorRef.detectChanges();
 	}
 }

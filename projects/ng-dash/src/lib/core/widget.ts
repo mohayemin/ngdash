@@ -1,5 +1,7 @@
 import { NgDashWidgetHeader } from './registry/widget-header.decorator';
 import { NgDashWidgetBody } from './registry/widget-body.decorator';
+import { Type } from '@angular/core';
+import { NgDashWidget } from './registry/widget.decorator';
 
 export class Widget {
 	readonly initialPosition: WidgetPosition;
@@ -7,25 +9,25 @@ export class Widget {
 	constructor(
 		public position: WidgetPosition,
 		public config: any,
-		public bodyId: string = 'default',
-		public headerId: string = 'default',
+		public ui: WidgetUi,
 	) {
 		this.initialPosition = {
 			containerId: position.containerId,
 			index: position.index
 		};
 	}
-
-	get headerComponent() {
-		return NgDashWidgetHeader.resolve(this.headerId);
-	}
-
-	get bodyComponent(){
-		return NgDashWidgetBody.resolve(this.bodyId);
-	}
 }
 
 export interface WidgetPosition {
 	containerId: number;
 	index: number;
+}
+
+/**
+ * One or more of the component IDs must be provided
+ */
+export interface WidgetUi {
+	widgetId?: string;
+	headerId?: string;
+	bodyId?: string;
 }

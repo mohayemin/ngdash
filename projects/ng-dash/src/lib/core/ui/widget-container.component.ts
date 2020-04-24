@@ -1,7 +1,8 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NgDashComponent } from './ng-dash.component';
-import { Widget } from './widget';
+import { Widget } from '../widget';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Dashboard } from '../dashboard';
 
 @Component({
 	selector: 'ngdash-widget-container',
@@ -23,11 +24,11 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 })
 export class WidgetContainerComponent {
 	@Input() cid: number;
+	private dashboard: Dashboard;
 	widgets: Widget[];
 
-	constructor(
-		private ngDash: NgDashComponent,
-	) {
+	constructor(ngDash: NgDashComponent) {
+		this.dashboard = ngDash.dashboard;
 	}
 
 	ngOnInit() {
@@ -35,7 +36,7 @@ export class WidgetContainerComponent {
 	}
 
 	private setupWidgets() {
-		let widgets = this.ngDash.dashboard.widgets
+		let widgets = this.dashboard.widgets
 			.filter(w => w.position.containerId === this.cid);
 		widgets.sort((w1, w2) => w1.position.index - w2.position.index);
 		widgets.forEach((w, i) => w.position.index = i);
@@ -51,13 +52,13 @@ export class WidgetContainerComponent {
 		};
 
 		this.setupWidgets();
-		this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
+		//this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
 	}
 
 	removeWidget(widget: Widget) {
-		this.ngDash.dashboard.widgets.splice(widget.position.index, 1);
+		this.dashboard.widgets.splice(widget.position.index, 1);
 		this.setupWidgets();
-		this.ngDash.widgetRemoveEmitter.emit(widget);
+		//this.ngDash.widgetRemoveEmitter.emit(widget);
 	}
 
 	private transferWidget(widget: Widget, toIndex: number, sourceContainer: WidgetContainerComponent) {
@@ -69,7 +70,7 @@ export class WidgetContainerComponent {
 
 		this.setupWidgets();
 		sourceContainer.setupWidgets();
-		this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
+		//this.ngDash.widgetMoveEmitter.emit({ widget: widget, previousPosition });
 	}
 
 	drop(event: CdkDragDrop<WidgetContainerComponent>) {

@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
-import { NgDashComponent } from './core/ng-dash.component';
+import { NgDashComponent } from './core/ui/ng-dash.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { SingleColumnLayoutComponent } from './layouts/single-column-layout.component';
-import { NgDashResolver } from './ng-dash-resolver';
+import { SingleColumnLayoutComponent } from './layout/single-column-layout.component';
 import { HtmlWidgetComponent } from './widget/html-widget.component';
-import { WidgetContainerComponent } from './core/widget-container.component';
-import { WidgetWrapperComponent } from './core/widget-wrapper.component';
+import { WidgetContainerComponent } from './core/ui/widget-container.component';
+import { WidgetWrapperComponent } from './core/ui/widget-wrapper.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BootstrapR1C2LayoutComponent } from './layouts/bootstrap-r1-c2-layout.component';
-import { DefaultWidgetHeaderComponent } from './core/default-widget-header.component';
+import { BootstrapCardWidgetComponent } from './widget/bootstrap-card-widget.component';
+import { BootstrapCardWidgetHeaderComponent } from './widget/bootstrap-card-widget-header.component';
+import { BootstrapCardWidgetBodyComponent } from './widget/bootstrap-card-widget-body.component';
+import { BootstrapR1C2LayoutComponent } from './layout/bootstrap-r1-c2-layout.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,9 @@ import { DefaultWidgetHeaderComponent } from './core/default-widget-header.compo
 		WidgetContainerComponent,
 		WidgetWrapperComponent,
 		BootstrapR1C2LayoutComponent,
-		DefaultWidgetHeaderComponent,
+		BootstrapCardWidgetComponent,
+		BootstrapCardWidgetHeaderComponent,
+		BootstrapCardWidgetBodyComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -29,8 +32,5 @@ import { DefaultWidgetHeaderComponent } from './core/default-widget-header.compo
 	]
 })
 export class NgDashModule {
-	constructor(resolver: NgDashResolver) {
-		resolver
-			.bindWidget("html", HtmlWidgetComponent);
-	}
+	
 }

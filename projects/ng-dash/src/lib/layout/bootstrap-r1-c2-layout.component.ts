@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgDashLayout } from './layout.decorator';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { NgDashLayout } from '../core/registry/layout.decorator';
+import { Dashboard } from '../core/dashboard';
 
 @Component({
 	selector: 'ngdash-bootstrap-r1-c2-layout',
@@ -16,7 +17,7 @@ import { NgDashLayout } from './layout.decorator';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-@NgDashLayout(BootstrapR1C2LayoutComponent.lid)
+@NgDashLayout('ngdash-bootstrap-r1-c2-layout')
 export class BootstrapR1C2LayoutComponent {
-	static lid = "ngdash-bootstrap-r1-c2-layout";
+	@Input() dashboard: Dashboard;
 }

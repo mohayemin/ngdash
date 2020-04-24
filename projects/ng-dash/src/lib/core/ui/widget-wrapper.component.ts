@@ -8,21 +8,23 @@ import {
 	ChangeDetectionStrategy,
 	Type
 } from '@angular/core';
-import { Widget } from './widget';
+import { Widget } from '../widget';
+import { NgDashWidget } from '../registry/widget.decorator';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',
 	template: `
     <div class="ngdash-widget-wrapper">
-      <ng-template #header></ng-template>
-      <ng-template #body></ng-template>
+		<ng-template #widget></ng-template>
     <div>
-  `,
+  	`,
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WidgetWrapperComponent implements AfterViewInit {
 	@Input() widget: Widget;
+
+	@ViewChild("widget", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
 	@ViewChild("header", { read: ViewContainerRef }) headerVCR: ViewContainerRef;
 	@ViewChild("body", { read: ViewContainerRef }) bodyVCR: ViewContainerRef;
 
@@ -31,16 +33,8 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	) { }
 
 	ngAfterViewInit() {
-		this.renderHeader();
-		this.renderBody();
-	}
-
-	renderHeader() {
-		this.renderComponent(this.widget.headerComponent, this.headerVCR);
-	}
-
-	renderBody() {
-		this.renderComponent(this.widget.bodyComponent, this.bodyVCR);
+		const widgetComponent = NgDashWidget.resolve(this.widget.ui.widgetId);
+		this.renderComponent(widgetComponent, this.widgetVCR);
 	}
 
 	private renderComponent(
