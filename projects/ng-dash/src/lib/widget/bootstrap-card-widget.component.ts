@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgDashWidget } from '../core/registry/widget.decorator';
+import { Component, Input } from '@angular/core';
 import { Widget } from '../core/widget';
 import { Dashboard } from '../core/dashboard';
 import { WidgetContainer } from '../core/widget-container';
+import { NgDashComponent } from '../core/ng-dash-component.decorator';
 
 @Component({
 	selector: 'ngdash-bootstrap-card-widget',
@@ -24,8 +24,8 @@ import { WidgetContainer } from '../core/widget-container';
 	styles: [
 	]
 })
-@NgDashWidget('default')
-@NgDashWidget('ngdash-bootstrap-card-widget')
+@NgDashComponent('widget', 'default')
+@NgDashComponent('widget', 'ngdash-bootstrap-card-widget')
 export class BootstrapCardWidgetComponent {
 	@Input() widget: Widget;
 	@Input() container: WidgetContainer;

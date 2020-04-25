@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NgDashWidget } from 'projects/ng-dash/src/lib/core/registry/widget.decorator';
 import { Widget, Dashboard } from 'projects/ng-dash/src/public-api';
+import { NgDashComponent } from 'projects/ng-dash/src/lib/core/ng-dash-component.decorator';
 
 @Component({
 	selector: 'ng-dash-demo-widget',
@@ -18,7 +18,7 @@ import { Widget, Dashboard } from 'projects/ng-dash/src/public-api';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-@NgDashWidget('demo')
+@NgDashComponent('widget', 'demo')
 export class DemoWidgetComponent {
 	@Input() widget: Widget;
 	@Input() dashbaord: Dashboard;

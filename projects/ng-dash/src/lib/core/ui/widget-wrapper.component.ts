@@ -9,9 +9,9 @@ import {
 	Type
 } from '@angular/core';
 import { Widget } from '../widget';
-import { NgDashWidget } from '../registry/widget.decorator';
 import { WidgetContainer } from '../widget-container';
 import { Dashboard } from '../dashboard';
+import { NgDashComponent } from '../ng-dash-component.decorator';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',
@@ -35,7 +35,7 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	) { }
 
 	ngAfterViewInit() {
-		const widgetComponent = NgDashWidget.resolve(this.widget.widgetId);
+		const widgetComponent = NgDashComponent.resolve('widget', this.widget.widgetId);
 		this.renderComponent(widgetComponent, this.widgetVCR);
 	}
 

@@ -1,6 +1,6 @@
 import { Widget, WidgetState } from './widget';
-import { NgDashLayout as NgDashLayout } from './registry/layout.decorator';
 import { WidgetContainer } from './widget-container';
+import { NgDashComponent } from './ng-dash-component.decorator';
 
 export class Dashboard {
 	private containers: any = {};
@@ -24,6 +24,6 @@ export class Dashboard {
 	}
 
 	public get layoutComponent() {
-		return NgDashLayout.resolve(this.layoutId);
+		return NgDashComponent.resolve('layout', this.layoutId);
 	}
 }

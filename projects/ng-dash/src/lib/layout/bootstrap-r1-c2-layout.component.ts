@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NgDashLayout } from '../core/registry/layout.decorator';
 import { Dashboard } from '../core/dashboard';
 import { WidgetContainer } from '../core/widget-container';
+import { NgDashComponent } from '../core/ng-dash-component.decorator';
 
 @Component({
 	selector: 'ngdash-bootstrap-r1-c2-layout',
@@ -24,8 +24,8 @@ import { WidgetContainer } from '../core/widget-container';
 	styles: [],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-@NgDashLayout('ngdash-bootstrap-r1-c2-layout')
-@NgDashLayout('default')
+@NgDashComponent('layout', 'ngdash-bootstrap-r1-c2-layout')
+@NgDashComponent('layout', 'default')
 export class BootstrapR1C2LayoutComponent {
 	@Input() dashboard: Dashboard;
 	containers: WidgetContainer[]
