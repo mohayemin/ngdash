@@ -6,13 +6,21 @@ export class Widget {
 	constructor(
 		public state: WidgetState,
 		public config: any,
-		public widgetId: string = 'default',
+		public ui: WidgetUi = {
+			widgetId: 'default'
+		},
 	) {
 		this.initialState = Object.assign({}, this.state);
 	}
 
 	removeRequest = new Subject<void>();
 }
+
+export type WidgetUi = {
+	widgetId?: string;
+	headerId?: string;
+	bodyId?: string;
+};
 
 export type WidgetState = {
 	containerId: number;

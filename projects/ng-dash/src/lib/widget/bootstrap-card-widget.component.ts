@@ -40,8 +40,8 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.createComponent(this.headerContainerRef, 'widget-header', this.widget.config.headerId);
-		this.createComponent(this.bodyContainerRef, 'widget-body', this.widget.config.bodyId);
+		this.createComponent(this.headerContainerRef, 'widget-header', this.widget.ui.headerId);
+		this.createComponent(this.bodyContainerRef, 'widget-body', this.widget.ui.bodyId);
 	}
 
 	private createComponent(vcr: ViewContainerRef, componentCategory: ComponentCategory, componentId: string) {

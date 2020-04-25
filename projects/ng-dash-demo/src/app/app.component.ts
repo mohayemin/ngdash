@@ -37,8 +37,8 @@ export class AppComponent {
 		this.dashboard = new Dashboard(
 			[
 				new Widget({ containerId: 0, index: 0 }, { title: 'using default widget', content: 'no custom header or body is used here' }),
-				new Widget({ containerId: 0, index: 1 }, { title: 'using custom widget' }, 'demo'),
-				new Widget({ containerId: 1, index: 0 }, { headerId: 'custom', content: 'but the content is default' })
+				new Widget({ containerId: 0, index: 1 }, { title: 'using custom widget' }, { widgetId: 'demo' }),
+				new Widget({ containerId: 1, index: 0 }, { content: 'but the content is default' }, { headerId: 'custom' })
 			],
 			'ngdash-bootstrap-r1-c2-layout',
 			{}
