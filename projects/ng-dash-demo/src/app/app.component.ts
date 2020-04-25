@@ -38,7 +38,7 @@ export class AppComponent {
 			[
 				new Widget({ containerId: 0, index: 0 }, { title: 'using default widget' }),
 				new Widget({ containerId: 0, index: 1 }, { title: 'using custom widget' }, 'demo'),
-				new Widget({ containerId: 1, index: 0 }, { title: 'using custom header and body', content: 'content' })
+				new Widget({ containerId: 1, index: 0 }, { headerId: 'custom', content: 'content' })
 			],
 			'ngdash-bootstrap-r1-c2-layout',
 			{}
