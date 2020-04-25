@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WidgetWrapperComponent } from './widget-wrapper.component';
 import { Widget } from '../widget';
-import { TextWidgetComponent } from '../../test-doubles/text-widget/text-widget.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { WidgetContainerComponent } from './widget-container.component';
 
@@ -15,7 +14,6 @@ describe('WidgetWrapperComponent', () => {
 			declarations: [
 				WidgetWrapperComponent,
 				WidgetContainerComponent,
-				TextWidgetComponent,
 			],
 		}).overrideModule(BrowserDynamicTestingModule, {
 			set: {

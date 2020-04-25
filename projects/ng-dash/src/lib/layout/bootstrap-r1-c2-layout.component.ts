@@ -28,7 +28,8 @@ import { NgDashComponent } from '../core/ng-dash-component.decorator';
 @NgDashComponent('layout', 'default')
 export class BootstrapR1C2LayoutComponent {
 	@Input() dashboard: Dashboard;
-	containers: WidgetContainer[]
+	containers: WidgetContainer[];
+	
 	ngOnInit() {
 		this.containers = [0, 1].map(id => this.dashboard.getContainer(id));
 	}
