@@ -2,6 +2,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { WidgetContainer } from '../widget-container';
 import { Dashboard } from '../dashboard';
+import { Widget } from '../widget';
 
 @Component({
 	selector: 'ngdash-widget-container',
@@ -26,9 +27,7 @@ export class WidgetContainerComponent {
 	@Input() dashboard?: Dashboard;
 
 	dropped(event: CdkDragDrop<WidgetContainer, WidgetContainer>) {
-		if (event.previousContainer === event.container)
-			this.container.moveWidget(event.item.data, event.currentIndex);
-		else
-			this.container.acquireWidget(event.item.data, event.currentIndex, event.previousContainer.data);
+		const widget = event.item.data as Widget;
+		widget.move(this.container.id, event.currentIndex);
 	}
 }

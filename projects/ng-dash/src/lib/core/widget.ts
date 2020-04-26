@@ -1,5 +1,7 @@
 import { Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import { WidgetMoveEvent } from './widget-move-event';
 
 export class Widget {
 	readonly initialState: WidgetState;
@@ -14,10 +16,11 @@ export class Widget {
 		this.initialState = Object.assign({}, this.state);
 	}
 
-	private changeEvent = new Subject<Widget>();
+	private changeEvent = new Subject<any>();
 	events = {
-		remove: this.createWidgetEmitter(),
-		toggle: this.createWidgetEmitter(),
+		remove: this.createWidgetEmitter<Widget>(),
+		toggle: this.createWidgetEmitter<Widget>(),
+		move: this.createWidgetEmitter<WidgetMoveEvent>(),
 		change: this.changeEvent,
 	};
 
@@ -31,10 +34,24 @@ export class Widget {
 		this.events.toggle.next(this);
 	}
 
-	private createWidgetEmitter() {
-		const subject = new Subject<Widget>();
+	move(newContainerId: number, newIindex: number) {
+		const previousContainerId = this.state.containerId;
+		const previousIndex = this.state.index;
+
+		this.state.containerId = newContainerId;
+		this.state.index = newIindex;
+
+		this.events.move.next({
+			widget: this,
+			previousContainerId: previousContainerId,
+			previousIndex: previousIndex
+		});
+	}
+
+	private createWidgetEmitter<T>() {
+		const subject = new Subject<T>();
 		subject.pipe(
-			tap(w => this.changeEvent.next(w))
+			tap(data => this.changeEvent.next(data))
 		);
 		return subject;
 	}

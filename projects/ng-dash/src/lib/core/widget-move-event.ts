@@ -1,6 +1,7 @@
-import { Widget, WidgetState } from './widget';
+import { Widget } from './widget';
 
 export interface WidgetMoveEvent {
 	widget: Widget,
-	previousPosition: WidgetState,
+	previousIndex: number,
+	previousContainerId: number,
 }

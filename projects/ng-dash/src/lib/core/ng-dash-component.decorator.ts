@@ -1,11 +1,7 @@
 import { Type } from '@angular/core';
+import { Dictionary } from '../utils/types';
 
 export const NgDashComponent = createComponentDecorator();
-
-type Dictionary<T> = {
-	[id: string]:
-	T
-};
 
 /**
  * Todo: Add other possible types here when necessary

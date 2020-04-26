@@ -47,7 +47,7 @@ export class AppComponent {
 
 	widgetMoved(event: WidgetMoveEvent) {
 		const num = this.messages.length + 1;
-		if (event.widget.state.containerId === event.previousPosition.containerId) {
+		if (event.widget.state.containerId === event.previousContainerId) {
 			this.messages.unshift(`${num}: Widget moved within same container`);
 		} else {
 			this.messages.unshift(`${num}: Widget moved between containers`);
