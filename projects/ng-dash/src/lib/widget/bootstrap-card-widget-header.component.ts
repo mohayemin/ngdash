@@ -11,33 +11,15 @@ import { NgDashComponent } from '../core/ng-dash-component.decorator';
 			<div class="title" 
 				[innerHtml]="widget.config.title">
 			</div>
-			<div class="btn-group-sm">
-				<button type="button"
-					[hidden]="widget.state['isCollapsed']"
-					title="Collapse widget" 
-					class="btn btn-light"
-					(click)="widget.state['isCollapsed']=true">
-					<i class="fas fa-minus"></i>
-				</button>
-				<button type="button"
-					[hidden]="!widget.state['isCollapsed']"
-					title="Expand widget"
-					class="btn btn-light"
-					(click)="widget.state['isCollapsed']=false">
-					<i class="fas fa-plus"></i>
-				</button>
-				<button type="button"
-					title="Remove widget"
-					class="btn btn-light"
-					(click)="remove()">
-					<i class="far fa-trash-alt"></i>
-				</button>
-			</div>
+			<ngdash-widget-header-button-set 
+				[widget]=widget
+				[container]="container"
+				[dashboard]="dashboard">
+			</ngdash-widget-header-button-set>
 		</div>
   	`,
 	styles: [
 		`.title { flex-grow : 1; }`,
-		`button { background-color: transparent; border-color: transparent;}`
 	]
 })
 @NgDashComponent('widget-header', 'default')
@@ -46,8 +28,4 @@ export class BootstrapCardWidgetHeaderComponent {
 	@Input() widget: Widget;
 	@Input() container: WidgetContainer;
 	@Input() dashboard: Dashboard;
-
-	remove() {
-		this.container.removeWidget(this.widget);
-	}
 }

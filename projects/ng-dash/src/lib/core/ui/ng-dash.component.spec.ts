@@ -22,8 +22,8 @@ describe('NgDashComponent', () => {
 		component = fixture.componentInstance;
 		component.dashboard = new Dashboard(
 			[
-				new Widget({ containerId: 0, index: 1 }, { text: "first one" }, 'default')
-				, new Widget({ containerId: 0, index: 1 }, { text: "the second" }, 'default')
+				new Widget({ containerId: 0, index: 1 }, { text: "first one" })
+				, new Widget({ containerId: 0, index: 1 }, { text: "the second" })
 			],
 			'default',
 			{}

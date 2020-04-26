@@ -9,6 +9,9 @@ import { BootstrapCardWidgetHeaderComponent } from './widget/bootstrap-card-widg
 import { BootstrapCardWidgetBodyComponent } from './widget/bootstrap-card-widget-body.component';
 import { BootstrapR1C2LayoutComponent } from './layout/bootstrap-r1-c2-layout.component';
 import { BootstrapCardWidgetComponent } from './widget/bootstrap-card-widget.component';
+import { WidgetHeaderButtonSetComponent } from './utils/widget-header-button-set.component';
+import { WidgetDeleteButtonComponent } from './utils/widget-delete-button.component';
+import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +23,9 @@ import { BootstrapCardWidgetComponent } from './widget/bootstrap-card-widget.com
 		BootstrapCardWidgetComponent,
 		BootstrapCardWidgetHeaderComponent,
 		BootstrapCardWidgetBodyComponent,
+		WidgetHeaderButtonSetComponent,
+		WidgetDeleteButtonComponent,
+		WidgetToggleButtonComponent,
 	],
 	imports: [
 		BrowserModule,

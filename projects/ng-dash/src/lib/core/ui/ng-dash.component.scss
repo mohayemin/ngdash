@@ -1,0 +1,11 @@
+/**
+ * This styles are used as global style.
+ * View Encapsulation is turrned off dor the root component.
+ */
+
+.widget-header-button-set {
+	.btn {
+		background-color: transparent;
+		border-color: transparent;
+	}
+}

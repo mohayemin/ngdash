@@ -8,6 +8,7 @@ import {
 	ChangeDetectionStrategy,
 	Output,
 	EventEmitter,
+	ViewEncapsulation,
 } from '@angular/core';
 import { Dashboard } from '../dashboard';
 import { WidgetMoveEvent } from '../widget-move-event';
@@ -23,8 +24,11 @@ import { Widget } from '../widget';
       <ng-template #layout></ng-template>
     </div>
   `,
-	styles: [],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: [
+		'./ng-dash.component.scss'
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None
 })
 export class NgDashComponent implements AfterViewInit {
 	@Input() dashboard: Dashboard;
