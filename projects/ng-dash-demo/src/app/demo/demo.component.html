@@ -1,0 +1,21 @@
+
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="alert alert-info mt-3 interactions">
+			<h5>Interactions</h5>
+			<div><b>Play around with the widgets to see the log here.</b></div>
+			<div *ngFor="let message of messages">{{message}}</div>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div>
+			<label>
+				<input type="checkbox"
+					   [(ngModel)]="enableDragDrop" /> Enable Drag Drop
+			</label>
+		</div>
+		<ngdash [dashboard]="dashboard"
+				[enableDragDrop]="enableDragDrop"></ngdash>
+	</div>
+</div>

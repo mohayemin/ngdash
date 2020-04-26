@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { Widget, Dashboard } from 'projects/ng-dash/src/public-api';
-import { NgDashComponent } from 'projects/ng-dash/src/lib/core/ng-dash-component.decorator';
+import { Widget, Dashboard, NgDashComponent } from 'projects/ng-dash/src/public-api';
 
 @Component({
 	selector: 'ng-dash-demo-widget',

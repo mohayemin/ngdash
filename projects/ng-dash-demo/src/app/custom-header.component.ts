@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgDashComponent } from 'projects/ng-dash/src/lib/core/ng-dash-component.decorator';
+import { NgDashComponent } from 'projects/ng-dash/src/public-api';
 
 @Component({
   selector: 'ng-dash-demo-custom-header',
@@ -16,5 +16,4 @@ export class CustomHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

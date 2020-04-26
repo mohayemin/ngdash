@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<a class="navbar-brand"
+	   routerLink="">ng-dash</a>
+	<button class="navbar-toggler"
+			(click)="showNav = !showNav"
+			type="button"
+			aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse"
+		[class.show]="showNav">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link"
+				   routerLink="demo" routerLinkActive="active">Demo</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link"
+				   href="https://github.com/mohayemin/ng-dash">
+					View on GitHub <i class="fab fa-github"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<main role="main"
+	  class="container-fluid">
+	<router-outlet></router-outlet>
+</main>

@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
-import { WidgetMoveEvent } from './widget-move-event';
+import { WidgetMoveEvent } from './events/widget-move-event';
 
 export class Widget {
 	readonly initialState: WidgetState;

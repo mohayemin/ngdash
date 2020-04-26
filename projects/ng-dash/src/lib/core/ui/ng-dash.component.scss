@@ -4,7 +4,7 @@
  */
 
 .widget-header-button-set {
-	.btn {
+	.btn:not(:hover) {
 		background-color: transparent;
 		border-color: transparent;
 	}
