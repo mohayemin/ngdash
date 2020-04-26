@@ -13,8 +13,6 @@ import { WidgetMoveEvent } from 'projects/ng-dash/src/lib/core/widget-move-event
         </label>
       </div>
       <ngdash [dashboard]="dashboard"
-        (moveWidget)="widgetMoved($event)"
-        (removeWidget)="widgetRemoved($event)"
         [enableDragDrop]="enableDragDrop"></ngdash>
 
       <div class="alert alert-info mt-3">
@@ -33,6 +31,8 @@ export class AppComponent {
 	dashboard: Dashboard;
 
 	messages: string[] = [];
+	eventCount = 0;
+
 	constructor() {
 		this.dashboard = new Dashboard(
 			[
@@ -42,20 +42,30 @@ export class AppComponent {
 			],
 			'ngdash-bootstrap-r1-c2-layout',
 			{}
-		)
+		);
+
+		this.dashboard.events.widgetMove.subscribe(event => this.widgetMoved(event));
+		this.dashboard.events.widgetRemove.subscribe(event => this.widgetRemoved(event));
+		this.dashboard.events.widgetToggle.subscribe(event => this.widgetToggled(event));
 	}
 
 	widgetMoved(event: WidgetMoveEvent) {
-		const num = this.messages.length + 1;
 		if (event.widget.state.containerId === event.previousContainerId) {
-			this.messages.unshift(`${num}: Widget moved within same container`);
+			this.logEvent('Widget moved within same container');
 		} else {
-			this.messages.unshift(`${num}: Widget moved between containers`);
+			this.logEvent('Widget moved between containers');
 		}
 	}
 
 	widgetRemoved(widget: Widget) {
-		const num = this.messages.length + 1;
-		this.messages.unshift(`${num}: Widget removed`);
+		this.logEvent('Widget removed');
+	}
+
+	widgetToggled(widget: Widget) {
+		this.logEvent('Widget toggled');
+	}
+
+	logEvent(message: string) {
+		this.messages.unshift(`${++this.eventCount}: ${message}`);
 	}
 }

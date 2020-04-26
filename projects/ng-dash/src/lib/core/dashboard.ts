@@ -1,6 +1,8 @@
 import { Widget } from './widget';
 import { WidgetContainer } from './widget-container';
 import { Dictionary } from '../utils/types';
+import { Subject } from 'rxjs';
+import { WidgetMoveEvent } from './widget-move-event';
 
 export class Dashboard {
 	private containers: Dictionary<WidgetContainer> = {};
@@ -15,6 +17,12 @@ export class Dashboard {
 		});
 	}
 
+	events = {
+		widgetMove: new Subject<WidgetMoveEvent>(),
+		widgetRemove: new Subject<Widget>(),
+		widgetToggle: new Subject<Widget>(),
+	};
+
 	public getContainer(id: number): WidgetContainer {
 		let container = this.containers[id];
 		if (!container) {
@@ -27,18 +35,24 @@ export class Dashboard {
 	}
 
 	private subscribeWidgetEvents(widget: Widget) {
-		widget.events.remove.subscribe(widget => this.removeFromContainer(widget.state.containerId, widget.state.index));
+		widget.events.remove.subscribe(event => {
+			const widget = event;
+			this.removeFromContainer(widget.state.containerId, widget.state.index)
+			this.events.widgetRemove.next(event);
+		});
 		widget.events.move.subscribe(event => {
 			this.removeFromContainer(event.previousContainerId, event.previousIndex);
 			this.insertToContainer(event.widget);
+			this.events.widgetMove.next(event);
 		});
+		widget.events.toggle.subscribe(event => this.events.widgetToggle.next(event));
 	}
 
 	private removeFromContainer(containerId: number, index: number) {
 		this.containers[containerId].removeWidget(index);
 	}
 
-	private insertToContainer(widget: Widget){
+	private insertToContainer(widget: Widget) {
 		this.containers[widget.state.containerId].insertWidget(widget);
 	}
 }

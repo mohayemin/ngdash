@@ -35,9 +35,6 @@ export class NgDash implements AfterViewInit {
 	@Input() dashboard: Dashboard;
 	@Input() enableDragDrop: boolean;
 
-	@Output("moveWidget") widgetMoveEmitter = new EventEmitter<WidgetMoveEvent>();
-	@Output("removeWidget") widgetRemoveEmitter = new EventEmitter<Widget>()
-
 	@ViewChild("layout", { read: ViewContainerRef })
 	layoutContainerRef: ViewContainerRef;
 

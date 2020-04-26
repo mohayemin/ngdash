@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { Widget, Dashboard } from 'projects/ng-dash/src/public-api';
 import { NgDashComponent } from 'projects/ng-dash/src/lib/core/ng-dash-component.decorator';
 
@@ -26,6 +26,13 @@ import { NgDashComponent } from 'projects/ng-dash/src/lib/core/ng-dash-component
 export class DemoWidgetComponent {
 	@Input() widget: Widget;
 	@Input() dashbaord: Dashboard;
+
+	constructor(private crd: ChangeDetectorRef) {
+	}
+
+	ngOnInit() {
+		this.widget.events.move.subscribe(_ => this.crd.detectChanges());
+	}
 }
 
 
