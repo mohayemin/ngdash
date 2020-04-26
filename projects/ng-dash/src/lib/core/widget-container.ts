@@ -7,8 +7,8 @@ export class WidgetContainer {
 		public widgets: Widget[]
 	) {
 		this.widgets.sort(w => w.state.index);
-		this.filterWidgets();
 		this.resetIndex();
+		this.subscribeToWidgetEvents();
 	}
 
 	public moveWidget(widget: Widget, newIndex: number): void {
@@ -24,15 +24,18 @@ export class WidgetContainer {
 	}
 
 	public removeWidget(widget: Widget) {
-		widget.state.isDeleted = true;
-		this.filterWidgets();
+		this.widgets.splice(widget.state.index, 1);
+		widget['__remove_sub__'].unsubscribe();
+		delete widget['__remove_sub__'];
 	}
 
 	private resetIndex() {
 		this.widgets.forEach((w, i) => w.state.index = i);
 	}
 
-	private filterWidgets() {
-		this.widgets = this.widgets.filter(w => !w.state.isDeleted);
+	private subscribeToWidgetEvents() {
+		this.widgets.forEach(w => {
+			w['__remove_sub__'] = w.events.remove.subscribe(_ => this.removeWidget(w));
+		});
 	}
 }
