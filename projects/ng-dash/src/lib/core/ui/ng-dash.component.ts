@@ -13,6 +13,7 @@ import {
 import { Dashboard } from '../dashboard';
 import { WidgetMoveEvent } from '../widget-move-event';
 import { Widget } from '../widget';
+import { NgDashComponent } from '../ng-dash-component.decorator';
 
 @Component({
 	selector: 'ngdash',
@@ -30,7 +31,7 @@ import { Widget } from '../widget';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
-export class NgDashComponent implements AfterViewInit {
+export class NgDash implements AfterViewInit {
 	@Input() dashboard: Dashboard;
 	@Input() enableDragDrop: boolean;
 
@@ -49,7 +50,8 @@ export class NgDashComponent implements AfterViewInit {
 	}
 
 	renderLayout() {
-		const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(this.dashboard.layoutComponent);
+		const layoutType = NgDashComponent.resolve('layout', this.dashboard.layoutId);
+		const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(layoutType);
 		const layoutRef = this.layoutContainerRef.createComponent(layoutFactory);
 		layoutRef.instance['dashboard'] = this.dashboard;
 		layoutRef.changeDetectorRef.detectChanges();

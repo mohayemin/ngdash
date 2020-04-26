@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgDashComponent } from './core/ui/ng-dash.component';
+import { NgDash } from './core/ui/ng-dash.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HtmlWidgetComponent } from './widget/html-widget.component';
 import { WidgetContainerComponent } from './core/ui/widget-container.component';
@@ -15,7 +15,7 @@ import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.compon
 
 @NgModule({
 	declarations: [
-		NgDashComponent,
+		NgDash,
 		HtmlWidgetComponent,
 		WidgetContainerComponent,
 		WidgetWrapperComponent,
@@ -32,7 +32,7 @@ import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.compon
 		DragDropModule
 	],
 	exports: [
-		NgDashComponent
+		NgDash
 	]
 })
 export class NgDashModule {

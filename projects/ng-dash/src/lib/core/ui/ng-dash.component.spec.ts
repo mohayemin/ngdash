@@ -1,24 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgDashComponent } from './ng-dash.component';
+import { NgDash } from './ng-dash.component';
 import { Dashboard } from '../dashboard';
 import { Widget } from '../widget';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { TestLayoutComponent } from '../../test-doubles/test-layout.component';
+import { TestWidgetComponent } from '../../test-doubles/test-widget.component';
+import { By } from '@angular/platform-browser';
+import { WidgetContainerComponent } from './widget-container.component';
+import { WidgetWrapperComponent } from './widget-wrapper.component';
 
 describe('NgDashComponent', () => {
-	let component: NgDashComponent;
-	let fixture: ComponentFixture<NgDashComponent>;
+	let component: NgDash;
+	let fixture: ComponentFixture<NgDash>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [NgDashComponent],
-		}).overrideModule(BrowserDynamicTestingModule, {
-			set: {
-				entryComponents: [NgDashComponent]
-			}
+			declarations: [
+				NgDash,
+				WidgetContainerComponent,
+				WidgetWrapperComponent,
+				TestLayoutComponent,
+				TestWidgetComponent
+			]
 		});
 
-		fixture = TestBed.createComponent(NgDashComponent);
+		fixture = TestBed.createComponent(NgDash);
 		component = fixture.componentInstance;
 		component.dashboard = new Dashboard(
 			[
@@ -36,14 +42,12 @@ describe('NgDashComponent', () => {
 	});
 
 	it('should create the layout element', () => {
-		let dashboardElement = fixture.nativeElement as HTMLElement;
-		let layoutElement = dashboardElement.querySelector("ngdash-four-column-layout");
+		let layoutElement = fixture.debugElement.query(By.directive(TestLayoutComponent));
 		expect(layoutElement).toBeDefined();
 	});
 
 	it('should create 2 widgets', () => {
-		let dashboardElement = fixture.nativeElement as HTMLElement;
-		let widgetElements = dashboardElement.querySelectorAll("ngdash-text-widget");
+		let widgetElements = fixture.debugElement.queryAll(By.directive(TestWidgetComponent));
 		expect(widgetElements.length).toBe(2);
 	});
 });
