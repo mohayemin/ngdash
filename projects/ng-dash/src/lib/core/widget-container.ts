@@ -6,7 +6,7 @@ export class WidgetContainer {
 		public readonly id: number,
 		public widgets: Widget[]
 	) {
-		this.widgets.sort(w => w.state.index);
+		this.widgets.sort((w1, w2) => w1.state.index - w2.state.index);
 		this.resetIndex();
 	}
 
