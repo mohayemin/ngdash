@@ -17,7 +17,7 @@ export class DemoComponent {
 	eventCount = 0;
 
 	constructor() {
-		const dashboardData: DashboardData = {
+		const dashboardData: DashboardData = JSON.parse(localStorage.getItem('dashboard')) || {
 			widgets: [
 				{ state: { containerId: 0, index: 0 }, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
 				{ state: { containerId: 0, index: 1 }, config: { title: 'using custom widget' }, ui: { widgetId: 'demo' } },
@@ -47,7 +47,13 @@ export class DemoComponent {
 		this.logEvent('Widget toggled');
 	}
 
+	resetData() {
+		localStorage.removeItem('dashboard');
+		window.location.reload();
+	}
+
 	logEvent(message: string) {
 		this.messages.unshift(`${++this.eventCount}: ${message}`);
+		localStorage.setItem('dashboard', JSON.stringify(this.dashboard.getData()));
 	}
 }

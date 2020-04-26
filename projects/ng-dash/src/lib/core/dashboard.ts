@@ -17,7 +17,7 @@ export class Dashboard {
 		this.widgets = data.widgets.map(wd => new Widget(wd));
 		this.layoutId = data.layoutId;
 		this.config = Object.assign({}, data.config);
-		
+
 		this.widgets.forEach(w => {
 			this.subscribeWidgetEvents(w);
 		});
@@ -38,6 +38,14 @@ export class Dashboard {
 		}
 
 		return this.containers[id];
+	}
+
+	getData(): DashboardData {
+		return {
+			widgets: this.widgets.map(w => w.getData()),
+			config: Object.assign({}, this.config),
+			layoutId: this.layoutId
+		};
 	}
 
 	private subscribeWidgetEvents(widget: Widget) {

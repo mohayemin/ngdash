@@ -15,7 +15,7 @@ export class Widget {
 		this.state = Object.assign({}, data.state);
 		this.config = Object.assign({}, data.config || {});
 		this.ui = Object.assign({}, data.ui || {});
-		
+
 		this.initialState = Object.assign({}, this.state);
 	}
 
@@ -49,6 +49,14 @@ export class Widget {
 			previousContainerId: previousContainerId,
 			previousIndex: previousIndex
 		});
+	}
+
+	getData(): WidgetData {
+		return {
+			state: Object.assign({}, this.state),
+			config: Object.assign({}, this.config),
+			ui: Object.assign({}, this.ui),
+		};
 	}
 
 	private createWidgetEmitter<T>() {
