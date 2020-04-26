@@ -25,6 +25,7 @@ export function createComponentDecorator() {
 	};
 
 	decorator.resolve = function (category: ComponentCategory, id: string) {
+		id = id || 'default';
 		if (!registry[category] && !registry[category][id])
 			throw new Error(`No components registered with ${category} and id ${id}.`);
 

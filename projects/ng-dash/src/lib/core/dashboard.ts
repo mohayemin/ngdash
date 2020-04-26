@@ -3,21 +3,27 @@ import { WidgetContainer } from './widget-container';
 import { Dictionary } from '../utils/types';
 import { Subject } from 'rxjs';
 import { WidgetMoveEvent } from './events/widget-move-event';
+import { DashboardData } from './dashboard-data';
 
 export class Dashboard {
 	private containers: Dictionary<WidgetContainer> = {};
+	public readonly widgets: Widget[];
+	public readonly layoutId: string;
+	public readonly config: any;
 
 	constructor(
-		public widgets: Widget[],
-		public layoutId: string,
-		public config: any
+		data: DashboardData
 	) {
+		this.widgets = data.widgets.map(wd => new Widget(wd));
+		this.layoutId = data.layoutId;
+		this.config = Object.assign({}, data.config);
+		
 		this.widgets.forEach(w => {
 			this.subscribeWidgetEvents(w);
 		});
 	}
 
-	events = {
+	public readonly events = {
 		widgetMove: new Subject<WidgetMoveEvent>(),
 		widgetRemove: new Subject<Widget>(),
 		widgetToggle: new Subject<Widget>(),

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Dashboard, Widget, WidgetMoveEvent } from 'projects/ng-dash/src/public-api';
+import { Dashboard, Widget, WidgetMoveEvent, DashboardData } from 'projects/ng-dash/src/public-api';
 
 @Component({
 	selector: 'ng-dash-demo-demo',
@@ -17,15 +17,14 @@ export class DemoComponent {
 	eventCount = 0;
 
 	constructor() {
-		this.dashboard = new Dashboard(
-			[
-				new Widget({ containerId: 0, index: 0 }, { title: 'using default widget', content: 'no custom header or body is used here' }),
-				new Widget({ containerId: 0, index: 1 }, { title: 'using custom widget' }, { widgetId: 'demo' }),
-				new Widget({ containerId: 1, index: 0 }, { content: 'but the content is default' }, { headerId: 'custom' })
-			],
-			'ngdash-bootstrap-r1-c2-layout',
-			{}
-		);
+		const dashboardData: DashboardData = {
+			widgets: [
+				{ state: { containerId: 0, index: 0 }, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
+				{ state: { containerId: 0, index: 1 }, config: { title: 'using custom widget' }, ui: { widgetId: 'demo' } },
+				{ state: { containerId: 1, index: 0 }, config: { content: 'but the content is default' }, ui: { headerId: 'custom' } }
+			]
+		};
+		this.dashboard = new Dashboard(dashboardData);
 
 		this.dashboard.events.widgetMove.subscribe(event => this.widgetMoved(event));
 		this.dashboard.events.widgetRemove.subscribe(event => this.widgetRemoved(event));

@@ -1,18 +1,21 @@
 import { Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { WidgetMoveEvent } from './events/widget-move-event';
+import { WidgetData, WidgetState, WidgetUi } from './widget-data';
 
 export class Widget {
-	readonly initialState: WidgetState;
+	public readonly initialState: WidgetState;
+	public readonly state: WidgetState;
+	public readonly config: any;
+	public readonly ui: WidgetUi;
 
 	constructor(
-		public state: WidgetState,
-		public config: any,
-		public ui: WidgetUi = {
-			widgetId: 'default'
-		},
+		data: WidgetData
 	) {
+		this.state = Object.assign({}, data.state);
+		this.config = Object.assign({}, data.config || {});
+		this.ui = Object.assign({}, data.ui || {});
+		
 		this.initialState = Object.assign({}, this.state);
 	}
 
@@ -57,15 +60,3 @@ export class Widget {
 	}
 }
 
-export type WidgetUi = {
-	widgetId?: string;
-	headerId?: string;
-	bodyId?: string;
-};
-
-export type WidgetState = {
-	containerId: number;
-	index: number;
-	isDeleted?: boolean;
-	isCollapsed?: boolean;
-};

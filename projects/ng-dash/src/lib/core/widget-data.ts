@@ -1,6 +1,19 @@
 export interface WidgetData {
-	type: string;
+	state: WidgetState;
+	ui?: WidgetUi;
+	config?: any;
+}
+
+
+export interface WidgetUi {
+	widgetId?: string;
+	headerId?: string;
+	bodyId?: string;
+}
+
+export interface WidgetState {
 	containerId: number;
-	order: number;
-	config: any;
+	index: number;
+	isDeleted?: boolean;
+	isCollapsed?: boolean;
 }

@@ -6,13 +6,9 @@ import {
 	ComponentFactoryResolver,
 	ViewContainerRef,
 	ChangeDetectionStrategy,
-	Output,
-	EventEmitter,
 	ViewEncapsulation,
 } from '@angular/core';
 import { Dashboard } from '../dashboard';
-import { WidgetMoveEvent } from '../events/widget-move-event';
-import { Widget } from '../widget';
 import { NgDashComponent } from '../ng-dash-component.decorator';
 
 @Component({

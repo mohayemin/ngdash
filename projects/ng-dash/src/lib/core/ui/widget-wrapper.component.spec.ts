@@ -23,7 +23,7 @@ describe('WidgetWrapperComponent', () => {
 
 		fixture = TestBed.createComponent(WidgetWrapperComponent);
 		component = fixture.componentInstance;
-		component.widget = new Widget({ containerId: 0, index: 0 }, { text: "here I am" });
+		component.widget = new Widget({ state: { containerId: 0, index: 0 } });
 		fixture.detectChanges();
 	});
 

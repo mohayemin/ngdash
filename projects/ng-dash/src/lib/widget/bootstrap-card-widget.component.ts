@@ -45,7 +45,7 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 	}
 
 	private createComponent(vcr: ViewContainerRef, componentCategory: ComponentCategory, componentId: string) {
-		const componentType = NgDashComponent.resolve(componentCategory, componentId || 'default')
+		const componentType = NgDashComponent.resolve(componentCategory, componentId);
 		const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 		const compRef = vcr.createComponent(factory);
 		const comp = compRef.instance;
