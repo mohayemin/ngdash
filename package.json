@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project=ng-dash-demo",
-    "build": "ng build",
+	"build": "ng build",
+	"build-demo": "ng build --project=ng-dash-demo",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
