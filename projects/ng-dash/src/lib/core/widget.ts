@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { WidgetMoveEvent } from './events/widget-move-event';
-import { WidgetData, WidgetState, WidgetUi } from './widget-data';
+import { WidgetData, WidgetUi, WidgetState } from './simple-models';
 
 export class Widget {
 	public readonly initialState: WidgetState;

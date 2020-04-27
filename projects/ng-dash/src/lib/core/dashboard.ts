@@ -3,7 +3,7 @@ import { WidgetContainer } from './widget-container';
 import { Dictionary } from '../utils/types';
 import { Subject } from 'rxjs';
 import { WidgetMoveEvent } from './events/widget-move-event';
-import { DashboardData } from './dashboard-data';
+import { DashboardData } from './simple-models';
 
 export class Dashboard {
 	private containers: Dictionary<WidgetContainer> = {};

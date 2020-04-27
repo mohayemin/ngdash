@@ -1,3 +1,9 @@
+export interface DashboardData {
+	widgets: WidgetData[];
+	layoutId?: string;
+	config?: any;
+}
+
 export interface WidgetData {
 	state: WidgetState;
 	ui?: WidgetUi;
