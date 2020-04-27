@@ -1,11 +1,17 @@
 export interface DashboardData {
-	widgets: WidgetData[];
+	containers: ContainerData[];
 	layoutId?: string;
 	config?: any;
 }
 
+export interface ContainerData {
+	index: number;
+	widgets: WidgetData[];
+}
+
 export interface WidgetData {
-	state: WidgetState;
+	index: number;
+	state?: WidgetState;
 	ui?: WidgetUi;
 	config?: any;
 }
@@ -18,8 +24,6 @@ export interface WidgetUi {
 }
 
 export interface WidgetState {
-	containerId: number;
-	index: number;
 	isDeleted?: boolean;
 	isCollapsed?: boolean;
 }

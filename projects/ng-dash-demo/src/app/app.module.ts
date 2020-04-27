@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NgDashModule } from 'projects/ng-dash/src/public-api';
-import { DemoWidgetComponent } from './demo-widget.component';
-import { CustomHeaderComponent } from './custom-header.component';
+import { DemoWidgetComponent } from './demo/demo-widget.component';
+import { CustomHeaderComponent } from './demo/custom-header.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routes';
 import { DemoComponent } from './demo/demo.component';

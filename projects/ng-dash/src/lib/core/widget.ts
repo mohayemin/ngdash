@@ -1,10 +1,9 @@
 import { Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { WidgetMoveEvent } from './events/widget-move-event';
 import { WidgetData, WidgetUi, WidgetState } from './simple-models';
 
 export class Widget {
-	public readonly initialState: WidgetState;
+	public index: number;
 	public readonly state: WidgetState;
 	public readonly config: any;
 	public readonly ui: WidgetUi;
@@ -12,18 +11,16 @@ export class Widget {
 	constructor(
 		data: WidgetData
 	) {
+		this.index = data.index;
 		this.state = Object.assign({}, data.state);
 		this.config = Object.assign({}, data.config || {});
 		this.ui = Object.assign({}, data.ui || {});
-
-		this.initialState = Object.assign({}, this.state);
 	}
 
 	private changeEvent = new Subject<any>();
 	events = {
 		remove: this.createWidgetEmitter<Widget>(),
 		toggle: this.createWidgetEmitter<Widget>(),
-		move: this.createWidgetEmitter<WidgetMoveEvent>(),
 		change: this.changeEvent,
 	};
 
@@ -37,22 +34,9 @@ export class Widget {
 		this.events.toggle.next(this);
 	}
 
-	move(newContainerId: number, newIindex: number) {
-		const previousContainerId = this.state.containerId;
-		const previousIndex = this.state.index;
-
-		this.state.containerId = newContainerId;
-		this.state.index = newIindex;
-
-		this.events.move.next({
-			widget: this,
-			previousContainerId: previousContainerId,
-			previousIndex: previousIndex
-		});
-	}
-
 	getData(): WidgetData {
 		return {
+			index: this.index,
 			state: Object.assign({}, this.state),
 			config: Object.assign({}, this.config),
 			ui: Object.assign({}, this.ui),

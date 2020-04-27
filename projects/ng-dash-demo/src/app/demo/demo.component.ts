@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Dashboard, Widget, WidgetMoveEvent, DashboardData } from 'projects/ng-dash/src/public-api';
+import { Dashboard, Widget, WidgetMoveEvent, DashboardData, WidgetSortEvent } from 'projects/ng-dash/src/public-api';
 
 @Component({
 	selector: 'ng-dash-demo-demo',
@@ -17,26 +17,41 @@ export class DemoComponent {
 	eventCount = 0;
 
 	constructor() {
-		const dashboardData: DashboardData = JSON.parse(localStorage.getItem('dashboard')) || {
-			widgets: [
-				{ state: { containerId: 0, index: 0 }, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
-				{ state: { containerId: 0, index: 1 }, config: { title: 'using custom widget' }, ui: { widgetId: 'demo' } },
-				{ state: { containerId: 1, index: 0 }, config: { content: 'but the content is default' }, ui: { headerId: 'custom' } }
-			]
-		};
+		const dashboardData: DashboardData = JSON.parse(localStorage.getItem('dashboard')) || this.getDefaultData();
 		this.dashboard = new Dashboard(dashboardData);
 
-		this.dashboard.events.widgetMove.subscribe(event => this.widgetMoved(event));
+		this.dashboard.events.widgetTransfer.subscribe(event => this.widgetTransfered(event));
+		this.dashboard.events.widgetSort.subscribe(event => this.widgetSorted(event));
 		this.dashboard.events.widgetRemove.subscribe(event => this.widgetRemoved(event));
 		this.dashboard.events.widgetToggle.subscribe(event => this.widgetToggled(event));
 	}
 
-	widgetMoved(event: WidgetMoveEvent) {
-		if (event.widget.state.containerId === event.previousContainerId) {
-			this.logEvent('Widget moved within same container');
-		} else {
-			this.logEvent('Widget moved between containers');
+	getDefaultData(): DashboardData {
+		return {
+			containers: [
+				{
+					index: 0,
+					widgets: [
+						{ index: 0, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
+						{ index: 1, config: { title: 'using custom widget' }, ui: { widgetId: 'demo' } },
+					]
+				},
+				{
+					index: 0,
+					widgets: [
+						{ index: 0, config: { content: 'but the content is default' }, ui: { headerId: 'custom' } }
+					]
+				}
+			]
 		}
+	}
+
+	widgetSorted(event: WidgetSortEvent) {
+		this.logEvent('Widget moved within same container');
+	}
+
+	widgetTransfered(event: WidgetMoveEvent) {
+		this.logEvent('Widget moved between containers');
 	}
 
 	widgetRemoved(widget: Widget) {

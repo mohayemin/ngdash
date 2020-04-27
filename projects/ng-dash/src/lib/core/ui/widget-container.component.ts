@@ -8,14 +8,18 @@ import { Widget } from '../widget';
 	selector: 'ngdash-widget-container',
 	template: `
   		<div class="ngdash-widget-container"
-  			[attr.cid]="container.id"
+  			[attr.cid]="container.index"
   			cdkDropList
   			[cdkDropListData]="container"
 			(cdkDropListDropped)="dropped($event)">
   				<div cdkDrag
   					[cdkDragData]="widget"
   					*ngFor="let widget of container.widgets">
-  						<ngdash-widget-wrapper [widget]="widget" [container]="container"></ngdash-widget-wrapper>
+  						<ngdash-widget-wrapper 
+						  	[widget]="widget" 
+						  	[container]="container" 
+							[dashboard]="dashboard">
+						</ngdash-widget-wrapper>
   				</div>
   		</div>
   `,
@@ -26,8 +30,12 @@ export class WidgetContainerComponent {
 	@Input() container!: WidgetContainer;
 	@Input() dashboard?: Dashboard;
 
-	dropped(event: CdkDragDrop<WidgetContainer, WidgetContainer>) {
+	dropped(event: CdkDragDrop<WidgetContainer>) {
 		const widget = event.item.data as Widget;
-		widget.move(this.container.id, event.currentIndex);
+		if (event.container === event.previousContainer) {
+			this.container.sortWidget(widget, event.currentIndex);
+		} else {
+			this.dashboard.transferWidget(widget, event.container.data, event.currentIndex);
+		}
 	}
 }

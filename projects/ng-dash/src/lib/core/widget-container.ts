@@ -1,25 +1,34 @@
 import { Widget } from './widget';
-import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ContainerData as WidgetContainerData } from './simple-models';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { Subject } from 'rxjs';
+import { WidgetSortEvent } from './event-data';
 
 export class WidgetContainer {
+	public index: number;
+	public widgets: Widget[]
+
 	constructor(
-		public readonly id: number,
-		public widgets: Widget[]
+		data: WidgetContainerData
 	) {
-		this.widgets.sort((w1, w2) => w1.state.index - w2.state.index);
+		this.index = data.index;
+		this.widgets = data.widgets.map(wd => new Widget(wd));
 		this.resetIndex();
+		this.widgets.forEach(w => this.subscribeToWidgetEvents(w));
 	}
 
-	public moveWidget(widget: Widget, newIndex: number): void {
-		moveItemInArray(this.widgets, widget.state.index, newIndex);
-		this.resetIndex();
-	}
+	events = {
+		widgetSort: new Subject<WidgetSortEvent>(),
+		widgetRemove: new Subject<Widget>()
+	};
 
-	public acquireWidget(widget: Widget, targetIndex: number, source: WidgetContainer) {
-		transferArrayItem(source.widgets, this.widgets, widget.state.index, targetIndex);
-		widget.state.containerId = source.id;
+	public sortWidget(widget: Widget, newIndex: number) {
+		const oldIndex = widget.index;
+		moveItemInArray(this.widgets, widget.index, newIndex);
 		this.resetIndex();
-		source.resetIndex();
+		this.events.widgetSort.next({
+			widget: widget, oldWidgetIndex: oldIndex, newWidgetIndex: newIndex
+		});
 	}
 
 	public removeWidget(index: number) {
@@ -27,12 +36,27 @@ export class WidgetContainer {
 		this.resetIndex();
 	}
 
-	public insertWidget(widget: Widget){
-		this.widgets.splice(widget.state.index, 0, widget);
+	public insertWidget(widget: Widget, index: number) {
+		this.widgets.splice(index, 0, widget);
 		this.resetIndex();
+	}
+	
+	public getData(): WidgetContainerData {
+		return {
+			index: this.index,
+			widgets: this.widgets.map(w => w.getData())
+		};
 	}
 
 	private resetIndex() {
-		this.widgets.forEach((w, i) => w.state.index = i);
+		this.widgets.forEach((w, i) => w.index = i);
+	}
+
+	private subscribeToWidgetEvents(widget: Widget) {
+		widget.events.remove.subscribe(event => {
+			const widget = event;
+			this.widgets.splice(widget.index, 1);
+			this.events.widgetRemove.next(event);
+		});
 	}
 }
