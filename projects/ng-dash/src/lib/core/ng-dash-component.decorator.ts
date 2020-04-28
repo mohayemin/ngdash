@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { Dictionary } from '../utils/types';
+import { Dictionary, Id } from '../utils/types';
 
 export const NgDashComponent = createComponentDecorator();
 
@@ -15,7 +15,7 @@ export type ComponentCategory = 'widget' |
 export function createComponentDecorator() {
 	const registry: Dictionary<Dictionary<Type<any>>> = {}
 
-	const decorator = function (category: ComponentCategory, id: string) {
+	const decorator = function (category: ComponentCategory, id: Id) {
 		return function (target: Type<any>) {
 			if (!registry[category])
 				registry[category] = {};
@@ -24,7 +24,7 @@ export function createComponentDecorator() {
 		}
 	};
 
-	decorator.resolve = function (category: ComponentCategory, id: string) {
+	decorator.resolve = function (category: ComponentCategory, id: Id) {
 		id = id || 'default';
 		if (!registry[category] && !registry[category][id])
 			throw new Error(`No components registered with ${category} and id ${id}.`);

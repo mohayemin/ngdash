@@ -22,10 +22,9 @@ describe('WidgetContainerComponent', () => {
 
 		fixture = TestBed.createComponent(WidgetContainerComponent);
 		component = fixture.componentInstance;
-		component.container = new WidgetContainer(0, [
-			new Widget({ state: { containerId: 0, index: 0 } }),
-			new Widget({ state: { containerId: 0, index: 1 } })
-		]);
+		component.container = new WidgetContainer({
+			widgets: [{}, {}]
+		});
 		fixture.detectChanges();
 	});
 

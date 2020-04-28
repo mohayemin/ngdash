@@ -3,17 +3,18 @@ import { WidgetContainer } from './widget-container';
 import { Subject } from 'rxjs';
 import { WidgetMoveEvent as WidgetTransferEvent, WidgetSortEvent } from './event-data';
 import { DashboardData } from './simple-models';
+import { pseudoUniqueId } from '../utils/pseudo-unique-id';
+import { Id } from '../utils/types';
 
 export class Dashboard {
 	public readonly containers: WidgetContainer[];
-	public readonly layoutId: string;
+	public readonly layoutId: Id;
 	public readonly config: any;
 
 	constructor(
 		data: DashboardData
 	) {
 		this.containers = data.containers.map(cd => new WidgetContainer(cd));
-		this.resetContainerIndex();
 
 		this.layoutId = data.layoutId;
 		this.config = Object.assign({}, data.config);
@@ -30,7 +31,7 @@ export class Dashboard {
 	public getContainer(index: number): WidgetContainer {
 		let container = this.containers[index];
 		if (!container) {
-			container = new WidgetContainer({ index: index, widgets: [] });
+			container = new WidgetContainer({ uniqueId: pseudoUniqueId(), widgets: [] });
 			this.containers[index] = container;
 		}
 
@@ -38,17 +39,16 @@ export class Dashboard {
 	}
 
 
-	public transferWidget(widget: Widget, to: WidgetContainer, newIndex: number) {
-		const oldIndex = widget.index;
-		const from = this.containers.find(c => c.widgets[widget.index] === widget);
-		from.removeWidget(widget.index);
-		to.insertWidget(widget, newIndex);
+	public transferWidget(widget: Widget, toContainer: WidgetContainer, newIndex: number) {
+		const from = this.containers.find(c => c.widgets.includes(widget));
+		const oldIndex = from.removeWidget(widget);
+		toContainer.insertWidget(widget, newIndex);
 		this.events.widgetTransfer.next({
 			widget: widget,
 			oldWidgetIndex: oldIndex,
 			newWidgetIndex: newIndex,
 			oldContainer: from,
-			newCotnainer: to
+			newCotnainer: toContainer
 		});
 	}
 
@@ -70,9 +70,5 @@ export class Dashboard {
 
 	private subscribeWidgetEvents(widget: Widget) {
 		widget.events.toggle.subscribe(event => this.events.widgetToggle.next(event));
-	}
-
-	private resetContainerIndex() {
-		this.containers.forEach((c, i) => c.index = i);
 	}
 }

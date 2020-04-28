@@ -1,26 +1,36 @@
+import { Id } from '../utils/types';
+
 export interface DashboardData {
+	/**
+	 * The widget containers in the dashboard
+	 */
 	containers: ContainerData[];
-	layoutId?: string;
+	/**
+	 * Id of the layout for the dashboard. Default layout is considered if omitted
+	 */
+	layoutId?: Id;
+	/**
+	 * Any aditional configs. Not used by the framework but can be useful for custom components/layouts.
+	 */
 	config?: any;
 }
 
 export interface ContainerData {
-	index: number;
+	uniqueId?: Id;
 	widgets: WidgetData[];
 }
 
 export interface WidgetData {
-	index: number;
+	uniqueId?: Id;
 	state?: WidgetState;
 	ui?: WidgetUi;
 	config?: any;
 }
 
-
 export interface WidgetUi {
-	widgetId?: string;
-	headerId?: string;
-	bodyId?: string;
+	widgetComponentId?: Id;
+	headerComponentId?: Id;
+	bodyComponentId?: Id;
 }
 
 export interface WidgetState {

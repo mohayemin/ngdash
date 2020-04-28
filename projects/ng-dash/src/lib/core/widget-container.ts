@@ -3,18 +3,18 @@ import { ContainerData as WidgetContainerData } from './simple-models';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { WidgetSortEvent } from './event-data';
+import { pseudoUniqueId } from '../utils/pseudo-unique-id';
+import { Id } from '../utils/types';
 
 export class WidgetContainer {
-	public index: number;
+	public readonly uniqueId: Id;
 	public widgets: Widget[]
 
 	constructor(
 		data: WidgetContainerData
 	) {
-		this.index = data.index;
+		this.uniqueId = data.uniqueId || pseudoUniqueId();
 		this.widgets = data.widgets.map(wd => new Widget(wd));
-		this.resetIndex();
-		this.widgets.forEach(w => this.subscribeToWidgetEvents(w));
 	}
 
 	events = {
@@ -23,40 +23,31 @@ export class WidgetContainer {
 	};
 
 	public sortWidget(widget: Widget, newIndex: number) {
-		const oldIndex = widget.index;
-		moveItemInArray(this.widgets, widget.index, newIndex);
-		this.resetIndex();
+		const oldIndex = this.findIndex(widget);
+		moveItemInArray(this.widgets, oldIndex, newIndex);
 		this.events.widgetSort.next({
 			widget: widget, oldWidgetIndex: oldIndex, newWidgetIndex: newIndex
 		});
 	}
 
-	public removeWidget(index: number) {
+	public removeWidget(widget: Widget) {
+		const index = this.findIndex(widget);
 		this.widgets.splice(index, 1);
-		this.resetIndex();
+		return index;
+	}
+
+	private findIndex(widget: Widget){
+		return this.widgets.findIndex(w => w === widget);
 	}
 
 	public insertWidget(widget: Widget, index: number) {
 		this.widgets.splice(index, 0, widget);
-		this.resetIndex();
 	}
-	
+
 	public getData(): WidgetContainerData {
 		return {
-			index: this.index,
+			uniqueId: this.uniqueId,
 			widgets: this.widgets.map(w => w.getData())
 		};
-	}
-
-	private resetIndex() {
-		this.widgets.forEach((w, i) => w.index = i);
-	}
-
-	private subscribeToWidgetEvents(widget: Widget) {
-		widget.events.remove.subscribe(event => {
-			const widget = event;
-			this.widgets.splice(widget.index, 1);
-			this.events.widgetRemove.next(event);
-		});
 	}
 }

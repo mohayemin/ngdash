@@ -8,7 +8,7 @@ import { Widget } from '../widget';
 	selector: 'ngdash-widget-container',
 	template: `
   		<div class="ngdash-widget-container"
-  			[attr.cid]="container.index"
+		  	[attr.wcid]="container.uniqueId"
   			cdkDropList
   			[cdkDropListData]="container"
 			(cdkDropListDropped)="dropped($event)">

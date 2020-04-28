@@ -30,16 +30,18 @@ export class DemoComponent {
 		return {
 			containers: [
 				{
-					index: 0,
 					widgets: [
-						{ index: 0, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
-						{ index: 1, config: { title: 'using custom widget' }, ui: { widgetId: 'demo' } },
+						{ config: { title: 'using default widget', content: 'no custom header or body is used here' } },
+						{ config: { title: 'using custom widget' }, ui: { widgetComponentId: 'demo' } },
 					]
 				},
 				{
-					index: 0,
 					widgets: [
-						{ index: 0, config: { content: 'but the content is default' }, ui: { headerId: 'custom' } }
+						{
+							config: {
+								content: 'but the content is default'
+							}, ui: { headerComponentId: 'custom' }
+						}
 					]
 				}
 			]

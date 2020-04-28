@@ -3,6 +3,7 @@ import { Widget } from '../core/widget';
 import { Dashboard } from '../core/dashboard';
 import { WidgetContainer } from '../core/widget-container';
 import { NgDashComponent, ComponentCategory } from '../core/ng-dash-component.decorator';
+import { Id } from '../utils/types';
 
 @Component({
 	selector: 'ngdash-bootstrap-card-widget',
@@ -40,11 +41,11 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.createComponent(this.headerContainerRef, 'widget-header', this.widget.ui.headerId);
-		this.createComponent(this.bodyContainerRef, 'widget-body', this.widget.ui.bodyId);
+		this.createComponent(this.headerContainerRef, 'widget-header', this.widget.ui.headerComponentId);
+		this.createComponent(this.bodyContainerRef, 'widget-body', this.widget.ui.bodyComponentId);
 	}
 
-	private createComponent(vcr: ViewContainerRef, componentCategory: ComponentCategory, componentId: string) {
+	private createComponent(vcr: ViewContainerRef, componentCategory: ComponentCategory, componentId: Id) {
 		const componentType = NgDashComponent.resolve(componentCategory, componentId);
 		const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 		const compRef = vcr.createComponent(factory);

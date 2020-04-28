@@ -27,10 +27,9 @@ describe('NgDashComponent', () => {
 		fixture = TestBed.createComponent(NgDash);
 		component = fixture.componentInstance;
 		component.dashboard = new Dashboard({
-			widgets: [
-				{ state: { containerId: 0, index: 1 } },
-				{ state: { containerId: 0, index: 0 } }
-			]
+			containers: [{
+				widgets: [{}, {}]
+			}]
 		});
 
 		fixture.detectChanges();

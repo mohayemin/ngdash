@@ -1,9 +1,11 @@
 import { Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { WidgetData, WidgetUi, WidgetState } from './simple-models';
+import { pseudoUniqueId } from '../utils/pseudo-unique-id';
+import { Id } from '../utils/types';
 
 export class Widget {
-	public index: number;
+	public readonly uniqueId: Id;
 	public readonly state: WidgetState;
 	public readonly config: any;
 	public readonly ui: WidgetUi;
@@ -11,7 +13,7 @@ export class Widget {
 	constructor(
 		data: WidgetData
 	) {
-		this.index = data.index;
+		this.uniqueId = data.uniqueId || pseudoUniqueId();
 		this.state = Object.assign({}, data.state);
 		this.config = Object.assign({}, data.config || {});
 		this.ui = Object.assign({}, data.ui || {});
@@ -36,7 +38,7 @@ export class Widget {
 
 	getData(): WidgetData {
 		return {
-			index: this.index,
+			uniqueId: this.uniqueId,
 			state: Object.assign({}, this.state),
 			config: Object.assign({}, this.config),
 			ui: Object.assign({}, this.ui),

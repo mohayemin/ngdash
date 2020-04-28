@@ -16,8 +16,9 @@ import { NgDashComponent } from '../ng-dash-component.decorator';
 @Component({
 	selector: 'ngdash-widget-wrapper',
 	template: `
-    <div class="ngdash-widget-wrapper">
-		<ng-template #widget></ng-template>
+    <div class="ngdash-widget-wrapper"
+		[attr.wid]="widget.uniqueId">
+		<ng-template #wid></ng-template>
     <div>
   	`,
 	styles: [],
@@ -28,14 +29,14 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	@Input() container?: WidgetContainer;
 	@Input() dashboard?: Dashboard;
 
-	@ViewChild("widget", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
+	@ViewChild("wid", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver
 	) { }
 
 	ngAfterViewInit() {
-		const widgetComponent = NgDashComponent.resolve('widget', this.widget.ui.widgetId);
+		const widgetComponent = NgDashComponent.resolve('widget', this.widget.ui.widgetComponentId);
 		this.renderComponent(widgetComponent, this.widgetVCR);
 	}
 
