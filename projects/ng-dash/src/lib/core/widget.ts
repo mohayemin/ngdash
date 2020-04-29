@@ -3,6 +3,7 @@ import { tap } from 'rxjs/operators';
 import { WidgetData, WidgetUi, WidgetState } from './simple-models';
 import { pseudoUniqueId } from '../utils/pseudo-unique-id';
 import { Id } from '../utils/types';
+import { isUndefined } from 'util';
 
 export class Widget {
 	public readonly uniqueId: Id;
@@ -13,7 +14,7 @@ export class Widget {
 	constructor(
 		data: WidgetData
 	) {
-		this.uniqueId = data.uniqueId || pseudoUniqueId();
+		this.uniqueId = isUndefined(data.uniqueId) ? pseudoUniqueId() : data.uniqueId;
 		this.state = Object.assign({}, data.state);
 		this.config = Object.assign({}, data.config || {});
 		this.ui = Object.assign({}, data.ui || {});

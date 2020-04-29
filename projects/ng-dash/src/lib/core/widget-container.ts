@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { WidgetSortEvent } from './event-data';
 import { pseudoUniqueId } from '../utils/pseudo-unique-id';
 import { Id } from '../utils/types';
+import { isUndefined } from 'util';
 
 export class WidgetContainer {
 	public readonly uniqueId: Id;
@@ -13,7 +14,7 @@ export class WidgetContainer {
 	constructor(
 		data: WidgetContainerData
 	) {
-		this.uniqueId = data.uniqueId || pseudoUniqueId();
+		this.uniqueId = isUndefined(data.uniqueId) ? pseudoUniqueId() : data.uniqueId;
 		this.widgets = data.widgets.map(wd => new Widget(wd));
 	}
 
