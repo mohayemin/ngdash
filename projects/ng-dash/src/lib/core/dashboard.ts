@@ -15,7 +15,6 @@ export class Dashboard {
 		data: DashboardData
 	) {
 		this.containers = data.containers.map(cd => new WidgetContainer(cd));
-
 		this.layoutId = data.layoutId;
 		this.config = Object.assign({}, data.config);
 		this.containers.forEach(c => this.subscribeContainerEvents(c));

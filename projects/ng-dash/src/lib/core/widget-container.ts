@@ -16,6 +16,7 @@ export class WidgetContainer {
 	) {
 		this.uniqueId = isUndefined(data.uniqueId) ? pseudoUniqueId() : data.uniqueId;
 		this.widgets = data.widgets.map(wd => new Widget(wd));
+		this.subscribeWidgetEvents();
 	}
 
 	events = {
@@ -37,7 +38,7 @@ export class WidgetContainer {
 		return index;
 	}
 
-	private findIndex(widget: Widget){
+	private findIndex(widget: Widget) {
 		return this.widgets.findIndex(w => w === widget);
 	}
 
@@ -50,5 +51,14 @@ export class WidgetContainer {
 			uniqueId: this.uniqueId,
 			widgets: this.widgets.map(w => w.getData())
 		};
+	}
+
+	private subscribeWidgetEvents() {
+		this.widgets.forEach(w => {
+			w.events.remove.subscribe(event => {
+				this.removeWidget(event);
+				this.events.widgetRemove.next(event);
+			});
+		});
 	}
 }
