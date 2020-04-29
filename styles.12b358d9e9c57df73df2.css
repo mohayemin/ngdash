@@ -1,4 +1,4 @@
-body{background-color:#ddd}body .ngdash .ngdash-widget-container{border:2px dashed #000;background-color:#eee;padding:5px}body .ngdash .ngdash-widget-container .ngdash-widget-wrapper{border:1px dotted #333;background-color:#fff;padding:5px;margin:2px}body .ngdash.dragdrop-enabled .ngdash-widget-wrapper{cursor:move}
+body{background-color:#ddd}body .ngdash .ngdash-widget-container{border:2px dashed #000;min-height:100px;background-color:#eee;padding:5px}body .ngdash .ngdash-widget-container .ngdash-widget-wrapper{border:1px dotted #333;background-color:#fff;padding:5px;margin:2px}body .ngdash.dragdrop-enabled .ngdash-widget-wrapper{cursor:move}
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
