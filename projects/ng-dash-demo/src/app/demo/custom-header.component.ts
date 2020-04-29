@@ -7,6 +7,7 @@ import { NgDashComponent } from 'projects/ng-dash/src/public-api';
     This one is a custom header inside default widget
   `,
   styles: [
+	  `:host { background-color: lightpink }`
   ]
 })
 @NgDashComponent('widget-header', 'custom')

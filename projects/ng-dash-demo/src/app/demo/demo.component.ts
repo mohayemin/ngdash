@@ -1,13 +1,17 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { Dashboard, Widget, WidgetMoveEvent, DashboardData, WidgetSortEvent } from 'projects/ng-dash/src/public-api';
 
 @Component({
 	selector: 'ng-dash-demo-demo',
 	templateUrl: 'demo.component.html',
 	styles: [
-		`.interactions { font-family: monospace }`
+		`.interactions { font-family: monospace }`,
+		`[wid='0'] .card { background-color: lightblue }`,
+		`[wid='1'] .card { background-color: lightgreen }`,
+		`[wid='2'] .card { background-color: lightyellow }`,
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None, // disabled to apply custom style to widgets
 })
 export class DemoComponent {
 	enableDragDrop: boolean = true;
@@ -31,17 +35,20 @@ export class DemoComponent {
 			containers: [
 				{
 					widgets: [
-						{ config: { title: 'using default widget', content: 'no custom header or body is used here' } },
-						{ config: { title: 'using custom widget' }, ui: { widgetComponentId: 'demo' } },
+						{ uniqueId: 0, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
+						{ uniqueId: 1, config: { title: 'another default widget', content: 'With <i>different</i> content' } },
+						{ uniqueId: 2, config: { title: 'the third default widget', content: 'With <i>different</i> <b>content</b>' } },
 					]
 				},
 				{
 					widgets: [
 						{
+							uniqueId: 3,
 							config: {
 								content: 'but the content is default'
 							}, ui: { headerComponentId: 'custom' }
-						}
+						},
+						{ uniqueId: 4, config: { title: 'using custom widget' }, ui: { widgetComponentId: 'demo' } },
 					]
 				}
 			]
