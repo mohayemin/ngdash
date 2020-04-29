@@ -9,7 +9,7 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 import { Dashboard } from '../dashboard';
-import { NgDashComponent } from '../ng-dash-component.decorator';
+import { NgDashResolver } from '../ng-dash-resolver';
 
 @Component({
 	selector: 'ngdash',
@@ -35,7 +35,8 @@ export class NgDash implements AfterViewInit {
 	layoutContainerRef: ViewContainerRef;
 
 	constructor(
-		private componentFactoryResolver: ComponentFactoryResolver
+		private componentFactoryResolver: ComponentFactoryResolver,
+		private resolver: NgDashResolver
 	) { }
 
 	ngAfterViewInit(): void {
@@ -43,7 +44,7 @@ export class NgDash implements AfterViewInit {
 	}
 
 	renderLayout() {
-		const layoutType = NgDashComponent.resolve('layout', this.dashboard.layoutId);
+		const layoutType = this.resolver.resolve('layout', this.dashboard.layoutId);
 		const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(layoutType);
 		const layoutRef = this.layoutContainerRef.createComponent(layoutFactory);
 		layoutRef.instance['dashboard'] = this.dashboard;

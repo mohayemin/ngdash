@@ -12,6 +12,7 @@ import { BootstrapCardWidgetComponent } from './widget/bootstrap-card-widget.com
 import { WidgetHeaderButtonSetComponent } from './utils/widget-header-button-set.component';
 import { WidgetDeleteButtonComponent } from './utils/widget-delete-button.component';
 import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.component';
+import { NgDashResolver } from './core/ng-dash-resolver';
 
 @NgModule({
 	declarations: [
@@ -36,5 +37,16 @@ import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.compon
 	]
 })
 export class NgDashModule {
-	
+	constructor(resolver: NgDashResolver) {
+		 resolver
+		 	.bind(BootstrapCardWidgetComponent, 'widget', 'default')
+		// 	.bind(BootstrapCardWidgetComponent, 'widget', 'ngdash-bootstrap-card-widget')
+		 	.bind(BootstrapR1C2LayoutComponent, 'layout', 'default')
+		 	.bind(BootstrapR1C2LayoutComponent, 'layout', 'ngdash-bootstrap-r1-c2-layout')
+		 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'default')
+		// 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'ngdash-bootstrap-card-widget-body')
+		 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'default')
+		// 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'ngdash-bootstrap-card-widget-header')
+			;
+	}
 }

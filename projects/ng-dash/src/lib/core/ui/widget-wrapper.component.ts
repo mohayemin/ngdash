@@ -11,7 +11,7 @@ import {
 import { Widget } from '../widget';
 import { WidgetContainer } from '../widget-container';
 import { Dashboard } from '../dashboard';
-import { NgDashComponent } from '../ng-dash-component.decorator';
+import { NgDashResolver } from '../ng-dash-resolver';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',
@@ -32,11 +32,12 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	@ViewChild("wid", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
 
 	constructor(
-		private componentFactoryResolver: ComponentFactoryResolver
+		private componentFactoryResolver: ComponentFactoryResolver,
+		private resolver: NgDashResolver
 	) { }
 
 	ngAfterViewInit() {
-		const widgetComponent = NgDashComponent.resolve('widget', this.widget.ui.widgetComponentId);
+		const widgetComponent = this.resolver.resolve('widget', this.widget.ui.widgetComponentId);
 		this.renderComponent(widgetComponent, this.widgetVCR);
 	}
 

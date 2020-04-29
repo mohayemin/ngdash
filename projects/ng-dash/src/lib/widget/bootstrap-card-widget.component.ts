@@ -2,8 +2,8 @@ import { Component, Input, AfterViewInit, ViewContainerRef, ViewChild, Component
 import { Widget } from '../core/widget';
 import { Dashboard } from '../core/dashboard';
 import { WidgetContainer } from '../core/widget-container';
-import { NgDashComponent, ComponentCategory } from '../core/ng-dash-component.decorator';
 import { Id } from '../utils/types';
+import { NgDashResolver, BindingCategory } from '../core/ng-dash-resolver';
 
 @Component({
 	selector: 'ngdash-bootstrap-card-widget',
@@ -23,8 +23,6 @@ import { Id } from '../utils/types';
 	styles: [
 	]
 })
-@NgDashComponent('widget', 'default')
-@NgDashComponent('widget', 'ngdash-bootstrap-card-widget')
 export class BootstrapCardWidgetComponent implements AfterViewInit {
 	@Input() widget: Widget;
 	@Input() container: WidgetContainer;
@@ -36,8 +34,10 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 	@ViewChild('body', { read: ViewContainerRef })
 	bodyContainerRef: ViewContainerRef
 
-	constructor(private componentFactoryResolver: ComponentFactoryResolver) {
-
+	constructor(
+		private componentFactoryResolver: ComponentFactoryResolver,
+		private resolver: NgDashResolver
+	) {
 	}
 
 	ngAfterViewInit() {
@@ -45,8 +45,8 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 		this.createComponent(this.bodyContainerRef, 'widget-body', this.widget.ui.bodyComponentId);
 	}
 
-	private createComponent(vcr: ViewContainerRef, componentCategory: ComponentCategory, componentId: Id) {
-		const componentType = NgDashComponent.resolve(componentCategory, componentId);
+	private createComponent(vcr: ViewContainerRef, bindingcategory: BindingCategory, componentId: Id) {
+		const componentType = this.resolver.resolve(bindingcategory, componentId);
 		const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 		const compRef = vcr.createComponent(factory);
 		const comp = compRef.instance;
@@ -56,6 +56,4 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 
 		compRef.changeDetectorRef.detectChanges();
 	}
-
-
 }

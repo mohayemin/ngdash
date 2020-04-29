@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgDashComponent } from 'projects/ng-dash/src/public-api';
 
 @Component({
   selector: 'ng-dash-demo-custom-header',
@@ -10,7 +9,6 @@ import { NgDashComponent } from 'projects/ng-dash/src/public-api';
 	  `:host { background-color: lightpink }`
   ]
 })
-@NgDashComponent('widget-header', 'custom')
 export class CustomHeaderComponent implements OnInit {
 
   constructor() { }

@@ -1,5 +1,11 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { Dashboard, Widget, WidgetMoveEvent, DashboardData, WidgetSortEvent } from 'projects/ng-dash/src/public-api';
+import {
+	Dashboard,
+	Widget, 
+	WidgetMoveEvent, 
+	DashboardData, 
+	WidgetSortEvent,
+} from 'projects/ng-dash/src/public-api';
 
 @Component({
 	selector: 'ng-dash-demo-demo',
