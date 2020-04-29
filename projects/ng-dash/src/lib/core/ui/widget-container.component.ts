@@ -1,26 +1,20 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Component, Input, ChangeDetectionStrategy, ViewContainerRef, ViewChild, ComponentRef, ComponentFactoryResolver } from '@angular/core';
+import { CdkDragDrop, DragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { WidgetContainer } from '../widget-container';
 import { Dashboard } from '../dashboard';
 import { Widget } from '../widget';
+import { WidgetWrapperComponent } from './widget-wrapper.component';
 
 @Component({
 	selector: 'ngdash-widget-container',
 	template: `
   		<div class="ngdash-widget-container"
-		  	[attr.wcid]="container.uniqueId"
-  			cdkDropList
-  			[cdkDropListData]="container"
+			[attr.wcid]="container.uniqueId"
+			cdkDropList
+  			#dropList="cdkDropList"
+  			[cdkDropListData]="this"
 			(cdkDropListDropped)="dropped($event)">
-  				<div cdkDrag
-  					[cdkDragData]="widget"
-  					*ngFor="let widget of container.widgets">
-  						<ngdash-widget-wrapper 
-						  	[widget]="widget" 
-						  	[container]="container" 
-							[dashboard]="dashboard">
-						</ngdash-widget-wrapper>
-  				</div>
+			<ng-template #containerRef></ng-template>
   		</div>
   `,
 	styles: [],
@@ -30,12 +24,56 @@ export class WidgetContainerComponent {
 	@Input() container!: WidgetContainer;
 	@Input() dashboard?: Dashboard;
 
-	dropped(event: CdkDragDrop<WidgetContainer>) {
-		const widget = event.item.data as Widget;
+	@ViewChild("dropList", { read: CdkDropList }) dropList: CdkDropList;
+	@ViewChild("containerRef", { read: ViewContainerRef }) widgetsVCR: ViewContainerRef;
+
+	constructor(
+		private componentFactoryResolver: ComponentFactoryResolver) {
+	}
+
+	ngAfterViewInit() {
+		this.container.widgets.forEach(w => this.renderWidgetWrapper(w));
+	}
+
+	dropped(event: CdkDragDrop<WidgetContainerComponent>) {
 		if (event.container === event.previousContainer) {
-			this.container.sortWidget(widget, event.currentIndex);
+			this.sortWidget(event);
 		} else {
-			this.dashboard.transferWidget(widget, event.container.data, event.currentIndex);
+			this.transferWidget(event);
 		}
+	}
+
+	private sortWidget(event: CdkDragDrop<WidgetContainerComponent>) {
+		const wrapperComp = event.item.data as WidgetWrapperComponent;
+		this.container.sortWidget(wrapperComp.widget, event.currentIndex);
+		const wrapperVR = this.widgetsVCR.detach(event.previousIndex);
+		this.widgetsVCR.insert(wrapperVR, event.currentIndex);
+	}
+
+	private transferWidget(event: CdkDragDrop<WidgetContainerComponent>) {
+		const wrapperComp = event.item.data as WidgetWrapperComponent;
+		const oldContainerComp = event.previousContainer.data;
+		const newContainerComp = event.container.data;
+
+		this.dashboard.transferWidget(wrapperComp.widget, newContainerComp.container, event.currentIndex);
+		const wrapperVR = oldContainerComp.widgetsVCR.detach(event.previousIndex);
+		this.widgetsVCR.insert(wrapperVR, event.currentIndex);
+		
+		oldContainerComp.dropList.removeItem(event.item);
+		newContainerComp.dropList.addItem(event.item);
+		
+		wrapperComp.container = this.container;
+		wrapperComp.widgetComponent.container = this.container;
+	}
+
+	private renderWidgetWrapper(widget: Widget) {
+		const factory = this.componentFactoryResolver.resolveComponentFactory(WidgetWrapperComponent);
+		const wrapperCompRef = this.widgetsVCR.createComponent(factory);
+		const widgetComp = wrapperCompRef.instance;
+		widgetComp.widget = widget;
+		widgetComp.dashboard = this.dashboard;
+		widgetComp.container = this.container;
+
+		wrapperCompRef.changeDetectorRef.detectChanges();
 	}
 }

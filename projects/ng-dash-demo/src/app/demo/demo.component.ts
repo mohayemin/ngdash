@@ -31,17 +31,20 @@ export class DemoComponent {
 			containers: [
 				{
 					widgets: [
-						{ config: { title: 'using default widget', content: 'no custom header or body is used here' } },
-						{ config: { title: 'using custom widget' }, ui: { widgetComponentId: 'demo' } },
+						{ uniqueId: 0, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
+						{ uniqueId: 1, config: { title: 'another default widget', content: 'With <i>different</i> content' } },
+						{ uniqueId: 2, config: { title: 'the third default widget', content: 'With <i>different</i> <b>content</b>' } },
+						{ uniqueId: 3, config: { title: 'using custom widget' }, ui: { widgetComponentId: 'demo' } },
 					]
 				},
 				{
 					widgets: [
 						{
+							uniqueId: 4,
 							config: {
 								content: 'but the content is default'
 							}, ui: { headerComponentId: 'custom' }
-						}
+						},
 					]
 				}
 			]

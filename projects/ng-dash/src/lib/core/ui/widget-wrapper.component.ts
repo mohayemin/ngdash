@@ -16,9 +16,11 @@ import { NgDashComponent } from '../ng-dash-component.decorator';
 @Component({
 	selector: 'ngdash-widget-wrapper',
 	template: `
-    <div class="ngdash-widget-wrapper"
+	<div class="ngdash-widget-wrapper"
+		cdkDrag
+  		[cdkDragData]="this"
 		[attr.wid]="widget.uniqueId">
-		<ng-template #wid></ng-template>
+		<ng-template #widgetRef></ng-template>
     <div>
   	`,
 	styles: [],
@@ -29,7 +31,9 @@ export class WidgetWrapperComponent implements AfterViewInit {
 	@Input() container?: WidgetContainer;
 	@Input() dashboard?: Dashboard;
 
-	@ViewChild("wid", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
+	@ViewChild("widgetRef", { read: ViewContainerRef }) widgetVCR: ViewContainerRef;
+
+	widgetComponent: any;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver
@@ -46,11 +50,11 @@ export class WidgetWrapperComponent implements AfterViewInit {
 
 		const factory = this.componentFactoryResolver.resolveComponentFactory(compType);
 		const widgetCompRef = vcr.createComponent(factory);
-		const widgetComp = widgetCompRef.instance;
-		widgetComp.widget = this.widget;
-		widgetComp.container = this.container;
-		widgetComp.dashboard = this.dashboard;
-		
+		this.widgetComponent = widgetCompRef.instance;
+		this.widgetComponent.widget = this.widget;
+		this.widgetComponent.container = this.container;
+		this.widgetComponent.dashboard = this.dashboard;
+
 		widgetCompRef.changeDetectorRef.detectChanges();
 	}
 }
