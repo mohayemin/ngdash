@@ -54,6 +54,6 @@
 	},
 	"repository": "https://github.com/mohayemin/ng-dash.git",
 	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/"
+		"registry": "https://registry.npmjs.org/"
 	}
 }
