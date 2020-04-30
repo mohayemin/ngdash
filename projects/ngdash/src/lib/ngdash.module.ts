@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgDash } from './core/ui/ng-dash.component';
+import { Ngdash } from './core/ui/ngdash.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HtmlWidgetComponent } from './widget/html-widget.component';
 import { WidgetContainerComponent } from './core/ui/widget-container.component';
@@ -12,11 +12,11 @@ import { BootstrapCardWidgetComponent } from './widget/bootstrap-card-widget.com
 import { WidgetHeaderButtonSetComponent } from './utils/widget-header-button-set.component';
 import { WidgetDeleteButtonComponent } from './utils/widget-delete-button.component';
 import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.component';
-import { NgDashResolver } from './core/ng-dash-resolver';
+import { NgdashResolver } from './core/ngdash-resolver';
 
 @NgModule({
 	declarations: [
-		NgDash,
+		Ngdash,
 		HtmlWidgetComponent,
 		WidgetContainerComponent,
 		WidgetWrapperComponent,
@@ -33,11 +33,11 @@ import { NgDashResolver } from './core/ng-dash-resolver';
 		DragDropModule
 	],
 	exports: [
-		NgDash
+		Ngdash
 	]
 })
-export class NgDashModule {
-	constructor(resolver: NgDashResolver) {
+export class NgdashModule {
+	constructor(resolver: NgdashResolver) {
 		 resolver
 		 	.bind(BootstrapCardWidgetComponent, 'widget', 'default')
 		// 	.bind(BootstrapCardWidgetComponent, 'widget', 'ngdash-bootstrap-card-widget')

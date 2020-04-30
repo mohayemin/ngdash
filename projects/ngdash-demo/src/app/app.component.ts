@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-	selector: 'ng-dash-demo-root',
+	selector: 'ngdash-demo-root',
 	templateUrl: 'app.component.html',
 	styles: [ 
 		`main { padding-top: 5rem; }`

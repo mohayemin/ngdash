@@ -9,7 +9,7 @@ import {
 	ViewEncapsulation,
 } from '@angular/core';
 import { Dashboard } from '../dashboard';
-import { NgDashResolver } from '../ng-dash-resolver';
+import { NgdashResolver } from '../ngdash-resolver';
 
 @Component({
 	selector: 'ngdash',
@@ -22,12 +22,12 @@ import { NgDashResolver } from '../ng-dash-resolver';
     </div>
   `,
 	styleUrls: [
-		'./ng-dash.component.scss'
+		'./ngdash.component.scss'
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
-export class NgDash implements AfterViewInit {
+export class Ngdash implements AfterViewInit {
 	@Input() dashboard: Dashboard;
 	@Input() enableDragDrop: boolean;
 
@@ -36,7 +36,7 @@ export class NgDash implements AfterViewInit {
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
-		private resolver: NgDashResolver
+		private resolver: NgdashResolver
 	) { }
 
 	ngAfterViewInit(): void {

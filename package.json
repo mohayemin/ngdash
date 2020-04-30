@@ -1,11 +1,11 @@
 {
-	"name": "ng-dash",
+	"name": "ngdash",
 	"version": "0.0.1",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve --project=ng-dash-demo",
+		"start": "ng serve --project=ngdash-demo",
 		"build": "ng build",
-		"build-demo": "ng build --project=ng-dash-demo",
+		"build-demo": "ng build --project=ngdash-demo",
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e"
@@ -52,7 +52,7 @@
 		"tslint": "~6.1.0",
 		"typescript": "~3.8.3"
 	},
-	"repository": "https://github.com/mohayemin/ng-dash.git",
+	"repository": "https://github.com/mohayemin/ngdash.git",
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/"
 	}

@@ -11,7 +11,7 @@ import {
 import { Widget } from '../widget';
 import { WidgetContainer } from '../widget-container';
 import { Dashboard } from '../dashboard';
-import { NgDashResolver } from '../ng-dash-resolver';
+import { NgdashResolver } from '../ngdash-resolver';
 
 @Component({
 	selector: 'ngdash-widget-wrapper',
@@ -33,7 +33,7 @@ export class WidgetWrapperComponent implements AfterViewInit {
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
-		private resolver: NgDashResolver
+		private resolver: NgdashResolver
 	) { }
 
 	ngAfterViewInit() {

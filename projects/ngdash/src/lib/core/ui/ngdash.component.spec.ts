@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgDash } from './ng-dash.component';
+import { Ngdash } from './ngdash.component';
 import { Dashboard } from '../dashboard';
 import { Widget } from '../widget';
 import { TestLayoutComponent } from '../../test-doubles/test-layout.component';
@@ -10,13 +10,13 @@ import { WidgetContainerComponent } from './widget-container.component';
 import { WidgetWrapperComponent } from './widget-wrapper.component';
 
 describe('NgDashComponent', () => {
-	let component: NgDash;
-	let fixture: ComponentFixture<NgDash>;
+	let component: Ngdash;
+	let fixture: ComponentFixture<Ngdash>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
-				NgDash,
+				Ngdash,
 				WidgetContainerComponent,
 				WidgetWrapperComponent,
 				TestLayoutComponent,
@@ -24,7 +24,7 @@ describe('NgDashComponent', () => {
 			]
 		});
 
-		fixture = TestBed.createComponent(NgDash);
+		fixture = TestBed.createComponent(Ngdash);
 		component = fixture.componentInstance;
 		component.dashboard = new Dashboard({
 			containers: [{

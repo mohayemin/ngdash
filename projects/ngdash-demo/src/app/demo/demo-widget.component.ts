@@ -1,8 +1,8 @@
 import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { Widget, WidgetContainer, Dashboard } from 'projects/ng-dash/src/public-api';
+import { Widget, WidgetContainer, Dashboard } from 'projects/ngdash/src/public-api';
 
 @Component({
-	selector: 'ng-dash-demo-widget',
+	selector: 'ngdash-demo-widget',
 	template: `
 	<div class="demo-widget">
 		<h5>

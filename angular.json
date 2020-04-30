@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"ng-dash": {
+		"ngdash": {
 			"projectType": "library",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -12,36 +12,36 @@
 					"changeDetection": "OnPush"
 				}
 			},
-			"root": "projects/ng-dash",
-			"sourceRoot": "projects/ng-dash/src",
+			"root": "projects/ngdash",
+			"sourceRoot": "projects/ngdash/src",
 			"prefix": "ngdash",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-ng-packagr:build",
 					"options": {
-						"tsConfig": "projects/ng-dash/tsconfig.lib.json",
-						"project": "projects/ng-dash/ng-package.json"
+						"tsConfig": "projects/ngdash/tsconfig.lib.json",
+						"project": "projects/ngdash/ng-package.json"
 					},
 					"configurations": {
 						"production": {
-							"tsConfig": "projects/ng-dash/tsconfig.lib.prod.json"
+							"tsConfig": "projects/ngdash/tsconfig.lib.prod.json"
 						}
 					}
 				},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
-						"main": "projects/ng-dash/src/test.ts",
-						"tsConfig": "projects/ng-dash/tsconfig.spec.json",
-						"karmaConfig": "projects/ng-dash/karma.conf.js"
+						"main": "projects/ngdash/src/test.ts",
+						"tsConfig": "projects/ngdash/tsconfig.spec.json",
+						"karmaConfig": "projects/ngdash/karma.conf.js"
 					}
 				},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": [
-							"projects/ng-dash/tsconfig.lib.json",
-							"projects/ng-dash/tsconfig.spec.json"
+							"projects/ngdash/tsconfig.lib.json",
+							"projects/ngdash/tsconfig.spec.json"
 						],
 						"exclude": [
 							"**/node_modules/**"
@@ -50,7 +50,7 @@
 				}
 			}
 		},
-		"ng-dash-demo": {
+		"ngdash-demo": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -81,31 +81,31 @@
 					"skipTests": true
 				}
 			},
-			"root": "projects/ng-dash-demo",
-			"sourceRoot": "projects/ng-dash-demo/src",
-			"prefix": "ng-dash-demo",
+			"root": "projects/ngdash-demo",
+			"sourceRoot": "projects/ngdash-demo/src",
+			"prefix": "ngdash-demo",
 			"architect": {
 				"deploy": {
 					"builder": "angular-cli-ghpages:deploy",
 					"options": {
-						"baseHref": "/ng-dash/"
+						"baseHref": "/ngdash/"
 					}
 				},
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/ng-dash-demo",
-						"index": "projects/ng-dash-demo/src/index.html",
-						"main": "projects/ng-dash-demo/src/main.ts",
-						"polyfills": "projects/ng-dash-demo/src/polyfills.ts",
-						"tsConfig": "projects/ng-dash-demo/tsconfig.app.json",
+						"outputPath": "dist/ngdash-demo",
+						"index": "projects/ngdash-demo/src/index.html",
+						"main": "projects/ngdash-demo/src/main.ts",
+						"polyfills": "projects/ngdash-demo/src/polyfills.ts",
+						"tsConfig": "projects/ngdash-demo/tsconfig.app.json",
 						"aot": true,
 						"assets": [
-							"projects/ng-dash-demo/src/favicon.ico",
-							"projects/ng-dash-demo/src/assets"
+							"projects/ngdash-demo/src/favicon.ico",
+							"projects/ngdash-demo/src/assets"
 						],
 						"styles": [
-							"projects/ng-dash-demo/src/styles.scss",
+							"projects/ngdash-demo/src/styles.scss",
 							"./node_modules/bootstrap-css-only/css/bootstrap.css",
 							"./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
 							"./node_modules/@fortawesome/fontawesome-free/css/solid.css",
@@ -117,8 +117,8 @@
 					"configurations": {
 						"production": {
 							"fileReplacements": [{
-								"replace": "projects/ng-dash-demo/src/environments/environment.ts",
-								"with": "projects/ng-dash-demo/src/environments/environment.prod.ts"
+								"replace": "projects/ngdash-demo/src/environments/environment.ts",
+								"with": "projects/ngdash-demo/src/environments/environment.prod.ts"
 							}],
 							"optimization": true,
 							"outputHashing": "all",
@@ -145,22 +145,22 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"options": {
-						"browserTarget": "ng-dash-demo:build"
+						"browserTarget": "ngdash-demo:build"
 					},
 					"configurations": {
 						"production": {
-							"browserTarget": "ng-dash-demo:build:production"
+							"browserTarget": "ngdash-demo:build:production"
 						}
 					}
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"browserTarget": "ng-dash-demo:build"
+						"browserTarget": "ngdash-demo:build"
 					}
 				}
 			}
 		}
 	},
-	"defaultProject": "ng-dash"
+	"defaultProject": "ngdash"
 }

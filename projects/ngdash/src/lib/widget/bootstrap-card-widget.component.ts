@@ -3,7 +3,7 @@ import { Widget } from '../core/widget';
 import { Dashboard } from '../core/dashboard';
 import { WidgetContainer } from '../core/widget-container';
 import { Id } from '../utils/types';
-import { NgDashResolver, BindingCategory } from '../core/ng-dash-resolver';
+import { NgdashResolver, BindingCategory } from '../core/ngdash-resolver';
 
 @Component({
 	selector: 'ngdash-bootstrap-card-widget',
@@ -36,7 +36,7 @@ export class BootstrapCardWidgetComponent implements AfterViewInit {
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
-		private resolver: NgDashResolver
+		private resolver: NgdashResolver
 	) {
 	}
 

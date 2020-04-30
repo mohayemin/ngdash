@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "ng-dash": [
-        "dist/ng-dash/ng-dash",
-        "dist/ng-dash"
+      "ngdash": [
+        "dist/ngdash/ngdash",
+        "dist/ngdash"
       ]
     }
   },

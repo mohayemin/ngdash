@@ -8,8 +8,8 @@ import { CustomHeaderComponent } from './demo/custom-header.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routes';
 import { DemoComponent } from './demo/demo.component';
-import { NgDashModule } from 'projects/ng-dash/src/public-api';
-import { NgDashResolver } from 'projects/ng-dash/src/lib/core/ng-dash-resolver';
+import { NgdashModule } from 'projects/ngdash/src/public-api';
+import { NgdashResolver } from 'projects/ngdash/src/lib/core/ngdash-resolver';
 
 @NgModule({
 	declarations: [
@@ -22,13 +22,13 @@ import { NgDashResolver } from 'projects/ng-dash/src/lib/core/ng-dash-resolver';
 		RouterModule.forRoot(routes),
 		BrowserModule,
 		FormsModule,
-		NgDashModule
+		NgdashModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
 })
 export class AppModule {
-	constructor(resolver: NgDashResolver) {
+	constructor(resolver: NgdashResolver) {
 		resolver
 			.bind(DemoWidgetComponent, 'widget', 'demo')
 			.bind(CustomHeaderComponent, 'widget-header', 'custom')

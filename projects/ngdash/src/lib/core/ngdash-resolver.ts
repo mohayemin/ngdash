@@ -4,10 +4,10 @@ import { Dictionary, Id } from '../utils/types';
 @Injectable({
 	providedIn: 'root',
 })
-export class NgDashResolver {
+export class NgdashResolver {
 	private registry: Dictionary<Dictionary<Type<any>>> = {}
 
-	bind(bindTo: Type<any>, category: string, id: Id): NgDashResolver {
+	bind(bindTo: Type<any>, category: string, id: Id): NgdashResolver {
 		id = id || 'default';
 		if (!this.registry[category])
 			this.registry[category] = {};

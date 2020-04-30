@@ -5,10 +5,10 @@ import {
 	WidgetMoveEvent, 
 	DashboardData, 
 	WidgetSortEvent,
-} from 'projects/ng-dash/src/public-api';
+} from 'projects/ngdash/src/public-api';
 
 @Component({
-	selector: 'ng-dash-demo-demo',
+	selector: 'ngdash-demo-demo',
 	templateUrl: 'demo.component.html',
 	styles: [
 		`.interactions { font-family: monospace }`,
