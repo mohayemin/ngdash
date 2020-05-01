@@ -39,7 +39,7 @@ export class AppComponent {
 ```
 
 ## Documents and demo
-[Detail documents and demo can be found here](https://mohayemin.github.io/ngdash/)
+[Detail documents and demo can be found here.](https://mohayemin.github.io/ngdash/)
 
 ## Run demo in your local machine
 1. Clone the repository
