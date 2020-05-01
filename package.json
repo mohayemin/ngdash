@@ -1,6 +1,6 @@
 {
 	"name": "ngdash",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve --project=ngdash-demo",
@@ -8,7 +8,8 @@
 		"build-demo": "ng build --project=ngdash-demo",
 		"test": "ng test",
 		"lint": "ng lint",
-		"e2e": "ng e2e"
+		"e2e": "ng e2e",
+		"publish": "publish dist/ngdash"
 	},
 	"private": false,
 	"dependencies": {
