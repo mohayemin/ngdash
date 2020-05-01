@@ -1,27 +1,48 @@
-# NgDash
+# Ngdash
+A dashboard library for Angular 9+.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+## Install
+`npm i ngdash -s`
 
-## Development server
+**Angular CDK**: The library depends on Angular CDK and will not run without it. If you do not have Angular CDK in your app, install it.  
+`npm i @angular/cdk -s`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Optional Dependencies
+1. **Bootstrap CSS**: You need the bootstrap CSS if you want to use the built-in layouts and widgets.   
+`npm i bootstrap-css-only -s`  
+2. **Font Awesome**: You need to install font-awesome free icons to use the built-in widget header.  
+`npm i @fortawesome/fontawesome-free -s`
 
-## Code scaffolding
+## Minimal code
+The code below will show a dashboard with two widgets.
+```typescript
+import { Component } from '@angular/core';
+import { Dashboard } from 'ngdash'
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+@Component({
+  selector: 'app-root',
+  template: '<ngdash [dashboard]="dashboad"></ngdash>',
+})
+export class AppComponent {
+  dashboad: Dashboard;
+  constructor() {
+    this.dashboad = new Dashboard({
+      containers: [{
+        widgets: [
+          { config: { title: 'A Widget', content: 'The content' } },
+          { config: { title: 'Another Widget', content: 'Another content' } }
+        ]
+      }]
+    });
+  }
+}
+```
 
-## Build
+## Documents and demo
+[Detail documents and demo can be found here](https://mohayemin.github.io/ngdash/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Run demo in your local machine
+1. Clone the repository
+2. CD to the project's root folder
+3. Run `ng serve`. The demo project will run.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
