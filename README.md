@@ -28,47 +28,47 @@ export class AppComponent {
   dashboad: Dashboard;
   constructor() {
     this.dashboad = new Dashboard({
-			containers: [
-				{ // Container 1
-					widgets: [
-						{ // Widget 1.1
-							config: { 
-								title: 'using default widget', 
-								content: 'no custom header or body is used here' 
-							} 
-						},
-						{ // Widget 1.2
-							config: { 
-								title: 'another default widget', 
-								content: 'With <i>different</i> content' 
-							} 
-						}
-					]
-				},
-				{ // Container 2
-					widgets: [
-						{ // Widget 2.1
-							ui: { headerComponentId: 'custom-header' }, 
-							config: { content: 'custom header, but the content is default' } 
-						},
-						{ // Widget 2.2
-							ui: { bodyComponentId: 'custom-body' }, 
-							config: { title: 'using custom widget body, but default component with default header' } 
-						},
-						{ // Widget 2.3
-							ui: { 
-								headerComponentId: 'custom-header', 
-								bodyComponentId: 'custom-body' 
-							}, 
-						},
-						{ // Widget 2.4
-							ui: { widgetComponentId: 'custom-component' }, 
-							config: { title: 'using custom widget' } 
-						}
-					]
-				}
-			]
-		});
+            containers: [
+                { // Container 1
+                    widgets: [
+                        { // Widget 1.1
+                            config: { 
+                                title: 'using default widget', 
+                                content: 'no custom header or body is used here' 
+                            } 
+                        },
+                        { // Widget 1.2
+                            config: { 
+                                title: 'another default widget', 
+                                content: 'With <i>different</i> content' 
+                            } 
+                        }
+                    ]
+                },
+                { // Container 2
+                    widgets: [
+                        { // Widget 2.1
+                            ui: { headerComponentId: 'custom-header' }, 
+                            config: { content: 'custom header, but the content is default' } 
+                        },
+                        { // Widget 2.2
+                            ui: { bodyComponentId: 'custom-body' }, 
+                            config: { title: 'using custom widget body, but default component with default header' } 
+                        },
+                        { // Widget 2.3
+                            ui: { 
+                                headerComponentId: 'custom-header', 
+                                bodyComponentId: 'custom-body' 
+                            }, 
+                        },
+                        { // Widget 2.4
+                            ui: { widgetComponentId: 'custom-component' }, 
+                            config: { title: 'using custom widget' } 
+                        }
+                    ]
+                }
+            ]
+        });
   }
 }
 ```
@@ -88,13 +88,13 @@ The components with ids must be registered to the system before using. The folli
 
 ```ts
 export class AppModule {
-	constructor(resolver: NgdashResolver) {
-		resolver
-			.bind(CustomWidgetComponent, 'widget', 'custom-widget')
-			.bind(CustomHeaderComponent, 'widget-header', 'custom-header')
-			.bind(CustomBodyComponent, 'widget-body', 'custom-body')
-		;
-	}
+    constructor(resolver: NgdashResolver) {
+        resolver
+            .bind(CustomWidgetComponent, 'widget', 'custom-widget')
+            .bind(CustomHeaderComponent, 'widget-header', 'custom-header')
+            .bind(CustomBodyComponent, 'widget-body', 'custom-body')
+        ;
+    }
 }
 ```
 
@@ -111,7 +111,7 @@ The dashboard is is organized in a layout which can be customized. The library c
 
 ```ts
 this.dashboad = new Dashboard({
-	layoutId: 'ngdash-bootstrap-r2-c2-layout'
+    layoutId: 'ngdash-bootstrap-r2-c2-layout'
 });
 ```
 
@@ -121,16 +121,16 @@ You can create custom layouts and use them in your app. A layout is just an Angu
 ```html
     <div class="row">
       <div class="col-sm">
-		<ngdash-widget-container 
-			[container]="containers[0]" 
-			[dashboard]="dashboard">
-		</ngdash-widget-container>
+        <ngdash-widget-container 
+            [container]="containers[0]" 
+            [dashboard]="dashboard">
+        </ngdash-widget-container>
       </div>
       <div class="col-sm">
-		<ngdash-widget-container 
-			[container]="containers[1]" 
-			[dashboard]="dashboard">
-		</ngdash-widget-container>
+        <ngdash-widget-container 
+            [container]="containers[1]" 
+            [dashboard]="dashboard">
+        </ngdash-widget-container>
       </div>
     </div>
 ```
@@ -138,15 +138,15 @@ You can create custom layouts and use them in your app. A layout is just an Angu
 **Backend:**
 ```ts
 export class BootstrapR1C2LayoutComponent {
-	@Input() dashboard: Dashboard;
-	containers: WidgetContainer[];
-	
-	ngOnInit() {
-		this.containers = [
-			this.dashboard.getContainer(0),
-			this.dashboard.getContainer(1),
-		];
-	}
+    @Input() dashboard: Dashboard;
+    containers: WidgetContainer[];
+    
+    ngOnInit() {
+        this.containers = [
+            this.dashboard.getContainer(0),
+            this.dashboard.getContainer(1),
+        ];
+    }
 }
 ```
 
@@ -155,9 +155,9 @@ Note that, in usual use cases, you will not have to use the layout component exp
 To use a custom layout, you need to register it in your app as below:
 ```ts
 export class AppModule {
-	constructor(resolver: NgdashResolver) {
-		resolver.bind(CustomWidgetComponent, 'layout', 'a-custom-layout');
-	}
+    constructor(resolver: NgdashResolver) {
+        resolver.bind(CustomWidgetComponent, 'layout', 'a-custom-layout');
+    }
 }
 ```
 
