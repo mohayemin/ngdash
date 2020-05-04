@@ -13,6 +13,7 @@ import { WidgetHeaderButtonSetComponent } from './utils/widget-header-button-set
 import { WidgetDeleteButtonComponent } from './utils/widget-delete-button.component';
 import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.component';
 import { NgdashResolver } from './core/ngdash-resolver';
+import { BootstrapR2C2LayoutComponent } from './layout/bootstrap-r2-c2-layout.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { NgdashResolver } from './core/ngdash-resolver';
 		WidgetContainerComponent,
 		WidgetWrapperComponent,
 		BootstrapR1C2LayoutComponent,
+		BootstrapR2C2LayoutComponent,
 		BootstrapCardWidgetComponent,
 		BootstrapCardWidgetHeaderComponent,
 		BootstrapCardWidgetBodyComponent,
@@ -40,13 +42,17 @@ export class NgdashModule {
 	constructor(resolver: NgdashResolver) {
 		 resolver
 		 	.bind(BootstrapCardWidgetComponent, 'widget', 'default')
-		// 	.bind(BootstrapCardWidgetComponent, 'widget', 'ngdash-bootstrap-card-widget')
+		 	.bind(BootstrapCardWidgetComponent, 'widget', 'ngdash-bootstrap-card-widget')
 		 	.bind(BootstrapR1C2LayoutComponent, 'layout', 'default')
 		 	.bind(BootstrapR1C2LayoutComponent, 'layout', 'ngdash-bootstrap-r1-c2-layout')
 		 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'default')
-		// 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'ngdash-bootstrap-card-widget-body')
+		 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'ngdash-bootstrap-card-widget-body')
 		 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'default')
-		// 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'ngdash-bootstrap-card-widget-header')
+		 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'ngdash-bootstrap-card-widget-header')
 			;
+
+		resolver
+			.bind(BootstrapR2C2LayoutComponent, 'layout', 'ngdash-bootstrap-r2-c2-layout')
+		;
 	}
 }

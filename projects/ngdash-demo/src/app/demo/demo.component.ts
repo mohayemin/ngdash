@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import {
 	Dashboard,
-	Widget, 
-	WidgetMoveEvent, 
-	DashboardData, 
+	Widget,
+	WidgetMoveEvent,
+	DashboardData,
 	WidgetSortEvent,
 } from 'projects/ngdash/src/public-api';
 
@@ -39,22 +39,39 @@ export class DemoComponent {
 	getDefaultData(): DashboardData {
 		return {
 			containers: [
-				{
+				{ // Container 1
 					widgets: [
-						{ uniqueId: 0, config: { title: 'using default widget', content: 'no custom header or body is used here' } },
-						{ uniqueId: 1, config: { title: 'another default widget', content: 'With <i>different</i> content' } },
-						{ uniqueId: 2, config: { title: 'the third default widget', content: 'With <i>different</i> <b>content</b>' } },
+						{ // Widget 1.1
+							config: {
+								title: 'using default widget',
+								content: 'no custom header or body is used here'
+							}
+						},
+						{ // Widget 1.2
+							config: {
+								title: 'another default widget',
+								content: 'With <i>different</i> content'
+							}
+						}
 					]
 				},
-				{
+				{ // Container 2
 					widgets: [
-						{
-							uniqueId: 3,
-							config: {
-								content: 'but the content is default'
-							}, ui: { headerComponentId: 'custom' }
+						{ // Widget 2.1
+							ui: { headerComponentId: 'custom-header' },
+							config: { content: 'custom header, but the content is default' }
 						},
-						{ uniqueId: 4, config: { title: 'using custom widget' }, ui: { widgetComponentId: 'demo' } },
+						{ // Widget 2.2
+							ui: { bodyComponentId: 'custom-body' },
+							config: { title: 'using custom widget body, but default component with default header' }
+						},
+						{ // Widget 2.3
+							ui: { headerComponentId: 'custom-header', bodyComponentId: 'custom-body' },
+						},
+						{ // Widget 2.4
+							ui: { widgetComponentId: 'custom-widget' },
+							config: { title: 'using custom widget' }
+						}
 					]
 				}
 			]

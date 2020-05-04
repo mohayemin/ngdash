@@ -14,11 +14,11 @@ import { Widget, WidgetContainer, Dashboard } from 'projects/ngdash/src/public-a
     </div>
   `,
 	styles: [
-		`.demo-widget { padding: 10px; background-color: lightpink;}`,
+		`.demo-widget { padding: 10px; background-color: gold;}`,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoWidgetComponent {
+export class CustomWidgetComponent {
 	@Input() widget: Widget;
 	@Input() container: WidgetContainer;
 	@Input() dashboard: Dashboard;

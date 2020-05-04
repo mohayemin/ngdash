@@ -7,7 +7,7 @@ import { Dictionary, Id } from '../utils/types';
 export class NgdashResolver {
 	private registry: Dictionary<Dictionary<Type<any>>> = {}
 
-	bind(bindTo: Type<any>, category: string, id: Id): NgdashResolver {
+	bind(bindTo: Type<any>, category: BindingCategory, id: Id): NgdashResolver {
 		id = id || 'default';
 		if (!this.registry[category])
 			this.registry[category] = {};
