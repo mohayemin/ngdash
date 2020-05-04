@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Widget } from '../core/widget';
-import { Dashboard } from '../core/dashboard';
-import { WidgetContainer } from '../core/widget-container';
+import { Widget } from '../../core/widget';
+import { Dashboard } from '../../core/dashboard';
+import { WidgetContainer } from '../../core/widget-container';
 
 @Component({
-	selector: 'ngdash-bootstrap-card-widget-header',
+	selector: 'ngdash-simple-widget-header',
 	template: `
 		<div class="d-flex align-items-center">
 			<div class="title" 
@@ -21,7 +21,7 @@ import { WidgetContainer } from '../core/widget-container';
 		`.title { flex-grow : 1; }`,
 	]
 })
-export class BootstrapCardWidgetHeaderComponent {
+export class SimpleWidgetHeaderComponent {
 	@Input() widget: Widget;
 	@Input() container: WidgetContainer;
 	@Input() dashboard: Dashboard;

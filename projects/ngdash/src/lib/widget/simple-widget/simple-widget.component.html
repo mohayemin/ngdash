@@ -1,0 +1,9 @@
+<div class="card">
+	<header class="card-header p-2">
+		<ng-template #header></ng-template>
+	</header>
+	<main class="card-body p-2"
+		  [hidden]="widget.state['isCollapsed']">
+		<ng-template #body></ng-template>
+	</main>
+</div>

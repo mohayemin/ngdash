@@ -5,15 +5,15 @@ import { HtmlWidgetComponent } from './widget/html-widget.component';
 import { WidgetContainerComponent } from './core/ui/widget-container.component';
 import { WidgetWrapperComponent } from './core/ui/widget-wrapper.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BootstrapCardWidgetHeaderComponent } from './widget/bootstrap-card-widget-header.component';
-import { BootstrapCardWidgetBodyComponent } from './widget/bootstrap-card-widget-body.component';
+import { SimpleWidgetHeaderComponent } from './widget/simple-widget/simple-widget-header.component';
+import { SimpleWidgetBodyComponent } from './widget/simple-widget/simple-widget-body.component';
 import { BootstrapR1C2LayoutComponent } from './layout/bootstrap-r1-c2-layout.component';
-import { BootstrapCardWidgetComponent } from './widget/bootstrap-card-widget.component';
 import { WidgetHeaderButtonSetComponent } from './utils/widget-header-button-set.component';
 import { WidgetDeleteButtonComponent } from './utils/widget-delete-button.component';
 import { WidgetToggleButtonComponent } from './utils/widget-toggle-button.component';
 import { NgdashResolver } from './core/ngdash-resolver';
 import { BootstrapR2C2LayoutComponent } from './layout/bootstrap-r2-c2-layout.component';
+import { SimpleWidgetComponent } from './widget/simple-widget/simple-widget.component';
 
 @NgModule({
 	declarations: [
@@ -23,12 +23,12 @@ import { BootstrapR2C2LayoutComponent } from './layout/bootstrap-r2-c2-layout.co
 		WidgetWrapperComponent,
 		BootstrapR1C2LayoutComponent,
 		BootstrapR2C2LayoutComponent,
-		BootstrapCardWidgetComponent,
-		BootstrapCardWidgetHeaderComponent,
-		BootstrapCardWidgetBodyComponent,
+		SimpleWidgetHeaderComponent,
+		SimpleWidgetBodyComponent,
 		WidgetHeaderButtonSetComponent,
 		WidgetDeleteButtonComponent,
 		WidgetToggleButtonComponent,
+		SimpleWidgetComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -41,14 +41,14 @@ import { BootstrapR2C2LayoutComponent } from './layout/bootstrap-r2-c2-layout.co
 export class NgdashModule {
 	constructor(resolver: NgdashResolver) {
 		 resolver
-		 	.bind(BootstrapCardWidgetComponent, 'widget', 'default')
-		 	.bind(BootstrapCardWidgetComponent, 'widget', 'ngdash-bootstrap-card-widget')
+		 	.bind(SimpleWidgetComponent, 'widget', 'default')
+		 	.bind(SimpleWidgetComponent, 'widget', 'simple')
 		 	.bind(BootstrapR1C2LayoutComponent, 'layout', 'default')
 		 	.bind(BootstrapR1C2LayoutComponent, 'layout', 'ngdash-bootstrap-r1-c2-layout')
-		 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'default')
-		 	.bind(BootstrapCardWidgetBodyComponent, 'widget-body', 'ngdash-bootstrap-card-widget-body')
-		 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'default')
-		 	.bind(BootstrapCardWidgetHeaderComponent, 'widget-header', 'ngdash-bootstrap-card-widget-header')
+		 	.bind(SimpleWidgetBodyComponent, 'widget-body', 'default')
+		 	.bind(SimpleWidgetBodyComponent, 'widget-body', 'simple')
+		 	.bind(SimpleWidgetHeaderComponent, 'widget-header', 'default')
+		 	.bind(SimpleWidgetHeaderComponent, 'widget-header', 'simple')
 			;
 
 		resolver

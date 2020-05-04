@@ -1,29 +1,26 @@
-import { Component, Input, AfterViewInit, ViewContainerRef, ViewChild, ComponentFactoryResolver, Type } from '@angular/core';
-import { Widget } from '../core/widget';
-import { Dashboard } from '../core/dashboard';
-import { WidgetContainer } from '../core/widget-container';
-import { Id } from '../utils/types';
-import { NgdashResolver, BindingCategory } from '../core/ngdash-resolver';
+import {
+	Component,
+	Input, 
+	AfterViewInit, 
+	ViewContainerRef, 
+	ViewChild, 
+	ComponentFactoryResolver, 
+	ChangeDetectionStrategy
+} from '@angular/core';
+import { Widget } from '../../core/widget';
+import { Dashboard } from '../../core/dashboard';
+import { WidgetContainer } from '../../core/widget-container';
+import { Id } from '../../utils/types';
+import { NgdashResolver, BindingCategory } from '../../core/ngdash-resolver';
 
 @Component({
-	selector: 'ngdash-bootstrap-card-widget',
-	template: `
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">
-				<ng-template #header></ng-template>
-			</h5>
-			<div class="card-text"
-				[hidden]="widget.state['isCollapsed']">
-				<ng-template #body></ng-template>
-			</div>
-		</div>
-	</div>
-	`,
+	selector: 'ngdash-simple-widget',
+	templateUrl: './simple-widget.component.html',
 	styles: [
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BootstrapCardWidgetComponent implements AfterViewInit {
+export class SimpleWidgetComponent implements AfterViewInit {
 	@Input() widget: Widget;
 	@Input() container: WidgetContainer;
 	@Input() dashboard: Dashboard;
