@@ -34,6 +34,8 @@ export class DemoComponent {
 		this.dashboard.events.widgetSort.subscribe(event => this.widgetSorted(event));
 		this.dashboard.events.widgetRemove.subscribe(event => this.widgetRemoved(event));
 		this.dashboard.events.widgetToggle.subscribe(event => this.widgetToggled(event));
+
+		this.logEvent('dashbaord loaded');
 	}
 
 	getDefaultData(): DashboardData {
