@@ -169,7 +169,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 
 
-ng-dash
+ngdash
 
 regenerator-runtime
 MIT
