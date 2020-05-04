@@ -9,6 +9,7 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
+		"publish-demo": "ng deploy",
 		"publish-lib": "ng build ngdash --prod && copyfiles README.md dist/ngdash && npm publish dist/ngdash"
 	},
 	"private": false,
