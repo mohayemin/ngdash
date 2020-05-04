@@ -20,7 +20,7 @@ export class NgdashResolver {
 	resolve(category: BindingCategory, id: Id): Type<any> {
 		id = id || 'default';
 		if (!this.registry[category] || !this.registry[category][id])
-			throw new Error(`No components registered of category ${category} and id ${id}.`);
+			throw new Error(`No components registered of category "${category}" and id "${id}".`);
 
 		return this.registry[category][id];
 	}
