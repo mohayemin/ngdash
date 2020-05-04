@@ -7,6 +7,8 @@ import {
 	ViewContainerRef,
 	ChangeDetectionStrategy,
 	ViewEncapsulation,
+	OnInit,
+	ChangeDetectorRef,
 } from '@angular/core';
 import { Dashboard } from '../dashboard';
 import { NgdashResolver } from '../ngdash-resolver';
@@ -27,15 +29,16 @@ import { NgdashResolver } from '../ngdash-resolver';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None
 })
-export class Ngdash implements AfterViewInit {
+export class Ngdash implements AfterViewInit, OnInit {
 	@Input() dashboard: Dashboard;
-	@Input() enableDragDrop: boolean;
+	enableDragDrop: boolean;
 
 	@ViewChild("layout", { read: ViewContainerRef })
 	layoutContainerRef: ViewContainerRef;
 
 	constructor(
 		private componentFactoryResolver: ComponentFactoryResolver,
+		private cdr: ChangeDetectorRef,
 		private resolver: NgdashResolver
 	) { }
 
@@ -43,8 +46,15 @@ export class Ngdash implements AfterViewInit {
 		this.renderLayout();
 	}
 
+	ngOnInit(): void {
+		this.dashboard.events.optionChange.subscribe((event)=> {
+			this.enableDragDrop = event.currentOptions['isDragEnabled'];
+			this.cdr.detectChanges();
+		});
+	}
+
 	renderLayout() {
-		const layoutType = this.resolver.resolve('layout', this.dashboard.layoutId);
+		const layoutType = this.resolver.resolve('layout', this.dashboard.getLayoutId());
 		const layoutFactory = this.componentFactoryResolver.resolveComponentFactory(layoutType);
 		const layoutRef = this.layoutContainerRef.createComponent(layoutFactory);
 		layoutRef.instance['dashboard'] = this.dashboard;

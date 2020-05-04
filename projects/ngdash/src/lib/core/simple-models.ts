@@ -10,9 +10,17 @@ export interface DashboardData {
 	 */
 	layoutId?: Id;
 	/**
+	 * Misc coptions for the dashboard
+	 */
+	options?: DashboardOptions;
+	/**
 	 * Any aditional configs. Not used by the framework but can be useful for custom components/layouts.
 	 */
 	config?: any;
+}
+
+export interface DashboardOptions {
+	isDragEnabled: boolean;
 }
 
 export interface ContainerData {

@@ -16,11 +16,9 @@ import {
 		`[wid='1'] .card { background-color: lightgreen }`,
 		`[wid='2'] .card { background-color: lightyellow }`,
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None, // disabled to apply custom style to widgets
 })
 export class DemoComponent {
-	enableDragDrop: boolean = true;
 	dashboard: Dashboard;
 
 	messages: string[] = [];
@@ -36,6 +34,11 @@ export class DemoComponent {
 		this.dashboard.events.widgetToggle.subscribe(event => this.widgetToggled(event));
 
 		this.logEvent('dashbaord loaded');
+	}
+
+	changeDragState(event: Event) {
+		const checkbox = event.target as HTMLInputElement;
+		this.dashboard.setOption('isDragEnabled', checkbox.checked);
 	}
 
 	getDefaultData(): DashboardData {

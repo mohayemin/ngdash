@@ -17,10 +17,9 @@
 		<div>
 			<label>
 				<input type="checkbox"
-					   [(ngModel)]="enableDragDrop" /> Enable Drag Drop
+					   (change)="changeDragState($event)"/> Enable Drag Drop
 			</label>
 		</div>
-		<ngdash [dashboard]="dashboard"
-				[enableDragDrop]="enableDragDrop"></ngdash>
+		<ngdash [dashboard]="dashboard"></ngdash>
 	</div>
 </div>
